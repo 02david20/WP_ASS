@@ -18,7 +18,7 @@ CREATE TABLE `User` (
   `phone_num` varchar(255),
   `address` varchar(255),
   `password` varchar(255),
-  `isAdmin` boolean
+  `role_id` boolean
 );
 
 CREATE TABLE `Avatar` (
