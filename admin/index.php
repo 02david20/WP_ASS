@@ -1,7 +1,6 @@
 <?php
-require_once('connection.php');
-require_once ('config/config.php');
-
+require_once('../lib/connection.php');
+require_once ('../lib/config.php');
 
 // index.php?controller=home&action=index 
 if (isset($_GET['controller'])) {

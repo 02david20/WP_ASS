@@ -3,5 +3,8 @@
 <?php require_once('admin/views/shared/sidebar.php')?>
 
 // Content here
+<section class="content">
+
+</section>
 <?php require_once('admin/views/shared/footer.php')?>
 // Js here
