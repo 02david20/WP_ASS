@@ -1,5 +1,5 @@
 <?php
-class User
+class Dashboard
 {
 
   static function all()

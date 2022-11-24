@@ -1,7 +1,10 @@
 <?php
 require_once('../lib/connection.php');
 require_once ('../lib/config.php');
-
+session_start();
+$_SESSION['auth'] = true;
+$_SESSION['id'] = 220001;
+$_SESSION['avatar'] = 'admin.jpg';
 // index.php?controller=home&action=index 
 if (isset($_GET['controller'])) {
   $controller = $_GET['controller'];
@@ -11,7 +14,7 @@ if (isset($_GET['controller'])) {
     $action = 'index';
   }
 } else {
-  $controller = 'pages';
+  $controller = 'admin';
   $action = 'home';
 }
 

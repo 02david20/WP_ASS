@@ -1,19 +1,17 @@
 <?php
 require_once('controllers/base_controller.php');
-
-class PagesController extends BaseController
+require_once('models/User.php');
+class UsersController extends BaseController
 {
   function __construct()
   {
-    $this->folder = 'pages';
+    $this->folder = 'users';
   }
 
   public function home()
   {
-    $data = array(
-      'name' => 'Sang Beo',
-      'age' => 22
-    );
+    $users = User::all();
+    $data = array('user' => $users);
     $this->render('home', $data);
   }
 

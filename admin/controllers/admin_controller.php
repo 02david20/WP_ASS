@@ -1,6 +1,7 @@
 <?php
 require_once('controllers/base_controller.php');
-
+require_once('models/User.php');
+require_once('models/Product.php');
 class AdminController extends BaseController
 {
   function __construct()
@@ -10,10 +11,10 @@ class AdminController extends BaseController
 
   public function home()
   {
-    $data = array(
-      'name' => 'Sang Beo',
-      'age' => 22
-    );
+    $users = User::all();
+    $products = Product::all();
+
+    $data = ['users'=>$users, 'products'=>$products];
     $this->render('home', $data);
   }
 
