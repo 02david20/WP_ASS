@@ -8,7 +8,7 @@ class DB
           $servername = "localhost";
           $username = "david";
           $password = "51WXHZC[r7t4Kw8I";
-          $dbname = "shop";
+          $dbname = "fashion";
 
           self::$instance = new mysqli($servername, $username, $password, $dbname);
           if (self::$instance->connect_error) {

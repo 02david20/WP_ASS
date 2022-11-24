@@ -30,5 +30,3 @@
 <script src="/public/js/admin/adminlte/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/public/js/admin/pages/dashboard.js"></script>
-</body>
-</html>

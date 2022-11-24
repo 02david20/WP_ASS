@@ -16,7 +16,7 @@ class Post
   {
     $list = [];
     $db = DB::getInstance();
-    $req = $db->query('SELECT * FROM products');
+    $res = $db->query('SELECT * FROM products');
 
     // lists = req....
 

@@ -1,11 +1,11 @@
 <?php
-class User
+class Transaction
 {
 
   static function all()
   {
     $db = DB::getInstance();
-    $sql = 'SELECT * FROM user';
+    $sql = 'SELECT * FROM transaction';
     $res = $db->query($sql);
     return $res;
   }
