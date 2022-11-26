@@ -1,0 +1,2 @@
+main_pic/type/title/date/para1/sub_pic/para2/sub_pic_quote
+begin id = 880
