@@ -1,3 +1,7 @@
+<?php
+
+@include 'config.php';
+?>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -33,17 +37,17 @@
 	<!-- Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
 	<!-- Animate -->
-	<link rel="stylesheet" href="/resources/posts-resource/css/animate.css">
+	<link rel="stylesheet" href="/User_Interface_change/resources/posts-resource/css/animate.css">
 	<!-- Icomoon -->
-	<link rel="stylesheet" href="/resources/posts-resource/css/icomoon.css">
+	<link rel="stylesheet" href="/User_Interface_change/resources/posts-resource/css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="/resources/posts-resource/css/bootstrap.css">
+	<link rel="stylesheet" href="/User_Interface_change/resources/posts-resource/css/bootstrap.css">
 
-	<link rel="stylesheet" href="/resources/posts-resource/css/style.css">
+	<link rel="stylesheet" href="/User_Interface_change/resources/posts-resource/css/style.css">
 
 
 	<!-- Modernizr JS -->
-	<script src="/resources/posts-resource/js/modernizr-2.6.2.min.js"></script>
+	<script src="/User_Interface_change/resources/posts-resource/js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -55,7 +59,7 @@
 		<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
 		<div class="fh5co-bio">
 			<figure>
-				<img src="/resources/posts-resource/images/aboutUs.jpg" alt="Our store" class="img-responsive">
+				<img src="/User_Interface_change/resources/posts-resource/images/aboutUs.jpg" alt="Our store" class="img-responsive">
 			</figure>
 			<h3 class="heading">About Us</h3>
 			<h2>Website name</h2>
@@ -71,8 +75,17 @@
 			<div class="fh5co-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="#">General news</a></li>
-					<li><a href="#">Fashion blog</a></li>
+		<?php
+      $select_category = $conn->prepare("SELECT `type` FROM `blog` GROUP BY `type`");
+      $select_category->execute();
+      if($select_category->rowCount() > 0){
+         while($fetch_category = $select_category->fetch(PDO::FETCH_ASSOC)){ 
+   		?>
+					<li><a href="blogs.php?category=<?= $fetch_category['type']; ?>"><?= $fetch_category['type']; ?></a></li>
+		<?php 
+		 }
+		}
+		?>			
 				</ul>
 			</div>
 			<div class="fh5co-box">
@@ -98,7 +111,7 @@
 					<li><a href="#"><i class="icon-instagram"></i></a></li>
 				</ul>
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1 id="fh5co-logo"><a href="blogs.html">HCMUT <sup>BKUer</sup></a></h1>
+					<h1 id="fh5co-logo"><a href="blogs.php">HCMUT <sup>BKUer</sup></a></h1>
 				</div>
 
 			</div>
@@ -106,158 +119,69 @@
 		</div>
 
 	</header>
+
 	<!-- END #fh5co-header -->
 	<div class="container-fluid">
 		<div class="row fh5co-post-entry">
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_1.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">News</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">We Eat and Drink All Night</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_2.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">News</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">Beef Steak at Guatian Restaurant</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<div class="clearfix visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_3.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a>, <a href="single.html">Style</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">An Overlooking River at the East Cost</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_4.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a>, <a href="single.html">Style</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">A Wildlife In The Mountain of India</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_5.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">We Took A Photo</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_6.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a>, <a href="single.html">Style</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">A Modernize Huge and Beautiful Building</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<div class="clearfix visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_7.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">News</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">Enjoying the Native Juice Drink in Brazil</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_8.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a>, <a href="single.html">Style</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">Boat Travel in The Vietnam River</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
 
-
+		<?php
+		
+		if(!isset($_GET['category'])){
+      $select_blogs = $conn->prepare("SELECT * FROM `blog`");
+      $select_blogs->execute();
+      if($select_blogs->rowCount() > 0){
+         while($fetch_blogs = $select_blogs->fetch(PDO::FETCH_ASSOC)){ 
+   		?>
 
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_1.jpg" alt="Image" class="img-responsive"></a>
+					<a href="single.php?id=<?= $fetch_blogs['id']; ?>"><img src="<?= $fetch_blogs['main_pic']; ?>" alt="Image" class="img-responsive"></a>
 				</figure>
-				<span class="fh5co-meta"><a href="single.html">News</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">We Eat and Drink All Night</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
+				<span class="fh5co-meta"><a href="single.php"><?= $fetch_blogs['type']; ?></a></span>
+				<h2 class="fh5co-article-title"><a href="single.php"><?= $fetch_blogs['title']; ?></a></h2>
+				<span class="fh5co-meta fh5co-date"><?= $fetch_blogs['date']; ?></span>
 			</article>
+			<!-- <div class="clearfix visible-xs-block"></div> -->
+			<!-- <div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div> -->
+			<!-- <div class="clearfix visible-xs-block"></div> -->
+			<!-- <div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div> -->
+	<?php 
+		 }
+		}
+	}else {
+	?>
+
+	<?php
+	$category = $_GET['category'];
+	$select_blogs = $conn->prepare("SELECT * FROM `blog` WHERE `type` = ?");
+	$select_blogs->execute([$category]);
+	if($select_blogs->rowCount() > 0){
+		while($fetch_blogs = $select_blogs->fetch(PDO::FETCH_ASSOC)){ 
+	?>
 			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
 				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_2.jpg" alt="Image" class="img-responsive"></a>
+					<a href="single.php?id=<?= $fetch_blogs['id']; ?>"><img src="<?= $fetch_blogs['main_pic']; ?>" alt="Image" class="img-responsive"></a>
 				</figure>
-				<span class="fh5co-meta"><a href="single.html">News</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">Beef Steak at Guatian Restaurant</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
+				<span class="fh5co-meta"><a href="single.php"><?= $fetch_blogs['type']; ?></a></span>
+				<h2 class="fh5co-article-title"><a href="single.php"><?= $fetch_blogs['title']; ?></a></h2>
+				<span class="fh5co-meta fh5co-date"><?= $fetch_blogs['date']; ?></span>
 			</article>
-			<div class="clearfix visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_3.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a>, <a href="single.html">Style</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">An Overlooking River at the East Cost</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_4.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a>, <a href="single.html">Style</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">A Wildlife In The Mountain of India</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_3.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">We Took A Photo</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_3.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a>, <a href="single.html">Style</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">A Modernize Huge and Beautiful Building</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<div class="clearfix visible-xs-block"></div>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_3.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">News</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">Enjoying the Native Juice Drink in Brazil</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-				<figure>
-					<a href="single.html"><img src="/resources/posts-resource/images/pic_3.jpg" alt="Image" class="img-responsive"></a>
-				</figure>
-				<span class="fh5co-meta"><a href="single.html">Fashion</a>, <a href="single.html">Style</a></span>
-				<h2 class="fh5co-article-title"><a href="single.html">Boat Travel in The Vietnam River</a></h2>
-				<span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-			</article>
-			<div class="clearfix visible-xs-block"></div>
+	<?php
+		}
+	}
+}
+	?>
 		</div>
 	</div>
+
 
 	<!-- Pagination -->
 <div class="soft-pagination">
 	<ul class="soft-pagination-items">
 		<li> <i class="fa fa-chevron-circle-left" style="font-size:20px;color:white"></i></li>
-		<li>1</li>
+		<li class="active">1</li>
 		<li>2</li>
-		<li class="active">3</li>
+		<li>3</li>
 		<li>4</li>
 		<li>5</li>
 		<li> <i class="fa fa-chevron-circle-right" style="font-size:20px;color:white;"></i></li>
@@ -274,15 +198,15 @@
 
 	
 	<!-- jQuery -->
-	<script src="/resources/posts-resource/js/jquery.min.js"></script>
+	<script src="/User_Interface_change/resources/posts-resource/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
-	<script src="/resources/posts-resource/js/jquery.easing.1.3.js"></script>
+	<script src="/User_Interface_change/resources/posts-resource/js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
-	<script src="/resources/posts-resource/js/bootstrap.min.js"></script>
+	<script src="/User_Interface_change/resources/posts-resource/js/bootstrap.min.js"></script>
 	<!-- Waypoints -->
-	<script src="/resources/posts-resource/js/jquery.waypoints.min.js"></script>
+	<script src="/User_Interface_change/resources/posts-resource/js/jquery.waypoints.min.js"></script>
 	<!-- Main JS -->
-	<script src="/resources/posts-resource/js/main.js"></script>
+	<script src="/User_Interface_change/resources/posts-resource/js/main.js"></script>
 
 	</body>
 </html>
