@@ -1,9 +1,3 @@
-
-<?php require_once(dirname(__DIR__).'../shared/header.php') ?>
-<?php require_once(dirname(__DIR__).'../shared/navbar.php')?>
-<?php require_once(dirname(__DIR__).'../shared/sidebar.php')?>
-
-// Content here
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -37,22 +31,52 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Tên</th>
+                      <th>Tên Tài Khoản</th>
+                      <th>Passoword</th>
                       <th>Ngày sinh</th>
+                      <th>Họ Tên</th>
                       <th>Email</th>
-                      <th>Điểm tích lũy</th>
-                      <th>Số điện thoại</th>
+                      <th>SĐT</th>
+                      <th>Địa chỉ</th>
+                      <th>Role</th>
+                      <th>Banned</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>2010785</td>
-                      <td>Huỳnh Đại Vinh</td>
-                      <td>9/9/2999</td>
-                      <td>dvh@gmail.com</td>
-                      <td>1000</td>
-                      <td>1234567890</td>
-                    </tr>                    
+                  <?php
+
+                
+                while($row = $users->fetch_assoc()) {
+                    echo "<tr id='r-".$row['id']."'>";
+                    echo "<td>".$row['id']."</td>";
+                    echo "<td>".$row['username']."</td>";
+                    echo "<td>".$row['password']."</td>";                    
+                    echo "<td>".$row['dob']."</td>";
+                    echo "<td>".$row['fullname']."</td>";
+                    echo "<td>".$row['email']."</td>";
+                    echo "<td>".$row['phone_num']."</td>";
+                    echo "<td>".$row['address']."</td>";
+                    echo "<td>".$row['role']."</td>";
+                    echo "<td>".$row['banned']."</td>";
+                    ?>
+                    <td>
+                      <a class = "btn btn-primary" href="?controller=users&action=edit&id=<?php echo $row['id']?>" >
+                        Sửa
+                      </a>
+
+                      <a
+                            class="btn btn-danger mt-1 delete" data-id="<?php echo $row["id"]; ?>" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#ModalDelete"
+                            data-toggle="modal">
+                        Xóa
+                      </a>
+                    </td>
+                    <?php
+                    echo "</tr>";
+                    }
+                  ?>       
                   </tbody>
                 </table>
               </div>
@@ -69,29 +93,68 @@
     <!-- /.content -->
 </div>
 
-<?php require_once(dirname(__DIR__).'../shared/footer.php')?>
-<script>
-  $(function () {
+<!-- Delete Modal HTML -->
+
+    <!-- Delete Modal HTML -->
+
+    <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Delete User</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="idd" name="id" class="form-control">					
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <button type="button" class="btn btn-danger" id="btn-delete">Delete</button>
+                        </div>
+                    </form>
+                </div>
+          </div>
+      </div>
+<script defer>
+  $(document).ready(function () {
+
     $("#dataTable").DataTable({
       "paging":true,"searching":true,
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "pageLength": 50,
+      "responsive": true, "lengthChange": true, "autoWidth": false,
       "buttons": ["csv", "excel", "pdf", "print"]
     }).buttons().container().appendTo('#dataTable_wrapper .col-md-6:eq(0)');
 
-    arr =  ``
-    for (let int = 0; int < 1000; int++) {
-      arr += `<tr>
-                      <td>2010785</td>
-                      <td>Huỳnh Đại Vinh</td>
-                      <td>9/9/2999</td>
-                      <td>dvh@gmail.com</td>
-                      <td>1000</td>
-                      <td>1234567890</td>
-                    </tr>       `
-    }
-    $("#dataTable").children('tbody').append(arr)
+
+    $(".delete").on("click", function() { 
+                const idd=$(this).attr("data-id");
+                $('#idd').val(idd);
+            });
+
+    $("#btn-delete").on("click", function() { 
+        $.ajax({
+            url: "?controller=users&action=delete",
+            type: "POST",
+            cache: false,
+            data:{
+                id: $("#idd").val()
+            },
+            success: function(response){
+                response = JSON.parse(response)
+                if(response.statusCode === 200) {
+                    alert("Delete Success")
+                    $("#ModalDelete").modal('hide')
+                    $("#r-"+$("#idd").val()).remove()
+                }else {
+                    alert(response.err)
+                }
+            }
+        });
+    });
+
   });
 </script>
-<?php require_once(dirname(__DIR__).'../shared/foot.php')?>
 
-// Js here

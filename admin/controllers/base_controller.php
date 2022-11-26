@@ -23,7 +23,7 @@ class BaseController
         require_once('views/layouts/'.$layout.'.php');
       }else {
         // Nếu không chọn layout mặc định
-        require_once('views/layouts/application.php');
+        require_once('views/shared/layout.php');
       }
     } else {
       // Nếu file muốn gọi ra không tồn tại thì chuyển hướng đến trang báo lỗi.

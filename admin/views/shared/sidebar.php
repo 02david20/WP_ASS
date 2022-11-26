@@ -37,7 +37,7 @@
 
           <!-- DashBoard -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="?controller=admin&action=home" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -48,7 +48,7 @@
 
           <!-- Users -->
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="?controller=users&action=home" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Users

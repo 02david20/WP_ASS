@@ -22,4 +22,6 @@ class AdminController extends BaseController
   {
     $this->render('error');
   }
+
+
 }
