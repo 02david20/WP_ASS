@@ -1,8 +1,3 @@
-
-<?php require_once(dirname(__DIR__).'../shared/header.php') ?>
-<?php require_once(dirname(__DIR__).'../shared/navbar.php')?>
-<?php require_once(dirname(__DIR__).'../shared/sidebar.php')?>
-
 <section class="content">
       <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -596,5 +591,4 @@
     <!-- /.content -->
   </div>
 </section>
-<?php require_once(dirname(__DIR__).'../shared/footer.php')?>
-<?php require_once(dirname(__DIR__).'../shared/foot.php')?>
+<script src="/public/js/admin/pages/dashboard.js"></script>
