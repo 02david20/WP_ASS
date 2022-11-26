@@ -8,6 +8,8 @@ $_SESSION['id'] = 220001;
 $_SESSION['role'] = 1;
 $_SESSION['avatar'] = 'admin.jpg';
 // index.php?controller=home&action=index 
+
+
 if (isset($_GET['controller'])) {
   $controller = $_GET['controller'];
   if (isset($_GET['action'])) {
