@@ -1,6 +1,9 @@
 <?php
 
-require_once '/var/www/html/lib/connection.php';
+
+define('BASE_PATH', '/var/www/html/');
+
+require_once BASE_PATH . 'lib/connection.php';
 
 session_start();
 
@@ -19,4 +22,4 @@ if (isset($_GET['controller'])) {
 
 
 /* Load external routes file */
-require_once '/var/www/html/routes.php';
+require_once BASE_PATH . 'routes.php';
