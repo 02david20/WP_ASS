@@ -11,10 +11,10 @@ class AdminController extends BaseController
 
   public function home()
   {
-    $users = User::all();
+    $users_res = User::all();
     $products = Product::all();
 
-    $data = ['users'=>$users, 'products'=>$products];
+    $data = ['users'=>$users_res, 'products'=>$products];
     $this->render('home', $data);
   }
 
@@ -22,6 +22,4 @@ class AdminController extends BaseController
   {
     $this->render('error');
   }
-
-
 }
