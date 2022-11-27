@@ -18,16 +18,15 @@ class UsersController extends BaseController
   public function delete() {
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = (int)$_POST["id"];
-      
-        $sql = "DELETE FROM user WHERE id=$id ";
-
-        if(DB::getInstance()->query($sql)) {
-            echo json_encode(array('statusCode'=>200));
+        $res = User::deleteByID($id);
+        if(!$res) {
+          echo json_encode(array('statusCode'=>200));
         } else {
             echo json_encode(array('statusCode'=>400,
-                                    'err' => "Error deleting record: ".DB::getInstance()->error,            
+                                    'err' => "Error deleting record: ".DB::getInstance()->error.$res,            
             ));
         }
+        
     }  
   }
 
@@ -79,7 +78,7 @@ class UsersController extends BaseController
 
           $config = array(
               'name' => $avatar_name,
-              'upload_path'  => "../".PATH_URL_IMG,
+              'upload_path'  => PATH_URL_IMG,
               'allowed_exts' => 'jpg|jpeg|png|gif',
           );
 

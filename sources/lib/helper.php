@@ -86,3 +86,17 @@ function upload($field, $config = array())
 function escape($str) {
     return mysqli_real_escape_string(DB::getInstance(),$str);
 }
+
+function login($username, $password) {
+    $conn= DB::getInstance();
+
+    $sql = 'SELECT * FROM user WHERE username=? and password=?';
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    $res = $stmt->get_result();
+       
+    $_SESSION["auth"] = true;
+    $_SESSION["user"] = $res->fetch_assoc();
+}

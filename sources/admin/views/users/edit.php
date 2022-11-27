@@ -2,14 +2,14 @@
 
 <section class="content-wrapper">
     <div class="body_scroll">
-        <div class="block-header">
+        <div class="block-header m-3">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
                     <h2>Thông tin tài khoản cá nhân của bạn</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="?controller=admin&action=home"><i class="zmdi zmdi-home"></i>Fashion</a></li>
-                        <li class="breadcrumb-item"><a href="?controller=users&action=home">User</a></li>
-                        <li class="breadcrumb-item active">Edit Your Profile Info</li>
+                        <li class="breadcrumb-item"><a href="?controller=admin&action=home"><i class="zmdi zmdi-home"></i>Home</a></li>
+                        <li class="breadcrumb-item"><a href="?controller=users&action=home">Người dùng</a></li>
+                        <li class="breadcrumb-item active">Chỉnh sủa tài khoản</li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +55,8 @@
                             </tr>
                             <tr>
                                 <td><strong>Avatar</strong> </td>
-                                <td><img style="max-width:200px;" src="<?php echo PATH_URL_IMG.$user_info['avatar']; ?>" alt="<?php echo $user_info['username']; ?>"> </td>
+                                <!-- Adding Random Parameter To Disable Cache Image -->
+                                <td><img style="max-width:200px;" src="<?php echo PATH_URL_IMG.$user_info['avatar']; ?>?t=<?php echo time()?>" alt="<?php echo $user_info['username']; ?>"> </td>
                             </tr>
                         </table>
                     </div>

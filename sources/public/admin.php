@@ -7,10 +7,9 @@ require_once BASE_PATH . 'lib/config.php';
 require_once BASE_PATH . 'lib/helper.php';
 
 session_start();
+// Login Action
 $_SESSION['auth'] = true;
-$_SESSION['id'] = 220001;
-$_SESSION['role'] = 1;
-$_SESSION['avatar'] = 'admin.jpg';
+login("sheezy01","hha123");
 
 if($_SESSION['role'] <> 1) {
     header("Location: index.php");
