@@ -591,4 +591,4 @@
     <!-- /.content -->
   </div>
 </section>
-<script src="/public/js/admin/pages/dashboard.js"></script>
+<script src="js/admin/pages/dashboard.js"></script>

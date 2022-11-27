@@ -7,7 +7,7 @@ class BaseController
   function render($file, $data = array(),$layout=null)
   {
     // Kiểm tra file gọi đến có tồn tại hay không?
-    $view_file = 'views/' . $this->folder . '/' . $file . '.php';
+    $view_file = ADMIN_PATH.'views/' . $this->folder . '/' . $file . '.php';
     if (is_file($view_file)) {
       // Nếu tồn tại file đó thì tạo ra các biến chứa giá trị truyền vào lúc gọi hàm
       extract($data);
@@ -20,14 +20,14 @@ class BaseController
       /////////////////////////////////////////////////////
       // Sau khi có kết quả đã được lưu vào biến $content, gọi ra template chung của hệ thống đế hiển thị ra cho người dùng
       if($layout) {
-        require_once('views/layouts/'.$layout.'.php');
+        require_once(ADMIN_PATH.'views/layouts/'.$layout.'.php');
       }else {
         // Nếu không chọn layout mặc định
-        require_once('views/shared/layout.php');
+        require_once(ADMIN_PATH.'views/shared/layout.php');
       }
     } else {
       // Nếu file muốn gọi ra không tồn tại thì chuyển hướng đến trang báo lỗi.
-      header('Location: index.php?controller=pages&action=error');
+      header('Location: admin.php?controller=pages&action=error');
     }
   }
 }

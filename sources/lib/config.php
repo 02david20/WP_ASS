@@ -1,5 +1,6 @@
 <?php
-define('BASE_URL', 'fashion');
+define('ADMIN_PATH', '../admin/');
+define('USER_PATH', '../app/');
 define('PATH_URL', '/');
-define('PATH_URL_IMG', PATH_URL . 'public/upload/images/');
-define('PATH_URL_IMG_PRODUCT', PATH_URL . 'public/upload/products/');
+define('PATH_URL_IMG', 'upload/images/');
+define('PATH_URL_IMG_PRODUCT', 'upload/products/');

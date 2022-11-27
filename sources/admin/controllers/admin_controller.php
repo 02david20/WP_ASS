@@ -1,7 +1,7 @@
 <?php
-require_once('controllers/base_controller.php');
-require_once('models/User.php');
-require_once('models/Product.php');
+require_once(ADMIN_PATH.'controllers/base_controller.php');
+require_once(ADMIN_PATH.'models/User.php');
+require_once(ADMIN_PATH.'models/Product.php');
 class AdminController extends BaseController
 {
   function __construct()

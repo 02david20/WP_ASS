@@ -1,12 +1,6 @@
 <?php
-require_once('../lib/connection.php');
-require_once ('../lib/config.php');
-require_once ('../lib/helper.php');
 session_start();
-$_SESSION['auth'] = true;
-$_SESSION['id'] = 220001;
-$_SESSION['role'] = 1;
-$_SESSION['avatar'] = 'admin.jpg';
+
 // index.php?controller=home&action=index 
 
 
@@ -22,4 +16,4 @@ if (isset($_GET['controller'])) {
   $action = 'home';
 }
 
-require_once('routes.php');
+require_once(ADMIN_PATH.'routes.php');

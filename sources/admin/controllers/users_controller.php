@@ -1,6 +1,6 @@
 <?php
-require_once('controllers/base_controller.php');
-require_once('models/User.php');
+require_once(ADMIN_PATH.'controllers/base_controller.php');
+require_once(ADMIN_PATH.'models/User.php');
 class UsersController extends BaseController
 {
   function __construct()
@@ -93,7 +93,7 @@ class UsersController extends BaseController
               );
               User::Update($user_edit);
           }
-          header('Location: index.php?controller=users&action=home');
+          header('Location: admin.php?controller=users&action=home');
       }
     }  
   }
