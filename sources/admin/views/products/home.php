@@ -64,7 +64,7 @@
                           else 
                             echo "<td></td>";
                           echo "<td>".$row['createDate']."</td>";
-                          echo '<td> <image src="../'.PATH_URL_IMG. "admin.jpg" . '?time=' . time() . '" style="max-width:50px;" /></td>';
+                          echo '<td> <image src="'.PATH_URL_IMG_PRODUCT. $row["img1"] . '?time=' . time() . '" style="max-width:100px;" /></td>';
                           echo "<td>".$row['totalView']."</td>";
                           ?>
                           <td>
@@ -143,7 +143,7 @@
 
     $("#btn-delete").on("click", function() { 
         $.ajax({
-            url: "?controller=users&action=delete",
+            url: "admin.php?controller=products&action=delete",
             type: "POST",
             cache: false,
             data:{

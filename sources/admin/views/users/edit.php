@@ -2,7 +2,7 @@
 
 <section class="content-wrapper">
     <div class="body_scroll">
-        <div class="block-header">
+        <div class="block-header m-3">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
                     <h2>Thông tin tài khoản cá nhân của bạn</h2>
@@ -55,7 +55,8 @@
                             </tr>
                             <tr>
                                 <td><strong>Avatar</strong> </td>
-                                <td><img style="max-width:200px;" src="<?php echo PATH_URL_IMG.$user_info['avatar']; ?>" alt="<?php echo $user_info['username']; ?>"> </td>
+                                <!-- Adding Random Parameter To Disable Cache Image -->
+                                <td><img style="max-width:200px;" src="<?php echo PATH_URL_IMG.$user_info['avatar']; ?>?t=<?php time()?>" alt="<?php echo $user_info['username']; ?>"> </td>
                             </tr>
                         </table>
                     </div>

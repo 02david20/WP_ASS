@@ -4,26 +4,52 @@ class User
 
   static function all()
   {
-    $db = DB::getInstance();
+    $conn= DB::getInstance();
+
     $sql = 'SELECT * FROM user';
-    $res = $db->query($sql);
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->get_result();
+       
     return $res;
   }
   
   static function findByID($id)
   {
-    $db = DB::getInstance();
-    $sql = 'SELECT * FROM user WHERE id='.$id;
-    $res = $db->query($sql);
+
+    $conn= DB::getInstance();
+
+    $sql = 'SELECT * FROM user WHERE id=?';
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
     return $res->fetch_assoc();
+  }
+
+  static function deleteByID($id)
+  {
+    $conn= DB::getInstance();
+    $sql = "DELETE FROM user WHERE id=?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    return $res;
   }
 
   static function Update($data=array()) {
     $table='user';
+
     foreach ($data as $key => $value) {
         $value = escape($value);
         $values[] = "`$key`='$value'";
     }
+
     $id = intval($data['id']);
     if ($id > 0) {
         $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE `id`='$id'";

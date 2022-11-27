@@ -136,7 +136,7 @@
 
     $("#btn-delete").on("click", function() { 
         $.ajax({
-            url: "?controller=users&action=delete",
+            url: "admin.php?controller=users&action=delete",
             type: "POST",
             cache: false,
             data:{
