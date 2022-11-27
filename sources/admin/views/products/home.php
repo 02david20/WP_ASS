@@ -26,6 +26,7 @@
                 <h3 class="card-title">Bảng danh sách sản phẩm</h3>
               </div>
               <!-- /.card-header -->
+              <a href="?controller=products&action=add" class="btn btn-success">Thêm sản phẩm mới</a>
               <div class="card-body">
                 <table id="dataTable" class="table table-bordered table-striped">
                   <thead>

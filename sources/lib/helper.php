@@ -100,3 +100,7 @@ function login($username, $password) {
     $_SESSION["auth"] = true;
     $_SESSION["user"] = $res->fetch_assoc();
 }
+
+function isBanned($date) {
+    return isset($date) && $date > date("Y-m-d");
+}

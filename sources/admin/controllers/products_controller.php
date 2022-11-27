@@ -41,12 +41,10 @@ class ProductsController extends BaseController
   }
 
   public function add() {
-    if($_SERVER["REQUEST_METHOD"] == "GET") {
-      $types = Type::all();
-      $categories = Category::all();
-      $product_info = array('types'=> $types, "categories"=>$categories);
-      $this->render('edit',$product_info);
-    }  
+    $types = Type::all();
+    $categories = Category::all();
+    $product_info = array('types'=> $types, "categories"=>$categories);
+    $this->render('edit',$product_info);  
   }
 
   public function updateProduct() {

@@ -84,6 +84,7 @@ class Product {
     return $id;
   }
 
+
   static function findByCategory() {
     
   }

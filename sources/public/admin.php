@@ -11,7 +11,8 @@ session_start();
 $_SESSION['auth'] = true;
 login("sheezy01","hha123");
 
-if($_SESSION['role'] <> 1) {
+if($_SESSION['user']['role'] <> 1) {
+    echo var_dump($_SESSION['user']['role']);
     header("Location: index.php");
 }
 
