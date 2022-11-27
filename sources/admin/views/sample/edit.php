@@ -1,17 +1,15 @@
-<section class="content">
+
+<section class="content-wrapper">
     <div class="body_scroll">
-        <div class="block-header">
+        <div class="block-header m-3">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2><? ?></h2>
+                    <h3><? ?></h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="<?= PATH_URL . 'home' ?>"><i class="zmdi zmdi-home"></i> ChiKoi</a></li>
-                        <li class="breadcrumb-item"><a href="admin.php?controller=product">Product</a></li>
-                        <li class="breadcrumb-item active"><?php echo $product ? 'Cập nhật sản phẩm: ' . $product['product_name']  : 'Thêm sản phẩm mới'; ?></li>
+                        <li class="breadcrumb-item"><a href="?controller=admin&action=home"><i class="zmdi zmdi-home"></i>Home</a></li>
+                        <li class="breadcrumb-item"><a href="?controller=products&action=home">Sản phẩm</a></li>
+                        <li class="breadcrumb-item active"><?php echo isset($product) ? 'Cập nhật sản phẩm: ' . $product['name']  : 'Thêm sản phẩm mới'; ?></li>
                     </ul>
-                </div>
-                <div class="col-lg-5 col-md-6 col-sm-12">
-                    <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -20,10 +18,7 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="alert alert-warning" role="alert">
-                        <strong><?php echo $product ? 'Cảnh Báo: </strong> Bạn đang trong trang chỉnh sửa của sản phẩm "' . $product['product_name'] . '", Hãy cẩn trọng!!! <a target="_blank" href="#"> Xem tài liệu hướng dẫn</a>' : 'Cảnh Báo: </strong> Bạn đang trong trang tạo một sản phẩm mới, Hãy cẩn trọng!!! <a target="_blank" href="#"> Xem tài liệu hướng dẫn</a>'; ?>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true"><i class="zmdi zmdi-close"></i></span>
-                            </button>
+                        <strong><?php echo isset($product) ? 'Cảnh Báo: </strong> Bạn đang trong trang chỉnh sửa của sản phẩm "' . $product['name'] . '", Hãy cẩn trọng!!! <a target="_blank" href="#"> Xem tài liệu hướng dẫn</a>' : 'Cảnh Báo: </strong> Bạn đang trong trang tạo một sản phẩm mới, Hãy cẩn trọng!!! <a target="_blank" href="#"> Xem tài liệu hướng dẫn</a>'; ?>
                     </div>
                     <?php if (isset($product)) { ?>
                         <div class="col-lg-12">
@@ -32,12 +27,12 @@
                                 <table id="info" class="table">
                                     <tr>
                                         <td><strong>Tên sản phẩm</strong></td>
-                                        <td><?php echo $product['product_name']; ?></td>
+                                        <td><?php echo $product['name']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Loại sản phẩm</strong></td>
-                                        <td><?php foreach ($types as $type) {
-                                                if ($product && ($product['product_typeid'] == $type['id']))  echo  $type['type_name'];
+                                        <td><?php  while($type = $types->fetch_assoc())  {
+                                                if ($product && ($product['type_id'] == $type['id']))  echo  $type['type_name'];
                                             } ?></td>
                                     <tr></tr>
                                     <td><strong>Thuộc nhóm danh mục</strong> </td>
@@ -46,22 +41,16 @@
                                         } ?></td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Thuộc danh mục con</strong> </td>
-                                        <td><?php foreach ($subcategories as $subcategory) {
-                                                if ($product && ($product['sub_category_id'] == $subcategory['id'])) echo $subcategory['subcategory_name'];
-                                            } ?></td>
-                                    </tr>
-                                    <tr>
                                         <td><strong>Color</strong> </td>
-                                        <td><?php echo $product['product_color']; ?></td>
+                                        <td><?php echo $product['color']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Size</strong> </td>
-                                        <td><?php echo $product['product_size']; ?></td>
+                                        <td><?php echo $product['size']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Material</strong> </td>
-                                        <td><?php echo $product['product_material']; ?></td>
+                                        <td><?php echo $product['material']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Total View</strong> </td>
@@ -69,7 +58,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Price</strong> </td>
-                                        <td><?php echo $product['product_price']; ?> VNĐ</td>
+                                        <td><?php echo $product['price']; ?> VNĐ</td>
                                     </tr>
                                     <?php if ($product['saleoff'] == 1) { ?>
                                         <tr>
@@ -77,8 +66,8 @@
                                             <td><?php echo $product['percentoff']; ?> %</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Price (Sale)</strong> </td>
-                                            <td><?php echo $product['product_price'] - $product['product_price'] * $product['percentoff'] / 100; ?> VNĐ</td>
+                                            <td><stcategorierong>Price (Sale)</stcategorierong> </td>
+                                            <td><?php echo $product['price'] - $product['price'] * $product['percentoff'] / 100; ?> VNĐ</td>
                                         </tr>
                                     <?php } ?>
                                 </table>
@@ -87,45 +76,45 @@
                     <?php } ?>
                     <div class="card">
                         <div class="body">
-                            <form id="product-form" class="form-horizontal" method="post" action="admin.php?controller=product&amp;action=edit" enctype="multipart/form-data" role="form">
-                                <input name="product_id" type="hidden" value="<?php echo $product ? $product['id'] : '0'; ?>" />
-                                <?php global $user_nav;
-                                $get_user_by = get_a_record('users', $user_nav) ?>
+                            <form id="product-form" class="form-horizontal p-3" method="post" action="admin.php?controller=products&amp;action=updateProduct" enctype="multipart/form-data" role="form">
+                                <input name="product_id" type="hidden" value="<?php echo isset($product) ? $product['id'] : '0'; ?>" />
+                                <?php /* global $user_nav;
+                                $get_user_by = get_a_record('users', $user_nav) */ ?>
                                 <?php if (isset($product)) : ?>
-                                    <input name="editby" type="hidden" value="<?php echo $get_user_by['user_name']; ?>" />
+                                    <input name="editby" type="hidden" value="<?php echo $_SESSION['user']['username']; ?>" />
                                     <input name="createby" type="hidden" value="<?php echo $product['createBy']; ?>" />
                                 <?php else : ?>
-                                    <input name="createby" type="hidden" value="<?php echo $get_user_by['user_name']; ?>" /><?php endif; ?>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Tên Sản Phẩm:</h2>
+                                    <input name="createby" type="hidden" value="<?php echo $_SESSION['user']['username']; ?>" /><?php endif; ?>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Tên Sản Phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input name="name" max='500' type="text" value="<?php echo $product ? $product['product_name'] : ''; ?>" class="form-control" id="name" placeholder="Nhập tên sản phẩm..." required="" />
+                                            <input name="name" max='500' type="text" value="<?php echo isset($product) ? $product['name'] : ''; ?>" class="form-control" id="name" placeholder="Nhập tên sản phẩm..." required="" />
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Slug (Đường dẫn link product):</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Slug (Đường dẫn link product):</h3>
                                 <p>Đường dẫn link sẽ tự động được tạo giống với tên danh mục...</p>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input name="slug" type="text" value="<?php echo $product ? $product['slug'] : ''; ?>" class="form-control" id="slug" placeholder="Nhập đường dẫn link sản phẩm..." />
+                                            <input name="slug" type="text" value="<?php echo isset($product) ? $product['slug'] : ''; ?>" class="form-control" id="slug" placeholder="Nhập đường dẫn link sản phẩm..." />
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Loại Sản Phẩm:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Loại Sản Phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <select name="type_id" class="form-control show-tick">
                                             <?php foreach ($types as $type) {
                                                 $selected = '';
-                                                if ($product && ($product['product_typeid'] == $type['id'])) $selected = 'selected=""';
+                                                if ($product && ($product['typeid'] == $type['id'])) $selected = 'selected=""';
                                                 echo '<option value="' . $type['id'] . '" ' . $selected . '>' . $type['type_name'] . '</option>';
                                             } ?>
                                         </select>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Nhóm Danh Mục:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Nhóm Danh Mục:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <select name="category_id" class="form-control show-tick">
@@ -137,59 +126,47 @@
                                         </select>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Danh Mục Con:</h2>
-                                <div class="row clearfix">
-                                    <div class="col-sm-12">
-                                        <select name="subcategory_id" class="form-control show-tick">
-                                            <?php foreach ($subcategories as $subcategory) {
-                                                $selected = '';
-                                                if ($product && ($product['sub_category_id'] == $subcategory['id'])) $selected = 'selected=""';
-                                                echo '<option value="' . $subcategory['id'] . '" ' . $selected . '>' . $subcategory['subcategory_name'] . '</option>';
-                                            } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Giá Sản Phẩm:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Giá Sản Phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input name="price" type="type" maxlength="11" value="<?php echo $product ? $product['product_price'] : 0; ?>" class="form-control" id="price" placeholder="0" pattern="[0-9\.]+" required="" />
+                                            <input name="price" type="type" maxlength="11" value="<?php echo isset($product) ? $product['price'] : 0; ?>" class="form-control" id="price" placeholder="0" pattern="[0-9\.]+" required="" />
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Màu cho sản phẩm:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Màu cho sản phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input name="color" type="text" maxlength="250" value="<?php echo $product ? $product['product_color'] : ''; ?>" class="form-control" id="color" placeholder="Color..." required="" />
+                                            <input name="color" type="text" maxlength="250" value="<?php echo isset($product) ? $product['color'] : ''; ?>" class="form-control" id="color" placeholder="Color..." required="" />
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Kích cỡ cho sản phẩm:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Kích cỡ cho sản phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input name="size" type="text" required maxlength="100" value="<?php echo $product ? $product['product_size'] : ''; ?>" class="form-control" id="size" placeholder="Size ..." />
+                                            <input name="size" type="text" required maxlength="100" value="<?php echo isset($product) ? $product['size'] : ''; ?>" class="form-control" id="size" placeholder="Size ..." />
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Chất liệu của sản phẩm:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Chất liệu của sản phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input name="material" type="text" maxlength="250" value="<?php echo $product ? $product['product_material'] : ''; ?>" class="form-control" id="material" placeholder="Material ..." required="" />
+                                            <input name="material" type="text" maxlength="250" value="<?php echo isset($product) ? $product['material'] : ''; ?>" class="form-control" id="material" placeholder="Material ..." required="" />
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Lượt xem sản phẩm:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Lượt xem sản phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input name="totalview" pattern="[0-9\.]+" type="text" maxlength="11" value="<?php echo $product ? $product['totalView'] : ''; ?>" class="form-control" id="totalview" placeholder="Lượt view..." />
+                                            <input name="totalview" pattern="[0-9\.]+" type="text" maxlength="11" value="<?php echo isset($product) ? $product['totalView'] : ''; ?>" class="form-control" id="totalview" placeholder="Lượt view..." />
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Lựa chọn giảm giá (Sale off):</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Lựa chọn giảm giá (Sale off):</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
@@ -215,33 +192,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Số % giảm giá sản phẩm (từ 0 -> 100 và chỉ nhập nếu chọn "bật giảm giá"):</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Số % giảm giá sản phẩm (từ 0 -> 100 và chỉ nhập nếu chọn "bật giảm giá"):</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input name="percent_off" type="text" maxlength="11" value="<?php echo $product ? $product['percentoff'] : ''; ?>" class="form-control" id="percent_off" pattern="[0-9\.]+" placeholder="Number Precent Off ..." />
+                                            <input name="percent_off" type="text" maxlength="11" value="<?php echo isset($product) ? $product['percentoff'] : ''; ?>" class="form-control" id="percent_off" pattern="[0-9\.]+" placeholder="Number Precent Off ..." />
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Chọn ngày tạo mới sản phẩm:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Chọn ngày tạo mới sản phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-4">
-                                        <input name="createdate" id="createdate" type="date" value="<?php echo $product ? $product['createDate'] : date('d/m/Y'); ?>" class="form-control" placeholder="Please choose date & time...">
+                                        <input name="createdate" id="createdate" type="date" value="<?php echo isset($product) ? $product['createDate'] : date('d/m/Y'); ?>" class="form-control" placeholder="Please choose date & time...">
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Thông tin sơ sơ về sản phẩm:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Thông tin sơ sơ về sản phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <textarea class="form-control" name="description" placeholder="Thông tin sản phẩm..."><?php echo $product ? $product['product_description'] : ''; ?></textarea>
+                                            <textarea class="form-control" name="description" placeholder="Thông tin sản phẩm..."><?php echo isset($product) ? $product['description'] : ''; ?></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title" style="font-weight:bold;">Chi tiết về sản phẩm:</h2>
+                                <h3 class="card-inside-title" style="font-weight:bold;">Chi tiết về sản phẩm:</h3>
                                 <div class="row clearfix">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <textarea class="form-control" name="detail" id="ckeditor" placeholder="Chi tiết sản phẩm..."><?php echo $product ? $product['product_detail'] : ''; ?></textarea>
+                                            <textarea class="form-control" name="detail" id="ckeditor" placeholder="Chi tiết sản phẩm..."><?php echo isset($product) ? $product['detail'] : ''; ?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -282,43 +259,45 @@
                                     </div>
                                 <?php endif; ?>
                                 <hr>
-                                <h2>Thay đổi ảnh tuỳ thích</h2>
-                                <div class="card col-md-2">
-                                    <div class="header">
-                                        <h2 style="text-align: center;">Ảnh Đại Diện</h2>
+                                <h3>Thay đổi ảnh tuỳ thích</h3>
+                                <div class="row row-cols-1 row-cols-md-2">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h3 style="text-align: center;">Ảnh Đại Diện</h3>
+                                        </div>
+                                        <div class="body">
+                                            <input name="img1" type="file" class="form-control dropify" accept="image/*">
+                                        </div>
                                     </div>
-                                    <div class="body">
-                                        <input name="img1" type="file" class="form-control dropify" accept="image/*">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h3 style="text-align: center;">Ảnh 2</h3>
+                                        </div>
+                                        <div class="body">
+                                            <input name="img2" type="file" class="form-control dropify">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card col-md-2">
-                                    <div class="header">
-                                        <h2 style="text-align: center;">Ảnh 2</h2>
+                                    <div class="card">
+                                        <div class="header">
+                                            <h3 style="text-align: center;">Ảnh 3</h3>
+                                        </div>
+                                        <div class="body">
+                                            <input name="img3" type="file" class="form-control dropify">
+                                        </div>
                                     </div>
-                                    <div class="body">
-                                        <input name="img2" type="file" class="form-control dropify">
-                                    </div>
-                                </div>
-                                <div class="card col-md-2">
-                                    <div class="header">
-                                        <h2 style="text-align: center;">Ảnh 3</h2>
-                                    </div>
-                                    <div class="body">
-                                        <input name="img3" type="file" class="form-control dropify">
-                                    </div>
-                                </div>
-                                <div class="card col-md-2">
-                                    <div class="header">
-                                        <h2 style="text-align: center;">Ảnh 4</h2>
-                                    </div>
-                                    <div class="body">
-                                        <input name="img4" type="file" class="form-control dropify">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h3 style="text-align: center;">Ảnh 4</h3>
+                                        </div>
+                                        <div class="body">
+                                            <input name="img4" type="file" class="form-control dropify">
+                                        </div>
                                     </div>
                                 </div>
                                 <br><br>
                                 <div class="form-group" style="text-align: center;">
-                                    <button class="btn btn-primary waves-effect" type="submit"><?php echo $product ? 'Cập nhật sản phẩm trên' : 'Thêm sản phẩm mới'; ?></button>
-                                    <a class="btn btn-warning waves-effect" href="admin.php?controller=product">Trở về</a>
+                                    <button class="btn btn-primary waves-effect" type="submit"><?php echo isset($product) ? 'Cập nhật sản phẩm trên' : 'Thêm sản phẩm mới'; ?></button>
+                                    <a class="btn btn-warning waves-effect" href="admin.php?controller=products">Trở về</a>
                                 </div>
                             </form>
                         </div>
@@ -328,8 +307,8 @@
         </div>
     </div>
 </section>
-<script src="admin/themes/plugins/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="admin/themes/plugins/ckfinder/ckfinder.js"></script>
+<script src="plugins/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="plugins/ckfinder/ckfinder.js"></script>
 <script type="text/javascript">
     CKEDITOR.replace('detail', {
         height: '800px'

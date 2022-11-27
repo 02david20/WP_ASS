@@ -6,8 +6,8 @@
                 <div class="col-lg-7 col-md-6 col-sm-12">
                     <h3><? ?></h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="?controller=admin&action=home"><i class="zmdi zmdi-home"></i> Fashion</a></li>
-                        <li class="breadcrumb-item"><a href="?controller=products&action=home">Product</a></li>
+                        <li class="breadcrumb-item"><a href="?controller=admin&action=home"><i class="zmdi zmdi-home"></i>Home</a></li>
+                        <li class="breadcrumb-item"><a href="?controller=products&action=home">Sản phẩm</a></li>
                         <li class="breadcrumb-item active"><?php echo isset($product) ? 'Cập nhật sản phẩm: ' . $product['name']  : 'Thêm sản phẩm mới'; ?></li>
                     </ul>
                 </div>
