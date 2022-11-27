@@ -26,6 +26,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="plugins/bootstrap-5.2.2-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/preloader.css">
 
   <!-- Java Script -->
 
@@ -85,6 +86,6 @@
 <section class="content">
     <?= @$content ?>
 </section>
-
+<script src="js/preloader.js"></script>
 </body>
 </html>
