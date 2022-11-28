@@ -47,8 +47,8 @@
           <!-- End Dashboard -->
 
           <!-- Users -->
-          <li class="nav-item">
-            <a href="?controller=users&action=home" class="nav-link">
+          <li class="nav-item menu-open">
+            <a href="?controller=users&action=home" class="nav-link active">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Người dùng
@@ -59,7 +59,7 @@
 
           <!-- Products -->
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a  class="nav-link active">
               <i class="nav-icon fa fa-desktop"></i>
               <p>
                 Sản phẩm
@@ -103,8 +103,8 @@
 
 
           <!-- Orders -->
-          <li class="nav-item">
-            <a href="" class="nav-link">
+          <li class="nav-item menu-open">
+            <a class="nav-link active">
               <i class="nav-icon fas fa-file-invoice-dollar"></i>
               <p>
                 Đơn hàng
@@ -157,17 +157,7 @@
           </li>
 
 
-          <!-- Statistics -->
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-chart-line"></i>
-              <p>
-                Statistics
-              </p>
-            </a>
-          </li>
-          <!-- End Statistics -->
-
+        
 
         </ul>
       </nav>

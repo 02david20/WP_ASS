@@ -1,6 +1,6 @@
 <?php
 require_once('base_controller.php');
-require_once('/var/www/html/app/models/User.php');
+require_once('models/User.php');
 
 class PagesController extends BaseController
 {

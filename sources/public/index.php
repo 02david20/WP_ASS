@@ -2,8 +2,7 @@
 session_start();
 
 // define('BASE_PATH', '/var/www/html/');
-define('BASE_PATH', '/');
-echo __DIR__;
+define('BASE_PATH', '../');
 require_once BASE_PATH . 'lib/connection.php';
 require_once BASE_PATH . 'lib/config.php';
 require_once BASE_PATH . 'lib/helper.php';

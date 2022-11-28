@@ -311,6 +311,6 @@
 <script type="text/javascript" src="plugins/ckfinder/ckfinder.js"></script>
 <script type="text/javascript">
     CKEDITOR.replace('detail', {
-        height: '800px'
+        height: '200px'
     });
 </script>

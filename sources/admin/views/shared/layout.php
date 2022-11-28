@@ -3,10 +3,10 @@
   // $image_product = PATH_URL . 'public/upload/products/' . $product['img1'];
   // $url_product = 'product/' . $product['id'] . '-' . $product['slug'];
 
-  // if (isset($image_product)) $link_image = $image_product;
-  // else $link_image = PATH_URL . '';
-  // if (isset($url_product)) $url_site = PATH_URL . $url_product . '/';
-  // else $url_site = PATH_URL . 'home';
+  if (isset($image_product)) $link_image = $image_product;
+  else $link_image = PATH_URL . '';
+  if (isset($url_product)) $url_site = PATH_URL . $url_product . '/';
+  else $url_site = PATH_URL . 'home';
 ?>
 
 <!DOCTYPE html>
