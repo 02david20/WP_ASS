@@ -19,9 +19,9 @@ services:
         environment:
             MYSQL_RANDOM_ROOT_PASSWORD: 1
             MYSQL_DATABASE: fashion
-            MYSQL_USER: david
+            MYSQL_USER: user
             MYSQL_PASSWORD: Aa@12345
         ports:
             - "3306:3306"
         volumes: 
-            - ./sources/database/:/docker-entrypoint-initdb.d
+            - ./sources/database/fashion.sql:/docker-entrypoint-initdb.d/dump.sql
