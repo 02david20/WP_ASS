@@ -1,14 +1,12 @@
 <?php
-
+session_start();
 
 // define('BASE_PATH', '/var/www/html/');
-define('BASE_PATH', '../');
+define('BASE_PATH', '/');
 echo __DIR__;
 require_once BASE_PATH . 'lib/connection.php';
 require_once BASE_PATH . 'lib/config.php';
 require_once BASE_PATH . 'lib/helper.php';
-
-session_start();
 
 // index.php?controller=pages&action=index 
 if (isset($_GET['controller'])) {

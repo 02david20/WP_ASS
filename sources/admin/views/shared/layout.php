@@ -1,8 +1,39 @@
+<?php 
+  // $title = $product['product_name'] . ' - Fashion Shop';
+  // $image_product = PATH_URL . 'public/upload/products/' . $product['img1'];
+  // $url_product = 'product/' . $product['id'] . '-' . $product['slug'];
+
+  // if (isset($image_product)) $link_image = $image_product;
+  // else $link_image = PATH_URL . '';
+  // if (isset($url_product)) $url_site = PATH_URL . $url_product . '/';
+  // else $url_site = PATH_URL . 'home';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- SEO -->
+  <meta property="og:site_name" content="Fashion Shop" />
+	<meta property="og:title" content="<?php echo isset($title) ? $title : 'Fashion Shop'; ?>" />
+	<meta property="article:tag" content="<?php echo isset($title) ? $title : 'Fashion Shop'; ?>" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="<?php echo $url_site; ?>" />
+	<link rel="canonical" href="<?php echo $url_site; ?>" />
+	<meta property="article:publisher" content="https://www.facebook.com/100030314627238" />
+	<meta property="og:description" content="Kinh doanh các mặt hàng thời trang áo quần, giày dép, phụ kiện, ...." />
+	<meta property="og:image" content="<?php echo $link_image; ?>" />
+	<meta property="og:image:secure_url" content="<?php echo $link_image; ?>" />
+	<meta property="og:image:width" content="700" />
+	<meta property="og:image:height" content="345" />
+	<meta property="og:locale" content="vi_VN" />
+	<meta property="fb:app_id" content="100030314627238" />
+	<meta name="twitter:description" content="Kinh doanh các mặt hàng thời trang áo quần, giày dép, phụ kiện, ...." />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="<?php echo isset($title) ? $title : 'Fashion Shop'; ?>" />
+	<meta name="twitter:image" content="<?php echo $link_image; ?>" />
+  <!-- End SEO -->
   <title>Fashion | Admin Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->

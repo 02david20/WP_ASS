@@ -6,7 +6,6 @@ require_once BASE_PATH . 'lib/connection.php';
 require_once BASE_PATH . 'lib/config.php';
 require_once BASE_PATH . 'lib/helper.php';
 
-session_start();
 // Login Action
 $_SESSION['auth'] = true;
 login("sheezy01","hha123");
