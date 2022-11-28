@@ -4,8 +4,9 @@ $controllers = array(
   'pages' => ['home', 'error'],
   'posts' => ['index'],
   'admin' => ['home'],
-  'users' => ['home','delete','edit','updateUser'],
-  'products' => ['home','delete','edit','updateProduct','add']
+  'users' => ['home','delete','edit','updateUser','banned'],
+  'products' => ['home','delete','edit','updateProduct','add'],
+  'orders' => ['home',"view","delete","updateStatus"],
 ); 
 
 

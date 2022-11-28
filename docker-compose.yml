@@ -18,8 +18,8 @@ services:
         restart: always
         environment:
             MYSQL_RANDOM_ROOT_PASSWORD: 1
-            MYSQL_DATABASE: shop
-            MYSQL_USER: user
+            MYSQL_DATABASE: fashion
+            MYSQL_USER: david
             MYSQL_PASSWORD: Aa@12345
         ports:
             - "3306:3306"

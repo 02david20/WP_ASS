@@ -12,8 +12,20 @@ class ProductsController extends BaseController
 
   public function home()
   {
-    $products = Product::all();
-    $data = array('products' => $products);
+    if (isset($_GET["by"])) {
+      $by = $_GET["by"];
+      if ($by == "hot")
+        $products = Product::all(1);
+      else if ($by == "new")
+        $products = Product::all(2);
+      else if ($by == "sale")
+        $products = Product::all(3);
+      else
+        $products = Product::all();
+    }
+    else
+      $products = Product::all();
+    $data = array("products"=>$products);
     $this->render('home', $data);
   }
 
@@ -41,12 +53,10 @@ class ProductsController extends BaseController
   }
 
   public function add() {
-    if($_SERVER["REQUEST_METHOD"] == "GET") {
-      $types = Type::all();
-      $categories = Category::all();
-      $product_info = array('types'=> $types, "categories"=>$categories);
-      $this->render('edit',$product_info);
-    }  
+    $types = Type::all();
+    $categories = Category::all();
+    $product_info = array('types'=> $types, "categories"=>$categories);
+    $this->render('edit',$product_info);  
   }
 
   public function updateProduct() {

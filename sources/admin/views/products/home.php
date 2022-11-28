@@ -23,9 +23,32 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Bảng danh sách sản phẩm</h3>
+                <h3 class="card-title">
+                    <?php 
+                      if(isset($_GET["by"])) {
+                        $by = $_GET["by"];
+                        if($by=="hot") {
+                          echo "Sản phẩm hot"; 
+                        }
+                        else if($by=="new") {
+                          echo "Sản phẩm mới";
+                        } 
+                        else if ($by=="sale") {
+                          echo "Sản phẩm khuyến mãi ";
+                        }
+                        else {
+                          echo "Bảng danh sách sản phẩm";
+                        } 
+                      }else {
+
+                        echo "Bảng danh sách sản phẩm";
+                      }
+                    ?>
+
+                </h3>
               </div>
               <!-- /.card-header -->
+              <a href="?controller=products&action=add" class="btn btn-success">Thêm sản phẩm mới</a>
               <div class="card-body">
                 <table id="dataTable" class="table table-bordered table-striped">
                   <thead>
