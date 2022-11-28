@@ -67,7 +67,7 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="?controller=products&action=home" class="nav-link">
+                <a href="?controller=products" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tất cả sản phẩm</p>
                 </a>
@@ -75,37 +75,87 @@
             </ul>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="?controller=products&by=hot" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>Sản phẩm hot</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=products&by=new" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sản phẩm mới </p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=products&by=sale" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sản phẩm khuyến mãi</p>
                 </a>
               </li>
             </ul>
           </li>
-          <!-- End Products -->
 
-          <!-- Storage -->
+
+          <!-- Orders -->
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-warehouse"></i>
-              <p>
-                Storage
-              </p>
-            </a>
-          </li>
-          <!-- End Storage -->
-
-
-          <!-- Order -->
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-file-invoice-dollar"></i>
               <p>
-                Order
+                Đơn hàng
               </p>
             </a>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tất cả đơn hàng</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders&by=new" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Đơn hàng mới</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders&by=process" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Đơn hàng đang xử lí</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders&by=complete" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Đơn hàng đã xử lí</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders&by=cancel" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Đơn hàng bị hủy</p>
+                </a>
+              </li>
+            </ul>
+
           </li>
-          <!-- End Order -->
+
 
           <!-- Statistics -->
           <li class="nav-item">

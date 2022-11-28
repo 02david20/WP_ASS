@@ -1,73 +1,67 @@
 <?php
 class Order {
 
-  static function all()
+  static function all($filter=null)
   {
     $conn= DB::getInstance();
-
-    $sql = 'SELECT * FROM products';
-
+    if(isset($filter) && $filter >= 0 && $filter <= 3)
+      $sql = 'SELECT * FROM orders WHERE status=?';
+    else
+      $sql = 'SELECT * FROM orders';
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $res = $stmt->get_result();
-       
-    return $res;
-  }
-  
-  static function findByID($id)
-  {
-    $conn= DB::getInstance();
-
-    $sql = 'SELECT * FROM products WHERE id=?';
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $res = $stmt->get_result();
-
-    return $res->fetch_assoc();
-  }
-
-  static function deleteByID($id)
-  {
-    $conn= DB::getInstance();
-    $sql = "DELETE FROM products WHERE id=?";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
+    if(isset($filter) && $filter >= 0 && $filter <= 3)
+      $stmt->bind_param("i",$filter);
     $stmt->execute();
     $res = $stmt->get_result();
     return $res;
   }
-
-  static function Update($data=array()) {
-    $conn= DB::getInstance();
-    $table='products';
-    foreach ($data as $key => $value) {
-        $value = escape($value);
-        $values[] = "`$key`='$value'";
-    }
-    $id = intval($data['id']);
-    if ($id > 0) {
-        $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE `id`='$id'";
- 
-    } else {
-        $sql = "INSERT INTO `$table` SET " . implode(',', $values);
-    }
-    echo $sql;
-
-    if ($conn->query($sql) === TRUE) {
-      echo "Record Added Successfully";
-    } else {
-      echo "Error: " . $sql . "<br>" .DB::getInstance()->error;
-    }
-
-    $id = ($id > 0) ? $id : mysqli_insert_id(DB::getInstance());
-    return $id;
+  static function order_detail($order_id)
+  {
+      $conn = DB::getInstance();
+      $sql = "SELECT products.id, products.name, products.img1, products.price ,products.type_id, products.percentoff, products.saleoff, order_detail.quantity, products.slug
+        FROM order_detail
+        INNER JOIN products ON products.id=order_detail.product_id
+        WHERE order_detail.order_id=?";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("i",$order_id);
+      $stmt->execute();
+      $res = $stmt->get_result();
+      return $res;
+  }
+  static function order_by_id($order_id)
+  {
+      $conn = DB::getInstance();
+      $sql = "SELECT *
+        FROM orders
+        WHERE orders.id=?";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("i",$order_id);
+      $stmt->execute();
+      $res = $stmt->get_result();
+      return $res->fetch_assoc();
   }
 
-
-  static function findByCategory() {
-    
+  static function order_delete($order_id){
+    $conn = DB::getInstance();   
+    $sql1 = "DELETE FROM orders WHERE id=?";
+    $sql2 = "DELETE FROM order_detail WHERE order_id=?";
+    $stmt = $conn->prepare($sql1);
+    $stmt->bind_param("i",$order_id);
+    $stmt->execute();
+    $stmt = $conn->prepare($sql2);
+    $stmt->bind_param("i",$order_id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    return $res;
+  }
+  // 1 : Complete, 2: Order_inprocess
+  static function updateOrderSatus($order_id, $status) {
+    $conn = DB::getInstance();   
+    $sql = "UPDATE orders SET status=? WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii",$status, $order_id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    return $res;
   }
 }
