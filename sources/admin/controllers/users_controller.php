@@ -51,11 +51,13 @@ class UsersController extends BaseController
   }
 
     public function edit() {
-    if($_SERVER["REQUEST_METHOD"] == "GET") {
+    if(isset($_GET['id'])) {
       $user = User::findByID($_GET['id']);
       $user_info = array('user_info'=>$user);
       $this->render('edit',$user_info);
-    }  
+    } else {
+      header("location: ?controller=users");
+    }
   }
 
   public function updateUser() {

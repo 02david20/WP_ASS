@@ -156,6 +156,31 @@
 
           </li>
 
+          <!-- Orders -->
+          <li class="nav-item menu-open">
+            <a class="nav-link active">
+              <i class="nav-icon fas fa-blog"></i>
+              <p>
+                Bài viết
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=posts" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tất cả bài viết</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=posts&by=unpublish" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Bài viết chưa publish</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
         
 
