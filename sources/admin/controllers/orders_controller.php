@@ -47,20 +47,25 @@ class OrdersController extends BaseController
 
   public function view()
   {
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['order_id'])) {
       $order_id = intval($_GET['order_id']);
       $order_detail = Order::order_detail($order_id);
       $order = Order::order_by_id($order_id);
       $data = array('order_detail' => $order_detail, "status" => $this->status, "order" => $order);
       $this->render('view', $data);
+    }else{
+      header("location: ?controller=orders");
     }
   }
 
   public function delete()
   {
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['order_id'])) {
       $id = (int)$_GET["order_id"];
       Order::order_delete($id);
+      header("location: ?controller=orders");
+    }
+    else{
       header("location: ?controller=orders");
     }
   }
