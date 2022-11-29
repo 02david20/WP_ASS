@@ -37,7 +37,7 @@ CREATE TABLE `blog` (
   `para2` varchar(1000) NOT NULL,
   `sub_pic_quote` varchar(1000) NOT NULL,
   `id` int(11) NOT NULL,
-  `publish` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
