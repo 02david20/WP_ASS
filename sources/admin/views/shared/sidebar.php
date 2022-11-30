@@ -1,3 +1,6 @@
+<?php 
+  require_once ADMIN_PATH."/models/PostType.php";
+?>  
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-navy elevation-4">
     <!-- Brand Logo -->
@@ -174,15 +177,53 @@
             </ul>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="?controller=posts&by=unpublish" class="nav-link">
+                <a href="?controller=posts&action=status&by=0" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Bài viết chưa publish</p>
                 </a>
               </li>
             </ul>
-          </li>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=posts&action=status&by=1" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Bài viết publish</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=posts&action=status&by=2" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thùng rác</p>
+                </a>
+              </li>
+            </ul>
 
-        
+            <ul class="nav nav-treeview" style="display: none;">   
+              <a class="nav-link active">
+                <p>
+                    Chủ đề
+                </p>
+              </a>
+              <?php 
+                $ptypes = PostType::all();
+                foreach($ptypes as $type) {
+                  $slug = $type["slug"];
+                  $type_name = $type["type_name"];
+
+                  echo '<ul class="nav nav-treeview" style="display: none;">  
+                    <li class="nav-item">
+                      <a href="?controller=posts&action=home&by='.$slug.'" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>'.$type_name.'</p>
+                      </a>
+                    </li>
+                  </ul>';
+                }
+              ?>
+            </ul>
+          </li>
 
         </ul>
       </nav>

@@ -60,7 +60,7 @@
                           </a>
                         <?php else:?>
                           <a title="Xóa" class="btn btn-danger btn-round col-12" href="admin.php?controller=posts&action=delete&post_id=<?= $post['id'] ?>">
-                            <i class="zmdi zmdi-delete"></i>
+                            <i class="zmdi zmdi-delete"></i> Xóa
                           </a>
                         <?php endif?>
 
@@ -71,7 +71,7 @@
                         <?php if ($post['status'] <> '0') : ?>
                           <a title="Xem" class="btn btn-success btn-icon btn-icon-mini btn-round" target="_blank" href="post/<?= $post['id'] . '-' . $post['slug'] ?>"> <i class="zmdi zmdi-eye"></i> </a>
                         <?php else : ?>
-                          <a title="Public" class="btn btn-success btn-round" href="admin.php?controller=posts&action=public&post_id=<?= $post['id'] ?>"> <i class="zmdi zmdi-sun"></i> Công khai</a>
+                          <a title="Public" class="btn btn-success btn-round" href="admin.php?controller=posts&action=publish&post_id=<?= $post['id'] ?>"> <i class="zmdi zmdi-sun"></i> Công khai</a>
                         <?php endif; ?>
                       </td>
                     </tr>

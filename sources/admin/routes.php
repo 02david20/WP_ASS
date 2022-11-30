@@ -7,7 +7,7 @@ $controllers = array(
   'users' => ['home','delete','edit','updateUser','banned'],
   'products' => ['home','delete','edit','updateProduct','add'],
   'orders' => ['home',"view","delete","updateStatus"],
-  'posts' => ['home','add',"edit","updatePost"],
+  'posts' => ['home','add',"edit","updatePost","trash","publish",'delete','status'],
 ); 
 
 
