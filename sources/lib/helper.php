@@ -31,24 +31,28 @@ function upload($field, $config = array())
 {
     $options = array(
         'name' => '',
-        'upload_path'  => './',
+        'upload_path' => './',
         'allowed_exts' => '*',
-        'overwrite'    => TRUE,
-        'max_size'     => 0
+        'overwrite' => TRUE,
+        'max_size' => 0
     );
     $options = array_merge($options, $config); //Hợp nhất một hoặc nhiều mảng
-    if (!isset($_FILES[$field])) return FALSE;
+    if (!isset($_FILES[$field]))
+        return FALSE;
     $file = $_FILES[$field];
-    if ($file['error'] != 0) return FALSE;
+    if ($file['error'] != 0)
+        return FALSE;
     $temp = explode(".", $file["name"]);
     $ext = end($temp); //Đặt con trỏ bên trong của một mảng thành phần tử cuối cùng của nó
     if ($options['allowed_exts'] != '*') {
         $allowedExts = explode('|', $options['allowed_exts']);
-        if (!in_array($ext, $allowedExts)) return FALSE;
+        if (!in_array($ext, $allowedExts))
+            return FALSE;
     }
 
     $size = $file['size'] / 1024 / 1024;
-    if (($options['max_size'] > 0) && ($size > $options['max_size'])) return FALSE;
+    if (($options['max_size'] > 0) && ($size > $options['max_size']))
+        return FALSE;
 
     $name = empty($options['name']) ? $file["name"] : $options['name'] . '.' . $ext;
     $file_path = $options['upload_path'] . $name;
@@ -61,12 +65,14 @@ function upload($field, $config = array())
     return $name;
 }
 
-function escape($str) {
-    return mysqli_real_escape_string(DB::getInstance(),$str);
+function escape($str)
+{
+    return mysqli_real_escape_string(DB::getInstance(), $str);
 }
 
-function login($username, $password) {
-    $conn= DB::getInstance();
+function login($username, $password)
+{
+    $conn = DB::getInstance();
     $sql = "SELECT * FROM user WHERE username=? and `password`=?";
 
     $stmt = $conn->prepare($sql);
@@ -74,11 +80,12 @@ function login($username, $password) {
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
     $res = $stmt->get_result();
-       
+
     $_SESSION["auth"] = true;
     $_SESSION["user"] = $res->fetch_assoc();
 }
 
-function isBanned($date) {
+function isBanned($date)
+{
     return isset($date) && $date > date("Y-m-d");
 }
