@@ -46,6 +46,27 @@ class PostsController extends BaseController
     }
   }
 
+  public function status()
+  {
+    if(isset($_GET['by'])) {
+      $by = $_GET['by'];
+      if(array_key_exists($by,$this->status)) {
+        $posts = Post::allByStatus($by);
+        $data = array('posts' => $posts, "status"=>$this->status);
+        $this->render('home', $data);
+      }
+      else {
+        $posts = Post::all();
+        $data = array('posts' => $posts, "status"=>$this->status);
+        $this->render('home', $data);
+      }
+    }else {
+      $posts = Post::all();
+      $data = array('posts' => $posts, "status"=>$this->status);
+      $this->render('home', $data);
+    }
+  }
+
   public function add()
   {
     $data = array("status"=>$this->status,"types"=>$this->types);
@@ -64,16 +85,28 @@ class PostsController extends BaseController
     }
   }
 
-  public function updateStatus()
-  {
+  public function delete() {
     if(isset($_GET['post_id'])) {
       $id = intval($_GET['post_id']);
-      $post = Post::findByID($id);
-      $data = array("post"=>$post,"status"=>$this->status,"types"=>$this->types);
-      $this->render('edit', $data);
-    }else {
-      header("location: ?controller=posts");
+      Post::deleteByID($id);
     }
+    header("location: ?controller=posts");
+  }
+
+  public function trash () {
+    if(isset($_GET["post_id"])) {
+      $id = intval($_GET["post_id"]);
+      Post::updateOrderSatus($id,2);
+    }
+    header("location: ?controller=posts");
+  }
+
+  public function publish() {
+    if(isset($_GET["post_id"])) {
+      $id = intval($_GET["post_id"]);
+      Post::updateOrderSatus($id,1);
+    }
+    header("location: ?controller=posts");
   }
 
   public function updatePost() {

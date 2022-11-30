@@ -27,12 +27,12 @@
 
 <body>
   <?php
-  include '/var/www/html/app/views/shared/header.php';
-  include '/var/www/html/app/views/shared/modal.php';
+  include USER_PATH.'views/shared/header.php';
+  include USER_PATH.'views/shared/modal.php';
   ?>
   <?=@$content ?>
     <?php
-    include '/var/www/html/app/views/shared/footer.php';
+    include USER_PATH.'views/shared/footer.php';
     ?>
 </body>
 
