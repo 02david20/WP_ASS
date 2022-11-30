@@ -1,17 +1,17 @@
 <?php
 
-define('BASE_PATH', '/var/www/html/');
-
+// define('BASE_PATH', '/var/www/html/');
+define('BASE_PATH', '../');
 require_once BASE_PATH . 'lib/connection.php';
 require_once BASE_PATH . 'lib/config.php';
 require_once BASE_PATH . 'lib/helper.php';
 
+session_start();
 // Login Action
 $_SESSION['auth'] = true;
 login("sheezy01","hha123");
 
-if($_SESSION['user']['role'] <> 1) {
-    echo var_dump($_SESSION['user']['role']);
+if($_SESSION['role'] <> 1) {
     header("Location: index.php");
 }
 
@@ -29,4 +29,4 @@ if (isset($_GET['controller'])) {
 
 
 /* Load external routes file */
-require_once ADMIN_PATH . "routes.php";
+require_once ADMIN_PATH."routes.php";

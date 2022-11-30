@@ -1,18 +1,16 @@
 <?php
 class Product {
 
-  static function all($filter=NULL)
+  static function all()
   {
     $conn= DB::getInstance();
-    if(isset($filter) && $filter >= 1 && $filter <= 3)
-      $sql = 'SELECT * FROM products WHERE type_id=?';
-    else
-      $sql = 'SELECT * FROM products';
+
+    $sql = 'SELECT * FROM products';
+
     $stmt = $conn->prepare($sql);
-    if(isset($filter) && $filter >= 1 && $filter <= 3)
-      $stmt->bind_param("i",$filter);
     $stmt->execute();
     $res = $stmt->get_result();
+       
     return $res;
   }
   
@@ -76,16 +74,15 @@ class Product {
     }
     echo $sql;
 
-    if ($conn->query($sql) === TRUE) {
+    if (DB::getInstance()->query($sql) === TRUE) {
       echo "Record Added Successfully";
     } else {
-      echo "Error: " . $sql . "<br>" .$conn->error;
+      echo "Error: " . $sql . "<br>" .DB::getInstance()->error;
     }
 
-    $id = ($id > 0) ? $id : mysqli_insert_id($conn);
+    $id = ($id > 0) ? $id : mysqli_insert_id(DB::getInstance());
     return $id;
   }
-
 
   static function findByCategory() {
     

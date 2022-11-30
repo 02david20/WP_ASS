@@ -1,64 +1,42 @@
 <?php
 class Post
 {
+  public $id;
+  public $title;
+  public $content;
 
-  static function all($filter = NULL)
+  function __construct($id, $title, $content)
   {
-    $conn = DB::getInstance();
-    if (isset($filter))
-      $sql = 'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name 
-              FROM blog INNER JOIN blog_types on blog.type=blog_types.id 
-              WHERE type_name=?';
-    else
-      $sql = 'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name 
-              FROM blog INNER JOIN blog_types on blog.type=blog_types.id';
-    $stmt = $conn->prepare($sql);
-    if (isset($filter))
-      $stmt->bind_param("s", $filter);
-    $stmt->execute();
-    $res = $stmt->get_result();
-    return $res;
+    $this->id = $id;
+    $this->title = $title;
+    $this->content = $content;
   }
 
-  static function findByID($id)
+  static function all()
   {
-    $conn = DB::getInstance();
+    $list = [];
+    $db = DB::getInstance();
+    $res = $db->query('SELECT * FROM products');
 
-    $sql = 'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name 
-            FROM blog INNER JOIN blog_types on blog.type=blog_types.id 
-            WHERE blog.id=?';
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $res = $stmt->get_result();
+    // lists = req....
 
-    return $res->fetch_assoc();
+    return $list;
+  }
+  
+  static function find($id)
+  {
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM posts WHERE id = :id');
+    $req->execute(array('id' => $id));
+
+    $item = $req->fetch();
+    if (isset($item['id'])) {
+      return new Post($item['id'], $item['title'], $item['content']);
+    }
+    return null;
   }
 
-  static function updatePost($data = array())
-  {
-      $table='blog';
-  
-      foreach ($data as $key => $value) {
-          $value = escape($value);
-          $values[] = "`$key`='$value'";
-      }
-  
-      $id = intval($data['id']);
-      
-      if ($id > 0) {
-          $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE `id`='$id'";
-   
-      } else {
-          $sql = "INSERT INTO `$table` SET " . implode(',', $values);
-      }
-      if (DB::getInstance()->query($sql) === TRUE) {
-        echo "Record Added Successfully";
-      } else {
-        echo "Error: " . $sql . "<br>" .DB::getInstance()->error;
-      }
-  
-      $id = ($id > 0) ? $id : mysqli_insert_id(DB::getInstance());
-      return $id;
+  static function findByCategory() {
+    
   }
 }

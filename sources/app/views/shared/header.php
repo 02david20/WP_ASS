@@ -43,9 +43,6 @@
                     data-bs-target="#templatemo_search">
                     <i class="fa fa-fw fa-search text-dark mr-2"></i>
                 </a>
-                <?php
-                if (isset($_SESSION['user'])) {
-                    echo '
                 <a class="nav-icon position-relative text-decoration-none" href="#">
                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                     <span
@@ -55,14 +52,7 @@
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                     <span
                         class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
-                </a>';
-                } else {
-                    echo '
-                <a href="index.php?controller=pages&action=login">
-                    <input type="submit" class="btn btn-success" value="Đăng nhập">
-                </a>';
-                }
-                ?>
+                </a>
             </div>
         </div>
 

@@ -1,11 +1,14 @@
 <?php
-session_start();
 
-define('BASE_PATH', '/var/www/html/');
 
+// define('BASE_PATH', '/var/www/html/');
+define('BASE_PATH', '../');
+// echo __DIR__;
 require_once BASE_PATH . 'lib/connection.php';
 require_once BASE_PATH . 'lib/config.php';
 require_once BASE_PATH . 'lib/helper.php';
+
+session_start();
 
 // index.php?controller=pages&action=index 
 if (isset($_GET['controller'])) {
@@ -16,9 +19,11 @@ if (isset($_GET['controller'])) {
         $action = 'index';
     }
 } else {
-    $controller = 'pages';
-    $action = 'index';
+    $controller = 'products';
+    $action = 'home';
 }
+
+
 
 /* Load external routes file */
 require_once USER_PATH . 'routes.php';

@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+// index.php?controller=home&action=index 
+
 
 if (isset($_GET['controller'])) {
   $controller = $_GET['controller'];

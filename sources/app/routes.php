@@ -1,9 +1,9 @@
 <?php
 // Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 $controllers = array(
-  'pages' => ['index', 'page_404', 'login', 'register', 'about', 'contact'],
-  'posts' => ['index'],
-);
+  'pages' => ['home', 'error'],
+  'posts' => ['blogs', 'single'],
+); 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -11,7 +11,7 @@ $controllers = array(
 // thì trang báo lỗi sẽ được gọi ra.
 if (!array_key_exists($controller, $controllers) || !in_array($action, $controllers[$controller])) {
   $controller = 'pages';
-  $action = 'page_404';
+  $action = 'error';
 }
 
 // Nhúng file định nghĩa controller vào để có thể dùng được class định nghĩa trong file đó
