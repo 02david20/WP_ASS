@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2022 at 07:43 AM
+-- Generation Time: Nov 27, 2022 at 04:11 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -11,11 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `fashion`
@@ -28,31 +23,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `blog` (
-  `main_pic` varchar(1000) NOT NULL,
+  `main_pic` varchar(1000)  NULL,
   `type` int(11) NOT NULL,
-  `title` varchar(1000) NOT NULL,
-  `date` date DEFAULT current_timestamp(),
-  `para1` varchar(1000) NOT NULL,
-  `sub_pic` varchar(1000) NOT NULL,
-  `para2` varchar(1000) NOT NULL,
-  `sub_pic_quote` varchar(1000) NOT NULL,
+  `title` text NOT NULL,
+  `date` date DEFAULT NULL,
+  `para1` text NOT NULL,
+  `sub_pic` varchar(100)  NULL,
+  `para2` text NOT NULL,
+  `sub_pic_quote` varchar(1000)  NULL,
   `id` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
   `slug` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `blog`
---
-
 INSERT INTO `blog` (`main_pic`, `type`, `title`, `date`, `para1`, `sub_pic`, `para2`, `sub_pic_quote`, `id`, `status`, `slug`) VALUES
 ('./resources/posts-resource/images/pic1.jpg', 1, 'We Eat and Drink All Night', '0000-00-00', 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.\r\n\r\nShe packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.', './resources/posts-resource/images/sub_pic_1.jpg', 'She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.', 'This is a sweet image caption. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia', 880, 1, ''),
-('./resources/posts-resource/images/pic2.jpg', 1, 'Beef Steak at Guatian Restaurant', '0000-00-00', 'Nhà hàng là nơi duy nhất ở TP.HCM tự thực hiện quá trình dry-aged khép kín và nướng thịt trực tiếp trên lò than. Với kỹ thuật này, miếng bò sẽ giữ trọn vẹn hương vị tinh túy, mang chất lượng tuyệt hảo nhất. Đây cũng trở thành một trong những lý do khiến đĩa steak ở đây có giá thành đắt đỏ bởi quá trình chế biến kì công. Không chỉ tập chung vào chất lượng món ăn, nhà hàng còn chú trọng đến không gian, phong cách phục vụ để thực khách cảm thấy xứng đáng với số tiền mình đã bỏ ra.', './resources/posts-resource/images/sub_pic_2.jpg', 'Nhà hàng là nơi duy nhất ở TP.HCM tự thực hiện quá trình dry-aged khép kín và nướng thịt trực tiếp trên lò than. Với kỹ thuật này, miếng bò sẽ giữ trọn vẹn hương vị tinh túy, mang chất lượng tuyệt hảo nhất. Đây cũng trở thành một trong những lý do khiến đĩa steak ở đây có giá thành đắt đỏ bởi quá trình chế biến kì công. Không chỉ tập chung vào chất lượng món ăn, nhà hàng còn chú trọng đến không gian, phong cách phục vụ để thực khách cảm thấy xứng đáng với số tiền mình đã bỏ ra.', 'Cách chế biến bò đúng chuẩn theo yêu cầu và nêm nếm gia vị vừa ăn, side dishes cũng rất ngon, tuy nhiên sốt của rocket salad hơi đậm', 881, 1, ''),
-('./resources/posts-resource/images/pic3.jpg', 2, 'An Overlooking River at the East Cost', '0000-00-00', 'Lê Phương Tùng, 21 tuổi, du khách tới suối Tiên chơi, cho biết đây là một địa điểm đẹp, lượng khách tham quan chưa nhiều và ồ ạt như nơi khác nên giữ được vẻ hoang sơ. Điều khiến chàng trai người Huế ấn tượng là địa điểm này tích hợp được nhiều thứ để trải nghiệm trong ngày, như đi thuyền, tắm suối, ăn uống bên núi rừng. Anh cho biết, suối khá sâu, ước tính hơn 2 m nên cần lưu ý lúc tắm. Tại đây có dịch vụ cho thuê áo phao. \"Nước suối rất trong và mát. Khu vực tắm được rào lại nên rất an toàn. Cảnh thiên nhiên đồi núi rất đẹp và hùng vĩ nên lên ngồi ngắm cảnh thôi cũng hết ngày được\", Tùng chia sẻ.', './resources/posts-resource/images/sub_pic_3.jpg', 'Dòng nước ở đây xanh mát chảy từ thượng nguồn. Người dân địa phương cho rằng ngày xưa, có một loài hoa rừng mọc bên bờ suối, đến mùa hoa nở trải dài trên triền đá nhìn như làn tóc tiên nữ nên mọi người từ đó quen gọi là suối Tiên. Giữa các nóng gay gắt của mùa hè trên dải đất miền Trung, suối Tiên là nơi phù hợp cho những du khách muốn thư giãn giữa không khí trong lành, tắm nước mát lạnh.', '\r\nDu lịchTư vấnĐi đâuThứ ba, 13/7/2021, 20:48 (GMT+7)\r\nDòng suối mát ẩn mình dưới chân núi Bạch Mã\r\nTHỪA THIÊN - HUẾSuối Tiên được ví như \'nàng tiên giữa núi rừng\', hút khách vào mùa hè nhờ dòng nước mát lạnh.\r\n\r\nSuối Tiên nằm dưới chân dãy Bạch Mã, nổi tiếng với dòng nước mát lạnh, thích hợp để tắm và tham quan vào mùa hè. Đây là một hệ thống tập hợp nhiều hồ, suối, thuộc xã Lộc Thủy, huyện Phú Lộc. Địa điểm du lịch này được đánh giá là vẫn còn hoang sơ do ẩn sâu trong hồ Thủy Yên, du khách muốn đến tham quan phải đi thuyền băng qua hồ để đến.\r\n\r\nSuối Tiên nằm dưới chân núi Bạch Mã hùng vỹ. Khách sẽ được chở bằng thuyền để tới suối với giá vé là 30.000 đồng/khách/khứ hồi. Ảnh: Lê Phương Tùng\r\nSuối Tiên nằm dưới chân núi Bạch Mã hùng vỹ. Khách sẽ được chở bằng thuyền để tới suối với giá vé là 30.000 đồng/khách/khứ hồi.', 882, 1, ''),
-('./resources/posts-resource/images/pic4.jpg', 2, 'A Wildlife In The Mountain of India', '0000-00-00', 'The wildlife in the western part of India is rich and diverse. Western India is teeming with flora and fauna and boasts of a number of spectacular wildlife sanctuaries and national parks that abound in Asiatic Lions, Blackbucks, Indian Wild Ass, Olive Ridley Turtles, Eels, Wolves and Desert Cats. Western India also has marine wildlife sanctuaries that are actively involved in the conservation of endangered Ridley turtles, shrimps, sponges, green sea urchins and dolphins.\r\n\r\nSome of the important wildlife sanctuaries and national parks in the Western part of the country are Gir National Park in Gujarat, Ranthambore National Park in Rajasthan, Bondla Wildlife Sanctuary in Goa, Bhagwan Mahavir Wildlife Sanctuary in Goa etc.', './resources/posts-resource/images/sub_pic_4.jpg', 'The wildlife in the western part of India is rich and diverse. Western India is teeming with flora and fauna and boasts of a number of spectacular wildlife sanctuaries and national parks that abound in Asiatic Lions, Blackbucks, Indian Wild Ass, Olive Ridley Turtles, Eels, Wolves and Desert Cats. Western India also has marine wildlife sanctuaries that are actively involved in the conservation of endangered Ridley turtles, shrimps, sponges, green sea urchins and dolphins.\r\n\r\nSome of the important wildlife sanctuaries and national parks in the Western part of the country are Gir National Park in Gujarat, Ranthambore National Park in Rajasthan, Bondla Wildlife Sanctuary in Goa, Bhagwan Mahavir Wildlife Sanctuary in Goa etc.', 'Disclaimer: This post may contain affiliate links. All hosted affiliate links follow our editorial policies.', 883, 1, ''),
+('beef-steak-at-guatian-restaurant-881main_pic.png', 1, 'Beef Steak at Guatian Restaurant', '2022-11-29', 'Nh&agrave; h&agrave;ng l&agrave; nơi duy nhất ở TP.HCM tự thực hiện qu&aacute; tr&igrave;nh dry-aged kh&eacute;p k&iacute;n v&agrave; nướng thịt trực tiếp tr&ecirc;n l&ograve; than. Với kỹ thuật n&agrave;y, miếng b&ograve; sẽ giữ trọn vẹn hương vị tinh t&uacute;y, mang chất lượng tuyệt hảo nhất. Đ&acirc;y cũng trở th&agrave;nh một trong những l&yacute; do khiến đĩa steak ở đ&acirc;y c&oacute; gi&aacute; th&agrave;nh đắt đỏ bởi qu&aacute; tr&igrave;nh chế biến k&igrave; c&ocirc;ng. Kh&ocirc;ng chỉ tập chung v&agrave;o chất lượng m&oacute;n ăn, nh&agrave; h&agrave;ng c&ograve;n ch&uacute; trọng đến kh&ocirc;ng gian, phong c&aacute;ch phục vụ để thực kh&aacute;ch cảm thấy xứng đ&aacute;ng với số tiền m&igrave;nh đ&atilde; bỏ ra.', 'beef-steak-at-guatian-restaurant-881sub_pic.png', 'Nh&agrave; h&agrave;ng l&agrave; nơi duy nhất ở TP.HCM tự thực hiện qu&aacute; tr&igrave;nh dry-aged kh&eacute;p k&iacute;n v&agrave; nướng thịt trực tiếp tr&ecirc;n l&ograve; than. Với kỹ thuật n&agrave;y, miếng b&ograve; sẽ giữ trọn vẹn hương vị tinh t&uacute;y, mang chất lượng tuyệt hảo nhất. Đ&acirc;y cũng trở th&agrave;nh một trong những l&yacute; do khiến đĩa steak ở đ&acirc;y c&oacute; gi&aacute; th&agrave;nh đắt đỏ bởi qu&aacute; tr&igrave;nh chế biến k&igrave; c&ocirc;ng. Kh&ocirc;ng chỉ tập chung v&agrave;o chất lượng m&oacute;n ăn, nh&agrave; h&agrave;ng c&ograve;n ch&uacute; trọng đến kh&ocirc;ng gian, phong c&aacute;ch phục vụ để thực kh&aacute;ch cảm thấy xứng đ&aacute;ng với số tiền m&igrave;nh đ&atilde; bỏ ra.', 'Cách chế biến bò đúng chuẩn theo yêu cầu và nêm nếm gia vị vừa ăn, side dishes cũng rất ngon, tuy nhiên sốt của rocket salad hơi đậm', 881, 1, 'beef-steak-at-guatian-restaurant'),
+('an-overlooking-river-at-the-east-cost-882main_pic.jpg', 2, 'An Overlooking River at the East Cost', '2022-11-29', '<h2 style=\"font-style:italic;\">L&ecirc; Phương T&ugrave;ng, 21 tuổi, du kh&aacute;ch tới suối Ti&ecirc;n chơi, cho biết đ&acirc;y l&agrave; một địa điểm đẹp, lượng kh&aacute;ch tham quan chưa nhiều v&agrave; ồ ạt như nơi kh&aacute;c n&ecirc;n giữ được vẻ hoang sơ. Điều khiến ch&agrave;ng trai người Huế ấn tượng l&agrave; địa điểm n&agrave;y t&iacute;ch hợp được nhiều thứ để trải nghiệm trong ng&agrave;y, như đi thuyền, tắm suối, ăn uống b&ecirc;n n&uacute;i rừng.&nbsp;</h2>\r\n\r\n<h1>&nbsp;</h1>\r\n', 'an-overlooking-river-at-the-east-cost-882sub_pic.png', 'D&ograve;ng nước ở đ&acirc;y xanh m&aacute;t chảy từ thượng nguồn. Người d&acirc;n địa phương cho rằng ng&agrave;y xưa, c&oacute; một lo&agrave;i hoa rừng mọc b&ecirc;n bờ suối, đến m&ugrave;a hoa nở trải d&agrave;i tr&ecirc;n triền đ&aacute; nh&igrave;n như l&agrave;n t&oacute;c ti&ecirc;n nữ n&ecirc;n mọi người từ đ&oacute; quen gọi l&agrave; suối Ti&ecirc;n. Giữa c&aacute;c n&oacute;ng gay gắt của m&ugrave;a h&egrave; tr&ecirc;n dải đất miền Trung, suối Ti&ecirc;n l&agrave; nơi ph&ugrave; hợp cho những du kh&aacute;ch muốn thư gi&atilde;n giữa kh&ocirc;ng kh&iacute; trong l&agrave;nh, tắm nước m&aacute;t lạnh.', 'Du lịchTư vấnĐi đâuThứ ba, 13/7/2021, 20:48 (GMT+7)Dòng suối mát ẩn mình dưới chân núi Bạch MãTHỪA THIÊN - HUẾSuối Tiên được ví như \'nàng tiên giữa núi rừng\', hút khách vào mùa hè nhờ dòng nước mát lạnh.Suối Tiên nằm dưới chân dãy Bạch Mã, nổi tiếng với dòng nước mát lạnh, thích hợp để tắm và tham quan vào mùa hè. Đây là một hệ thống tập hợp nhiều hồ, suối, thuộc xã Lộc Thủy, huyện Phú Lộc. Địa điểm du lịch này được đánh giá là vẫn còn hoang sơ do ẩn sâu trong hồ Thủy Yên, du khách muốn đến tham quan phải đi thuyền băng qua hồ để đến.Suối Tiên nằm dưới chân núi Bạch Mã hùng vỹ. Khách sẽ được chở bằng thuyền để tới suối với giá vé là 30.000 đồng/khách/khứ hồi. Ảnh: Lê Phương TùngSuối Tiên nằm dưới chân núi Bạch Mã hùng vỹ. Khách sẽ được chở bằng thuyền để tới suối với giá vé là 30.000 đồng/khách/khứ hồi.', 882, 2, 'an-overlooking-river-at-the-east-cost'),
 ('./resources/posts-resource/images/pic5.jpg', 3, 'We Took A Photo', '0000-00-00', 'Boasting some 2,000 miles of coastline plus a handful of renowned island destinations, Vietnam naturally has no shortage of beautiful beaches. Sure, you could just stick to cities, what with the colonial architecture and history of Hanoi, the imperial charms of Hue, and the bustling nightlife of Saigon. But you\'d be remiss to plan a Vietnamese vacation without hitting the water at least once—plus, most cities are just a day-trip from the coast, if not on the coast already.', './resources/posts-resource/images/sub_pic_5.jpg', 'To help you decide, we\'ve put together a guide to the most notable beach destinations in Vietnam. From the shores of the UNESCO-designated Ha Long Bay to the rolling dunes of Mui Ne and the island getaways of Con Dao and Phu Quoc, here are the best places to enjoy Vietnam\'s surf, sun, and sand.', 'A one-time French colonial port on the central coast, Vietnam\'s third-largest city is also home to some of the country\'s best beaches.', 884, 2, ''),
 ('', 0, '', '2022-11-29', '', '', '', '', 885, 0, ''),
-('', 0, '', '2022-11-29', '', '', '', '', 886, 0, '');
+('', 0, '', '2022-11-29', '', '', '', '', 886, 0, ''),
+('what-is-lorem-ipsum-887main_pic.png', 2, 'What is Lorem Ipsum', '2022-11-29', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desk', 'what-is-lorem-ipsum?-887sub_pic.png', '<h3>The standard Lorem Ipsum passage, used since the 1500s</h3>\r\n\r\n<p>&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&quot;</p>\r\n\r\n<h3>Section 1.10.32 of &quot;de Finibus Bonorum et Malorum&quot;, written by Cicero in 45 BC</h3>\r\n\r\n<p>&quot;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem&', 'Hello', 887, 2, 'what-is-lorem-ipsum');
 
 -- --------------------------------------------------------
 
@@ -73,7 +64,9 @@ CREATE TABLE `blog_types` (
 INSERT INTO `blog_types` (`id`, `type_name`, `slug`) VALUES
 (1, 'Truyền thống', 'truyen-thong'),
 (2, 'Tin tức', 'tin-tuc'),
-(3, 'Thời trang', 'thoi-trang');
+(3, 'Thời trang', 'thoi-trang'),
+(4, 'Hiện đại', 'hien-dai'),
+(5, 'Cổ trang', 'co-trang');
 
 -- --------------------------------------------------------
 
@@ -561,11 +554,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `dob`, `createDate`, `username`, `fullname`, `email`, `phone_num`, `address`, `password`, `avatar`, `role`, `banned`, `editTime`) VALUES
-(220001, NULL, '2022-11-26', 'sheezy01', 'Hồ Hữu An', 'hha2602@gmail.com', '908113114', '108 Đường số 1,Cư xá Phú Lâm C mở rộng, Phường An Lạc A, Quận Bình Tân, Thành phố Hồ Chí Minh', 'hha123', 'avatar-user220001-sheezy01.jpg', 1, '0000-00-00', '2022-11-28 20:27:51'),
+(220001, NULL, '2022-11-26', 'sheezy01', 'Hồ Hữu An', 'hha2602@gmail.com', '908113114', '108 Đường số 1,Cư xá Phú Lâm C mở rộng, Phường An Lạc A, Quận Bình Tân, Thành phố Hồ Chí Minh', 'hha123', 'avatar-user220001-sheezy01.jpg', 1, '2022-11-24', '2022-11-29 20:29:57'),
 (220003, NULL, '2022-11-26', 'lwtprettylaugh', 'Đinh Tấn Dũng Nè', 'dtd1201@gmail.com', '9026154822222', '123 Bạch Đằng, Phường 2, Quận Tân Bình, Thành phố Hồ Chí Minh', 'd0@nx3mp@w0rd', 'avatar-user220003-lwtprettylaugh.png', 0, '0000-00-00', '2022-11-28 20:27:13'),
 (220006, '2000-06-19', '2022-11-26', 'monroevicious', 'Lê Tuấn Tú', 'ltt1906@gmail.com', '908154875', '343/18K Tô Hiến Thành, Phường 12, Quận 10, Thành phố Hồ Chí Minh', 'zcnu2494', 'avatar-user220006-monroevicious.png', 0, '2023-01-07', '2022-11-28 20:28:02'),
 (220008, '2002-08-09', '2022-11-26', 'RobinMeske', 'Nguyễn Phương Mai', 'npm0908@gmail.com', '909484134', '132A Thân Nhân Trung, Phường 13, Quận Tân Bình, Thành phố Hồ Chí Minh', 'npmireact', NULL, 0, '0000-00-00', '2022-11-27 21:45:23'),
-(220011, '1997-12-25', '2022-11-26', 'BlissfulEats', 'Phạm Thiên An', 'kathleen97@gmail.com', '982561254', '207/18 Bạch Đằng, Phường 15, Quận Bình Thạnh, Thành phố Hồ Chí Minh', 'avas1312', NULL, 0, NULL, '0000-00-00 00:00:00'),
+(220011, '1997-12-25', '2022-11-26', 'BlissfulEats', 'Phạm Thiên An', 'kathleen97@gmail.com', '982561254', '207/18 Bạch Đằng, Phường 15, Quận Bình Thạnh, Thành phố Hồ Chí Minh', 'avas1312', NULL, 0, '2022-12-10', '2022-11-29 20:33:49'),
 (220012, '2004-08-03', '2022-11-26', 'eliseotecleo', 'Trần Ngọc Bảo', 'baobaosyd@gmail.com', '905123345', '256/26/11A Phan Huy Ích, Phường 12, Quận Gò Vấp, Thành phố Hồ Chí Minh', 'sdny24214', NULL, 0, NULL, '0000-00-00 00:00:00'),
 (220013, '2000-10-04', '2022-11-26', 'kaylanabrewer_', 'Nguyễn Thanh Danh', 'danh.nthaha@gmai.com', '907070705', '911/7/25 B Tỉnh Lộ 43, Khu phố 2, Phường Bình Chiểu, Thành phố Thủ Đức, Thành phố Hồ Chí Minh', '@jkfasb21', NULL, 0, NULL, '0000-00-00 00:00:00'),
 (220014, '2001-12-12', '2022-11-26', 'americacredit', 'Nguyễn Trần Quốc Duy', 'aramurf@gmail.com', '984134875', 'Số 40, Đường 3C, Khu Dân Cư 13C Nguyễn Văn Linh, Xã Phong Phú, Huyện Bình Chánh, Thành phố Hồ Chí Minh', 'nabjf@ba', NULL, NULL, NULL, NULL);
@@ -689,7 +682,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=887;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=888;
+
+--
+-- AUTO_INCREMENT for table `blog_types`
+--
+ALTER TABLE `blog_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
