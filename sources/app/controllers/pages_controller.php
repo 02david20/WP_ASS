@@ -82,4 +82,15 @@ class PagesController extends BaseController
   {
     $this->render('page_404');
   }
+
+  public function page_403()
+  {
+    $this->render('page_403');
+  }
+  public function logout()
+  {
+    unset($_SESSION["user"]);
+    header("location: index.php");
+    exit();
+  }
 }

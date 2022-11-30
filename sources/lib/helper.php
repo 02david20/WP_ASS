@@ -80,9 +80,20 @@ function login($username, $password)
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
     $res = $stmt->get_result();
-
-    $_SESSION["auth"] = true;
-    $_SESSION["user"] = $res->fetch_assoc();
+    if($res) {
+        $res = $res->fetch_assoc();
+        if(! isBanned($res["banned"])) {
+            $_SESSION["auth"] = true;
+            $_SESSION["user"] = $res;
+            header("location: index.php");
+            exit();
+        }else {
+            header("location: ?controller=pages&action=page_403");
+            exit();
+        }
+    }else {
+        echo '<script>alert("Sải tên đăng nhập hoặc mật khẩu")</script>';
+    }
 }
 
 function isBanned($date)
