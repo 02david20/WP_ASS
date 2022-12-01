@@ -1,9 +1,9 @@
 <?php
 // Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 $controllers = array(
-  'pages' => ['home', 'error'],
-  'posts' => ['blogs', 'single'],
-); 
+  'pages' => ['index', 'page_404','page_403', 'login', 'register', 'about', 'contact','logout'],
+  'posts' => ['index'],
+);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,42 +1,95 @@
 <?php
 class Post
 {
-  public $id;
-  public $title;
-  public $content;
 
-  function __construct($id, $title, $content)
+  static function all($filter = NULL)
   {
-    $this->id = $id;
-    $this->title = $title;
-    $this->content = $content;
+    $conn = DB::getInstance();
+    if (isset($filter))
+      $sql = 'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name 
+              FROM blog INNER JOIN blog_types on blog.type=blog_types.id 
+              WHERE type_name=?';
+    else
+      $sql = 'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name 
+              FROM blog INNER JOIN blog_types on blog.type=blog_types.id';
+    $stmt = $conn->prepare($sql);
+    if (isset($filter))
+      $stmt->bind_param("s", $filter);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    return $res;
   }
 
-  static function all()
+  static function allByStatus($filter)
   {
-    $list = [];
-    $db = DB::getInstance();
-    $res = $db->query('SELECT * FROM products');
-
-    // lists = req....
-
-    return $list;
+    $conn = DB::getInstance();
+    $sql = 'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name 
+            FROM blog INNER JOIN blog_types on blog.type=blog_types.id 
+            WHERE status=?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $filter);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    return $res;
   }
+
+  static function findByID($id)
+  {
+    $conn = DB::getInstance();
+
+    $sql = 'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name 
+            FROM blog INNER JOIN blog_types on blog.type=blog_types.id 
+            WHERE blog.id=?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    return $res->fetch_assoc();
+  }
+
+  static function updatePost($data = array())
+  {
+      $table='blog';
   
-  static function find($id)
-  {
-    $db = DB::getInstance();
-    $req = $db->prepare('SELECT * FROM posts WHERE id = :id');
-    $req->execute(array('id' => $id));
+      foreach ($data as $key => $value) {
+          $value = escape($value);
+          $values[] = "`$key`='$value'";
+      }
+  
+      $id = intval($data['id']);
 
-    $item = $req->fetch();
-    if (isset($item['id'])) {
-      return new Post($item['id'], $item['title'], $item['content']);
-    }
-    return null;
+      if ($id > 0) {
+          $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE `id`='$id'";
+   
+      } else {
+          $sql = "INSERT INTO `$table` SET " . implode(',', $values);
+      }
+      if (DB::getInstance()->query($sql) === TRUE) {
+        echo "Record Added Successfully";
+      } else {
+        echo "Error: " . $sql . "<br>" .DB::getInstance()->error;
+      }
+  
+      $id = ($id > 0) ? $id : mysqli_insert_id(DB::getInstance());
+      return $id;
   }
-
-  static function findByCategory() {
-    
+  static function updateOrderSatus($post_id, $status) {
+    $conn = DB::getInstance();   
+    $sql = "UPDATE blog SET status=? WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii",$status, $post_id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    return $res;
+  }
+  static function deleteByID($post_id) {
+    $conn = DB::getInstance();   
+    $sql = "DELETE FROM blog WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i",$post_id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    return $res;
   }
 }

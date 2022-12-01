@@ -31,7 +31,7 @@ class PagesController extends BaseController
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if (isset($_POST['username']) && isset($_POST['password'])) {
-        $conn = Db::getInstance();
+        $conn = DB::getInstance();
 
         $sql = "SELECT * FROM `user` WHERE username=? and `password`=?";
         $stmt = $conn->prepare($sql);
@@ -76,5 +76,16 @@ class PagesController extends BaseController
   public function page_404()
   {
     $this->render('page_404');
+  }
+
+  public function page_403()
+  {
+    $this->render('page_403');
+  }
+  public function logout()
+  {
+    unset($_SESSION["user"]);
+    header("location: index.php");
+    exit();
   }
 }

@@ -1,9 +1,10 @@
 <?php
 
 
+
 // define('BASE_PATH', '/var/www/html/');
 define('BASE_PATH', '../');
-// echo __DIR__;
+
 require_once BASE_PATH . 'lib/connection.php';
 require_once BASE_PATH . 'lib/config.php';
 require_once BASE_PATH . 'lib/helper.php';
