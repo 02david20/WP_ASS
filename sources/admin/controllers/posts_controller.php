@@ -37,6 +37,27 @@ class PostsController extends BaseController
     }
   }
 
+  public function status()
+  {
+    if(isset($_GET['by'])) {
+      $by = $_GET['by'];
+      if(array_key_exists($by,$this->status)) {
+        $posts = Post::allByStatus($by);
+        $data = array('posts' => $posts, "status"=>$this->status);
+        $this->render('home', $data);
+      }
+      else {
+        $posts = Post::all();
+        $data = array('posts' => $posts, "status"=>$this->status);
+        $this->render('home', $data);
+      }
+    }else {
+      $posts = Post::all();
+      $data = array('posts' => $posts, "status"=>$this->status);
+      $this->render('home', $data);
+    }
+  }
+
   public function add()
   {
     $data = array("status"=>$this->status,"types"=>$this->types);

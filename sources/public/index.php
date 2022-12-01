@@ -1,7 +1,5 @@
 <?php
 
-
-
 // define('BASE_PATH', '/var/www/html/');
 define('BASE_PATH', '../');
 

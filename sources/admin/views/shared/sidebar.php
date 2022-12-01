@@ -50,8 +50,8 @@
           <!-- End Dashboard -->
 
           <!-- Users -->
-          <li class="nav-item">
-            <a href="?controller=users&action=home" class="nav-link">
+          <li class="nav-item menu-open">
+            <a href="?controller=users&action=home" class="nav-link active">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Người dùng
@@ -62,7 +62,7 @@
 
           <!-- Products -->
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a  class="nav-link active">
               <i class="nav-icon fa fa-desktop"></i>
               <p>
                 Sản phẩm
@@ -70,7 +70,7 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="?controller=products&action=home" class="nav-link">
+                <a href="?controller=products" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tất cả sản phẩm</p>
                 </a>
@@ -78,51 +78,95 @@
             </ul>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="?controller=products&by=hot" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>Sản phẩm hot</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=products&by=new" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sản phẩm mới </p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=products&by=sale" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sản phẩm khuyến mãi</p>
                 </a>
               </li>
             </ul>
           </li>
-          <!-- End Products -->
-
-          <!-- Storage -->
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-warehouse"></i>
-              <p>
-                Storage
-              </p>
-            </a>
-          </li>
-          <!-- End Storage -->
 
 
-          <!-- Order -->
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+          <!-- Orders -->
+          <li class="nav-item menu-open">
+            <a class="nav-link active">
               <i class="nav-icon fas fa-file-invoice-dollar"></i>
               <p>
-                Order
+                Đơn hàng
               </p>
             </a>
-          </li>
-          <!-- End Order -->
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tất cả đơn hàng</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders&by=new" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Đơn hàng mới</p>
+                </a>
+              </li>
+            </ul>
 
-          <!-- Statistics -->
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-chart-line"></i>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders&by=process" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Đơn hàng đang xử lí</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders&by=complete" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Đơn hàng đã xử lí</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="?controller=orders&by=cancel" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Đơn hàng bị hủy</p>
+                </a>
+              </li>
+            </ul>
+
+          </li>
+
+          <!-- Orders -->
+          <li class="nav-item menu-open">
+            <a class="nav-link active">
+              <i class="nav-icon fas fa-blog"></i>
               <p>
-                Statistics
+                Bài viết
               </p>
             </a>
-<<<<<<< HEAD
-          </li>
-          <!-- End Statistics -->
-
-=======
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
                 <a href="?controller=posts" class="nav-link">
@@ -180,7 +224,6 @@
               ?>
             </ul>
           </li>
->>>>>>> main
 
         </ul>
       </nav>
