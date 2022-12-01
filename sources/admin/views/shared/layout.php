@@ -111,7 +111,6 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <?php require_once(ADMIN_PATH.'views/shared/preloader.php')?>
-<?php require_once(ADMIN_PATH.'views/shared/navbar.php')?>
 <?php require_once(ADMIN_PATH.'views/shared/sidebar.php')?>
 
 

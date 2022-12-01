@@ -2,7 +2,7 @@
 // Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 $controllers = array(
   'pages' => ['home', 'error'],
-  'posts' => ['index'],
+  'info' => ['home', 'categories'],
   'admin' => ['home'],
   'users' => ['home','delete','edit','updateUser','banned'],
   'products' => ['home','delete','edit','updateProduct','add'],
