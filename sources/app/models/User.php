@@ -99,7 +99,7 @@ class User
     $stmt->bind_param("s", $name);
     $stmt->execute();
 
-    if ($stmt->get_result()) {
+    if ($stmt->get_result()->fetch_assoc()) {
       return FALSE;
     } else {
       $sql = "INSERT INTO `$table` SET " . implode(',', $values);

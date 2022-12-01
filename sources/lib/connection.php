@@ -6,7 +6,7 @@ class DB
   {
     if (!isset(self::$instance)) {
       // Docker
-      $servername = "localhost";
+      $servername = "db";
       $username = "david";
       $password = "51WXHZC[r7t4Kw8I";
       $dbname = "fashion";

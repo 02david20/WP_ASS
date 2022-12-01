@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// define('BASE_PATH', '/var/www/html/');
 define('BASE_PATH', '../');
 
 require_once BASE_PATH . 'lib/connection.php';
@@ -14,11 +13,11 @@ if (isset($_GET['controller'])) {
     if (isset($_GET['action'])) {
         $action = $_GET['action'];
     } else {
-        $action = 'index';
+        $action = 'home';
     }
 } else {
     $controller = 'pages';
-    $action = 'index';
+    $action = 'home';
 }
 
 /* Load external routes file */

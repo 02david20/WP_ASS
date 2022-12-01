@@ -81,16 +81,7 @@ function login($username, $password)
     $stmt->execute();
     $res = $stmt->get_result()->fetch_assoc();
 
-    if ($res) {
-        if (!isBanned($res["banned"])) {
-            $_SESSION["user"] = $res;
-            header("location: index.php");
-            exit();
-        } else {
-            header("location: ?controller=pages&action=page_403");
-            exit();
-        }
-    }
+    return $res;
 }
 
 function isBanned($date)

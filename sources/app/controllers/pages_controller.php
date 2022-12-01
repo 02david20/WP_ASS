@@ -1,6 +1,7 @@
 <?php
 require_once('base_controller.php');
 require_once(USER_PATH . 'models/User.php');
+
 class PagesController extends BaseController
 {
   function __construct()
@@ -8,15 +9,15 @@ class PagesController extends BaseController
     $this->folder = 'pages';
   }
 
-  public function index()
+  public function home()
   {
-    $this->render('index');
+    $this->render('home');
   }
 
   public function register()
   {
     if (isset($_SESSION["user"])) {
-      header('Location: index.php?controller=pages&action=index');
+      header('Location: index.php?controller=pages');
       exit();
     }
 
@@ -30,8 +31,9 @@ class PagesController extends BaseController
           );
 
           $status = User::AddUser($user_data);
+
           if ($status === TRUE) {
-            header('Location: index.php?controller=pages&action=login');
+            header('Location: ?controller=pages&action=login');
             exit();
           } else {
             echo "<script>alert('Tên tài khoản đã tồn tại')</script>";
@@ -44,6 +46,7 @@ class PagesController extends BaseController
         echo '<script>alert("Xin hãy nhập đầy đủ thông tin")</script>';
       }
     }
+
     $this->render('register', [], 'form');
 
   }
@@ -51,25 +54,33 @@ class PagesController extends BaseController
   public function login()
   {
     if (isset($_SESSION["user"])) {
-      header('Location: index.php?controller=pages&action=index');
+      header('Location: index.php?controller=pages');
       exit();
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if (isset($_POST['username']) && isset($_POST['password'])) {
-        login($_POST['username'], $_POST['password']);
 
-        if (isset($_SESSION["user"])) {
-          header('Location: index.php?controller=pages&action=index');
-          exit();
+        $res = login($_POST['username'], $_POST['password']);
 
+        if ($res) {
+          if (!isBanned($res["banned"])) {
+            $_SESSION["user"] = $res;
+            header('Location: ?controller=pages');
+            exit();
+          } else {
+            header("location: ?controller=pages&action=page_403");
+            exit();
+          }
         } else {
           echo '<script>alert("Sai tên đăng nhập hoặc mật khẩu")</script>';
         }
+
       } else {
         echo '<script>alert("Xin hãy nhập tên đăng nhập và mật khẩu")</script>';
       }
     }
+
     $this->render('login', [], 'form');
   }
   public function about()

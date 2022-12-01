@@ -1,15 +1,11 @@
 <?php
 
-// define('BASE_PATH', '/var/www/html/');
 define('BASE_PATH', '../');
 
 require_once BASE_PATH . 'lib/connection.php';
 require_once BASE_PATH . 'lib/config.php';
 require_once BASE_PATH . 'lib/helper.php';
 
-// Login Action
-// $_SESSION['auth'] = true;
-// login("sheezy01","hha123");
 session_start();
 
 if($_SESSION['user']['role'] <> 1) {
