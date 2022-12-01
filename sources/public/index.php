@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-define('BASE_PATH', '/var/www/html/');
-// define('BASE_PATH', '../');
+// define('BASE_PATH', '/var/www/html/');
+define('BASE_PATH', '../');
 
 require_once BASE_PATH . 'lib/connection.php';
 require_once BASE_PATH . 'lib/config.php';

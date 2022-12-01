@@ -73,26 +73,23 @@ function escape($str)
 function login($username, $password)
 {
     $conn = DB::getInstance();
+
     $sql = "SELECT * FROM user WHERE username=? and `password`=?";
 
     $stmt = $conn->prepare($sql);
-
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
-    $res = $stmt->get_result();
-    if($res) {
-        $res = $res->fetch_assoc();
-        if(! isBanned($res["banned"])) {
-            $_SESSION["auth"] = true;
+    $res = $stmt->get_result()->fetch_assoc();
+
+    if ($res) {
+        if (!isBanned($res["banned"])) {
             $_SESSION["user"] = $res;
             header("location: index.php");
             exit();
-        }else {
+        } else {
             header("location: ?controller=pages&action=page_403");
             exit();
         }
-    }else {
-        echo '<script>alert("Sải tên đăng nhập hoặc mật khẩu")</script>';
     }
 }
 

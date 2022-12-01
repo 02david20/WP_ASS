@@ -10,8 +10,6 @@ class PagesController extends BaseController
 
   public function index()
   {
-    // Chỉ cần truyền vào array => tự trích xuất ra các biến
-    // ==> Trong view tương ứng chỉ cần gọi lại những biến đã được truyền vào
     $this->render('index');
   }
 
@@ -31,10 +29,14 @@ class PagesController extends BaseController
             'password' => escape($_POST['password'])
           );
 
-          User::AddUser($user_data);
+          $status = User::AddUser($user_data);
+          if ($status === TRUE) {
+            header('Location: index.php?controller=pages&action=login');
+            exit();
+          } else {
+            echo "<script>alert('Tên tài khoản đã tồn tại')</script>";
+          }
 
-          header('Location: index.php?controller=pages&action=login');
-          exit();
         } else {
           echo '<script>alert("Mật khẩu không khớp");</script>';
         }
@@ -43,6 +45,7 @@ class PagesController extends BaseController
       }
     }
     $this->render('register', [], 'form');
+
   }
 
   public function login()
@@ -61,7 +64,7 @@ class PagesController extends BaseController
           exit();
 
         } else {
-          echo '<script>alert("Sải tên đăng nhập hoặc mật khẩu")</script>';
+          echo '<script>alert("Sai tên đăng nhập hoặc mật khẩu")</script>';
         }
       } else {
         echo '<script>alert("Xin hãy nhập tên đăng nhập và mật khẩu")</script>';

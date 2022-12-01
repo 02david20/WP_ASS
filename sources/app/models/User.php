@@ -89,6 +89,21 @@ class User
       $values[] = "`$key`='$value'";
     }
 
-    $sql = "INSERT INTO `$table` SET " . implode(',', $values);
+    $name = $data['username'];
+
+    $conn = DB::getInstance();
+
+    $sql = 'SELECT * FROM user WHERE username=?';
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+
+    if ($stmt->get_result()) {
+      return FALSE;
+    } else {
+      $sql = "INSERT INTO `$table` SET " . implode(',', $values);
+      return DB::getInstance()->query($sql);
+    }
   }
 }
