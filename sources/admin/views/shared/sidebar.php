@@ -59,6 +59,16 @@
             </a>
           </li>
           <!-- End Users -->
+          <!-- Categories -->
+          <li class="nav-item menu-open">
+            <a href="?controller=categories&action=home" class="nav-link active">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Danh mục sản phẩm
+              </p>
+            </a>
+          </li>
+          <!-- End Categories -->
 
           <!-- Products -->
           <li class="nav-item">
