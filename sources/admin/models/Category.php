@@ -32,11 +32,18 @@ class Category {
   {
 
     $conn= DB::getInstance();
-    $sql = "DELETE FROM categories WHERE id=$id ";
 
+    $sql = "UPDATE products SET category_id=NULL WHERE category_id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
+
+
+    $sql = "DELETE FROM categories WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+
     $res = $stmt->get_result();
     return $res;
   }
@@ -57,18 +64,13 @@ class Category {
     }
     echo $sql;
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $res = $stmt->get_result();
-
-    if ($res === TRUE) {
+    if ($conn->query($sql) === TRUE) {
       echo "Record Added Successfully";
     } else {
-      echo "Error: " . $sql . "<br>" .DB::getInstance()->error;
+      echo "Error: " . $sql . "<br>" .$conn->error;
     }
 
-    $id = ($id > 0) ? $id : mysqli_insert_id(DB::getInstance());
+    $id = ($id > 0) ? $id : mysqli_insert_id($conn);
     return $id;
   }
 

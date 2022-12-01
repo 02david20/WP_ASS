@@ -9,7 +9,7 @@ class PostsController extends BaseController
     $this->folder = 'posts';
   }
 
-  public function blogs()
+  public function index()
   {
     $posts = Post::all();
     $blog_categories = Post::filter_blog_categories();

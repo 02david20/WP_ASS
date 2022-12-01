@@ -66,8 +66,8 @@ class UsersController extends BaseController
       if ($_POST['user_id'] <> 0) $editTime = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
       else $editTime = '0000-00-00 00:00:00';
       // Check role 
-      if (isset($_POST['role']) && $_SESSION['role'] == 1) $role = $_POST['role'];
-      else $role = $_SESSION['role'];
+      if (isset($_POST['user']['role']) && $_SESSION['user']['role'] == 1) $role = $_POST['role'];
+      else $role = $_SESSION['user']['role'];
   
       $user_edit = array(
           'id' => intval($_POST['user_id']),
@@ -114,6 +114,7 @@ class UsersController extends BaseController
               User::Update($user_edit);
           }
           header('Location: admin.php?controller=users&action=home');
+          exit();
       }
     }  
   }

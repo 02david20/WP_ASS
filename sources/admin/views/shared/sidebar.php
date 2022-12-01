@@ -62,6 +62,16 @@ require_once ADMIN_PATH . "/models/PostType.php";
           </a>
         </li>
         <!-- End Users -->
+        <!-- Categories -->
+        <li class="nav-item menu-open">
+          <a href="?controller=categories&action=home" class="nav-link active">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Danh mục sản phẩm
+            </p>
+          </a>
+        </li>
+        <!-- End Categories -->
 
         <!-- Products -->
         <li class="nav-item">
@@ -210,12 +220,12 @@ require_once ADMIN_PATH . "/models/PostType.php";
               </p>
             </a>
             <?php
-              $ptypes = PostType::all();
-              foreach ($ptypes as $type) {
-                $slug = $type["slug"];
-                $type_name = $type["type_name"];
+            $ptypes = PostType::all();
+            foreach ($ptypes as $type) {
+              $slug = $type["slug"];
+              $type_name = $type["type_name"];
 
-                echo '<ul class="nav nav-treeview" style="display: none;">  
+              echo '<ul class="nav nav-treeview" style="display: none;">  
                     <li class="nav-item">
                       <a href="?controller=posts&action=home&by=' . $slug . '" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -223,8 +233,8 @@ require_once ADMIN_PATH . "/models/PostType.php";
                       </a>
                     </li>
                   </ul>';
-              }
-              ?>
+            }
+            ?>
           </ul>
         </li>
 

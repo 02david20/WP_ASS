@@ -8,6 +8,8 @@ $controllers = array(
   'products' => ['home','delete','edit','updateProduct','add'],
   'orders' => ['home',"view","delete","updateStatus"],
   'posts' => ['home','add',"edit","updatePost","trash","publish",'delete','status'],
+  'categories' => ['home','delete','edit','updateCategory','add'],
+
 ); 
 
 
