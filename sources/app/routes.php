@@ -1,7 +1,7 @@
 <?php
 // Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 $controllers = array(
-  'pages' => ['home', 'page_404', 'page_403', 'login', 'register', 'about', 'contact', 'logout'],
+  'pages' => ['home', 'page_404', 'page_403', 'login', 'register', 'about', 'contact', 'logout', 'user'],
   'posts' => ['home', 'single'],
 );
 
