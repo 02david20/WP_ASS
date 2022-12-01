@@ -1,4 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <title>Shop</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="apple-touch-icon" href="public/apple-icon.png">
   <link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
@@ -16,6 +22,9 @@
   <script src="public/js/jquery-migrate-1.2.1.min.js"></script>
   <script src="public/js/bootstrap.bundle.min.js"></script>
   <script src="public/js/templatemo.js"></script>
+
+
+
   <!-- End Script -->
 </head>
 

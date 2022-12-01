@@ -1,20 +1,49 @@
 <?php
-require_once('controllers/base_controller.php');
-require_once('models/Post.php');
-require_once('models/PostType.php');
+require_once(ADMIN_PATH.'controllers/base_controller.php');
+require_once(ADMIN_PATH.'models/Post.php');
+require_once(ADMIN_PATH.'models/PostType.php');
+require_once(ADMIN_PATH.'models/User.php');
+
 
 class PostsController extends BaseController
 {
   function __construct()
   {
-    $this->folder = 'posts';
+    $this->folder = 'Posts';
+    $this->status = array(
+      0=>"Chưa công khai",
+      1=>"Công khai",
+      2=>"Thùng rác"
+    );
+    // Lọc ra các trường filter theo slug của types
+    $this->filter = array();
+    $arr = PostType::all();
+    foreach($arr as $el) {
+      $this->filter[$el['slug']]=$el['type_name'];
+    }
+    // Lọc ra các loại post
+    $this->types = PostType::all();
   }
 
-  public function index()
+  public function home()
   {
-    $posts = Post::all();
-    $data = array('posts' => $posts);
-    $this->render('index', $data);
+    if(isset($_GET['by'])) {
+      $by = $_GET['by'];
+      if(array_key_exists($by,$this->filter)) {
+        $posts = Post::all($this->filter[$by]);
+        $data = array('posts' => $posts, "status"=>$this->status);
+        $this->render('home', $data);
+      }
+      else {
+        $posts = Post::all();
+        $data = array('posts' => $posts, "status"=>$this->status);
+        $this->render('home', $data);
+      }
+    }else {
+      $posts = Post::all();
+      $data = array('posts' => $posts, "status"=>$this->status);
+      $this->render('home', $data);
+    }
   }
 
   public function status()
@@ -37,7 +66,6 @@ class PostsController extends BaseController
       $this->render('home', $data);
     }
   }
-
 
   public function add()
   {
@@ -139,4 +167,7 @@ class PostsController extends BaseController
       header('location: admin.php?controller=posts&action=home');     
     }  
   }
+
+
+
 }

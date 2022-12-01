@@ -13,10 +13,9 @@ class PostsController extends BaseController
   {
     $posts = Post::all();
     $blog_categories = Post::filter_blog_categories();
-
-
+    
     $data = ['posts'=>$posts, 'blog_categories'=>$blog_categories];
-    $this->render('blogs', $data);
+    $this->render('blogs', $data, 'blog');
   }
 
   public function single()
@@ -28,6 +27,6 @@ class PostsController extends BaseController
     $pre_blog_id = Post::get_previous_post($_GET['id']);
 
     $data = ['posts'=>$posts, 'blog_categories'=>$blog_categories, 'post'=>$post, 'next_blog_id'=>$next_blog_id, 'pre_blog_id'=>$pre_blog_id];
-    $this->render('single', $data);
+    $this->render('single', $data, 'blog');
   }
 }

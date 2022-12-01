@@ -8,7 +8,7 @@ class BaseController
   function render($file, $data = array(), $layout = null)
   {
     // Kiểm tra file gọi đến có tồn tại hay không?
-    $view_file = BASE_PATH . 'app/views/' . $this->folder . '/' . $file . '.php';
+    $view_file = USER_PATH . 'views/' . $this->folder . '/' . $file . '.php';
     if (is_file($view_file)) {
       // Nếu tồn tại file đó thì tạo ra các biến chứa giá trị truyền vào lúc gọi hàm
       extract($data);
@@ -21,10 +21,10 @@ class BaseController
       /////////////////////////////////////////////////////
       // Sau khi có kết quả đã được lưu vào biến $content, gọi ra template chung của hệ thống đế hiển thị ra cho người dùng
       if ($layout) {
-        require_once(BASE_PATH . 'app/views/layouts/' . $layout . '.php');
+        require_once(USER_PATH . 'views/layouts/' . $layout . '.php');
       } else {
         // Nếu không chọn layout mặc định
-        require_once(BASE_PATH . 'app/views/layouts/application.php');
+        require_once(USER_PATH . 'views/layouts/application.php');
       }
     } else {
       // Nếu file muốn gọi ra không tồn tại thì chuyển hướng đến trang báo lỗi.
