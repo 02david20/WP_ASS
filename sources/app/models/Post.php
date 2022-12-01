@@ -6,7 +6,10 @@ class Post
   {
     $conn= DB::getInstance();
 
-    $sql = 'SELECT blog_types.type_name, blog.* FROM blog_types, blog WHERE blog_types.id = blog.type AND blog.status = 1';
+    $sql =
+    'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name,blog.slug as bslug,blog_types.slug as tslug 
+              FROM blog INNER JOIN blog_types on blog.type=blog_types.id 
+              WHERE blog.status=1';
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->get_result();
@@ -18,7 +21,7 @@ class Post
   {
     $conn= DB::getInstance();
 
-    $sql = 'SELECT blog.type, blog_types.type_name FROM blog INNER JOIN blog_types ON blog.type = blog_types.id WHERE blog.status = 1 GROUP BY blog.type';
+    $sql = 'SELECT * FROM  blog_types';
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->get_result();

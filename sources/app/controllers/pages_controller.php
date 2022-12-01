@@ -1,6 +1,6 @@
 <?php
 require_once('base_controller.php');
-
+require_once(USER_PATH . 'models/User.php');
 class PagesController extends BaseController
 {
   function __construct()
@@ -12,51 +12,57 @@ class PagesController extends BaseController
   {
     // Chỉ cần truyền vào array => tự trích xuất ra các biến
     // ==> Trong view tương ứng chỉ cần gọi lại những biến đã được truyền vào
-    
     $this->render('index');
   }
 
   public function register()
   {
+    if (isset($_SESSION["user"])) {
+      header('Location: index.php?controller=pages&action=index');
+      exit();
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      if (isset($_POST['fullname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['re_password'])) {
+        if ($_POST['pass'] === $_POST['re_pass']) {
+          $user_data = array(
+            'username' => escape($_POST['username']),
+            'fullname' => escape($_POST['fullname']),
+            'password' => escape($_POST['password'])
+          );
+
+          User::AddUser($user_data);
+
+          header('Location: index.php?controller=pages&action=login');
+          exit();
+        } else {
+          echo '<script>alert("Mật khẩu không khớp");</script>';
+        }
+      } else {
+        echo '<script>alert("Xin hãy nhập đầy đủ thông tin")</script>';
+      }
+    }
     $this->render('register', [], 'form');
   }
 
   public function login()
   {
-    if (isset($__SESSION['id'])) {
-      header('Location: index.php?controller=pages&action=home');
+    if (isset($_SESSION["user"])) {
+      header('Location: index.php?controller=pages&action=index');
       exit();
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if (isset($_POST['username']) && isset($_POST['password'])) {
-        $conn = DB::getInstance();
+        login($_POST['username'], $_POST['password']);
 
-        $sql = "SELECT * FROM `user` WHERE username=? and `password`=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
-        $stmt->execute();
+        if (isset($_SESSION["user"])) {
+          header('Location: index.php?controller=pages&action=index');
+          exit();
 
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-          $user = $result->fetch_assoc();
-
-          session_start();
-
-          $__SESSION['id'] = $user['id'];
-          $__SESSION['fullname'] = $user['fullname'];
-          $__SESSION['username'] = $user['username'];
-          $__SESSION['password'] = $user['password'];
-          $__SESSION['role'] = $user['role'];
-          $__SESSION['avatar'] = $user['avatar'];
-
-          // header('Location: index.php?controller=pages&action=index');
-          // exit();
         } else {
-          echo '<script>alert("Sai tên đăng nhập hoặc mật khẩu")</script>';
+          echo '<script>alert("Sải tên đăng nhập hoặc mật khẩu")</script>';
         }
-
       } else {
         echo '<script>alert("Xin hãy nhập tên đăng nhập và mật khẩu")</script>';
       }
