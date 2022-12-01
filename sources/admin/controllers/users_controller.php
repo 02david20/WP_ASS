@@ -30,34 +30,13 @@ class UsersController extends BaseController
     }  
   }
 
-  public function banned() {
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id = (int)$_POST["id"];
-        $bannedate = date($_POST["bandate"]);
-
-        if ($_POST['id'] <> 0) $editTime = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
-        else $editTime = '0000-00-00 00:00:00';
-
-        $res = User::BannedByID($id,$bannedate, $editTime);
-        if(!$res) {
-          echo json_encode(array('statusCode'=>200));
-        } else {
-            echo json_encode(array('statusCode'=>400,
-                                    'err' => "Error deleting record: ".DB::getInstance()->error.$res,            
-            ));
-        }
-        
-    }  
-  }
-
-    public function edit() {
-    if(isset($_GET['id'])) {
+  
+  public function edit() {
+    if($_SERVER["REQUEST_METHOD"] == "GET") {
       $user = User::findByID($_GET['id']);
       $user_info = array('user_info'=>$user);
       $this->render('edit',$user_info);
-    } else {
-      header("location: ?controller=users");
-    }
+    }  
   }
 
   public function updateUser() {

@@ -4,18 +4,5 @@ Options +FollowSymlinks -MultiViews -Indexes
     RewriteEngine on
     RewriteBase /
 
-    # Admin URLs
-    # RewriteCond's are not necessary here if there will be no
-    # static assets (images/css/js) whose URLs start with "admin"
-    RewriteRule ^admin(/.*)?$ admin.php?$1 [L,QSA]
 
-    # Public website
-    # The first two rules say "If this path is not an existing file or directory"
-    # The third conditional is good for preventing rewrites for directories
-    # commonly accessed for static assets. It will prevent unnecessary calls to
-    # your application if there are any 404 errors in those directories.
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond $1 !^(images|css|js)
-    RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 </IfModule>

@@ -67,14 +67,7 @@ class User
     return $id;
   }
 
-  static function BannedByID($id, $bannedate,$editTime) {
-    $conn= DB::getInstance();
-    $sql = "UPDATE user SET banned=?, editTime=? WHERE id=?";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssi",$bannedate,$editTime,$id);
-    $stmt->execute();
-    $res = $stmt->get_result();
-    return $res;
+  static function findByCategory() {
+    
   }
 }
