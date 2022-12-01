@@ -1,6 +1,7 @@
 <?php
 require_once('controllers/base_controller.php');
-require_once('models/post.php');
+require_once('models/Post.php');
+require_once('models/PostType.php');
 
 class PostsController extends BaseController
 {
@@ -37,26 +38,6 @@ class PostsController extends BaseController
     }
   }
 
-  public function status()
-  {
-    if(isset($_GET['by'])) {
-      $by = $_GET['by'];
-      if(array_key_exists($by,$this->status)) {
-        $posts = Post::allByStatus($by);
-        $data = array('posts' => $posts, "status"=>$this->status);
-        $this->render('home', $data);
-      }
-      else {
-        $posts = Post::all();
-        $data = array('posts' => $posts, "status"=>$this->status);
-        $this->render('home', $data);
-      }
-    }else {
-      $posts = Post::all();
-      $data = array('posts' => $posts, "status"=>$this->status);
-      $this->render('home', $data);
-    }
-  }
 
   public function add()
   {

@@ -1,6 +1,6 @@
 <?php
 require_once(USER_PATH . 'controllers/base_controller.php');
-require_once(USER_PATH . 'models/post.php');
+require_once(USER_PATH . 'models/Post.php');
 
 class PostsController extends BaseController
 {

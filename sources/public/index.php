@@ -22,7 +22,5 @@ if (isset($_GET['controller'])) {
     $action = 'home';
 }
 
-
-
 /* Load external routes file */
 require_once USER_PATH . 'routes.php';

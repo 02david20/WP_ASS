@@ -1,13 +1,14 @@
 <?php
+
 class BaseController
 {
   protected $folder; // Biến có giá trị là thư mục nào đó trong thư mục views, chứa các file view template của phần đang truy cập.
 
   // Hàm hiển thị kết quả ra cho người dùng.
-  function render($file, $data = array(),$layout=null)
+  function render($file, $data = array(), $layout = null)
   {
     // Kiểm tra file gọi đến có tồn tại hay không?
-    $view_file = '../app/views/' . $this->folder . '/' . $file . '.php';
+    $view_file = BASE_PATH . 'app/views/' . $this->folder . '/' . $file . '.php';
     if (is_file($view_file)) {
       // Nếu tồn tại file đó thì tạo ra các biến chứa giá trị truyền vào lúc gọi hàm
       extract($data);
@@ -19,15 +20,15 @@ class BaseController
       /////////////////////////////////////////////////////
       /////////////////////////////////////////////////////
       // Sau khi có kết quả đã được lưu vào biến $content, gọi ra template chung của hệ thống đế hiển thị ra cho người dùng
-      if($layout) {
-        require_once('views/layouts/'.$layout.'.php');
-      }else {
+      if ($layout) {
+        require_once(BASE_PATH . 'app/views/layouts/' . $layout . '.php');
+      } else {
         // Nếu không chọn layout mặc định
-        require_once('../app/views/layouts/application.php');
+        require_once(BASE_PATH . 'app/views/layouts/application.php');
       }
     } else {
       // Nếu file muốn gọi ra không tồn tại thì chuyển hướng đến trang báo lỗi.
-      header('Location: index.php?controller=pages&action=page_4045');
+      header('Location: index.php?controller=pages&action=page_404');
     }
   }
 }
