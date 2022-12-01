@@ -83,6 +83,19 @@ class PagesController extends BaseController
 
     $this->render('login', [], 'form');
   }
+
+  public function user()
+  {
+    if (isset($_SESSION["user"])) {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        
+      }
+      $this->render('user');
+    } else {
+      header('Location: index.php?controller=pages&action=login');
+      exit();
+    }
+  }
   public function about()
   {
     $this->render('about');

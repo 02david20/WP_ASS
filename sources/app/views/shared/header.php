@@ -52,7 +52,7 @@
                 <a class="nav-icon position-relative text-decoration-none" href="#">
                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="#">
+                <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=user">
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                 </a>
                 <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=logout">
