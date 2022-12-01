@@ -164,7 +164,8 @@ class PostsController extends BaseController
           Post::updatePost($post);
       }
       //chuyển hướng nếu có cập nhật
-      header('location: admin.php?controller=posts&action=home');     
+      header('location: admin.php?controller=posts&action=home');    
+      exit(); 
     }  
   }
 

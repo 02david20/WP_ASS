@@ -152,6 +152,7 @@ class ProductsController extends BaseController
       }
       //chuyển hướng nếu có cập nhật
       header('location: admin.php?controller=products&action=home');     
+      exit();
     }  
   }
 
