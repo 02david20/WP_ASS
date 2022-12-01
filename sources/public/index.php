@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // define('BASE_PATH', '/var/www/html/');
 define('BASE_PATH', '../');
@@ -6,8 +7,6 @@ define('BASE_PATH', '../');
 require_once BASE_PATH . 'lib/connection.php';
 require_once BASE_PATH . 'lib/config.php';
 require_once BASE_PATH . 'lib/helper.php';
-
-session_start();
 
 // index.php?controller=pages&action=index 
 if (isset($_GET['controller'])) {
@@ -18,8 +17,8 @@ if (isset($_GET['controller'])) {
         $action = 'index';
     }
 } else {
-    $controller = 'products';
-    $action = 'home';
+    $controller = 'pages';
+    $action = 'index';
 }
 
 /* Load external routes file */
