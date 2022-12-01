@@ -1,8 +1,7 @@
-Options +FollowSymlinks -MultiViews -Indexes
-
 <IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteBase /
-
-
+    RewriteEngine On
+    
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
 </IfModule>
