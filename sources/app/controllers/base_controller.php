@@ -29,6 +29,7 @@ class BaseController
     } else {
       // Nếu file muốn gọi ra không tồn tại thì chuyển hướng đến trang báo lỗi.
       header('Location: index.php?controller=pages&action=page_404');
+      exit();
     }
   }
 }

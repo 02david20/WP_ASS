@@ -151,7 +151,8 @@ class ProductsController extends BaseController
          Product::Update($product);
       }
       //chuyển hướng nếu có cập nhật
-      header('location: admin.php?controller=products&action=home');     
+      header('location: admin.php?controller=products&action=home');   
+      exit();  
     }  
   }
 

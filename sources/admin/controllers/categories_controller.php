@@ -62,7 +62,8 @@ class CategoriesController extends BaseController
       $category_id = Category::Update($category);
 
       //chuyển hướng nếu có cập nhật
-      header('location: admin.php?controller=categories&action=home');     
+      header('location: admin.php?controller=categories&action=home');    
+      exit(); 
     }  
   }
 
