@@ -87,10 +87,9 @@ class PagesController extends BaseController
   public function user()
   {
     if (isset($_SESSION["user"])) {
-      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        
-      }
-      $this->render('user');
+      $user = User::findByID($_SESSION["user"]["id"]);
+      $data = array("user"=>$user);
+      $this->render('user', $data);
     } else {
       header('Location: index.php?controller=pages&action=login');
       exit();

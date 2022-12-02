@@ -50,7 +50,7 @@ class ProductsController extends BaseController
       $product_info = array('product'=>$product, 'types'=> $types, "categories"=>$categories);
       $this->render('edit',$product_info);
     }  else {
-      header("location: ?controller=products");
+      header("location: ?controller=products");exit();
     }
   }
 

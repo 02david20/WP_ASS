@@ -55,6 +55,7 @@ class OrdersController extends BaseController
       $this->render('view', $data);
     }else{
       header("location: ?controller=orders");
+      exit();
     }
   }
 
@@ -64,9 +65,11 @@ class OrdersController extends BaseController
       $id = (int)$_GET["order_id"];
       Order::order_delete($id);
       header("location: ?controller=orders");
+      exit();
     }
     else{
       header("location: ?controller=orders");
+      exit();
     }
   }
 
@@ -77,13 +80,13 @@ class OrdersController extends BaseController
       $status = intval($_POST["status"]);
       Order::updateOrderSatus($order_id, $status);
       if ($status === 1) {
-        header("location: ?controller=orders&by=process");
+        header("location: ?controller=orders&by=process");exit();
       } else if ($status === 2) {
-        header("location: ?controller=orders&by=complete");
+        header("location: ?controller=orders&by=complete");exit();
       } else if ($status === 3) {
-        header("location: ?controller=orders&by=cancel");
+        header("location: ?controller=orders&by=cancel");exit();
       }else {
-        header("location: ?controller=orders");
+        header("location: ?controller=orders");exit();
       }
     }
   }

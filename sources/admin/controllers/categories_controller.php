@@ -36,6 +36,7 @@ class CategoriesController extends BaseController
       $this->render('edit',$category_info);
     }  else {
       header("location: ?controller=categories");
+      exit();
     }
   }
 

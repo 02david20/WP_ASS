@@ -30,18 +30,19 @@ $categories = Category::all();
                     <li class="nav-item">
                         <a class="nav-link" href="?controller=pages&action=about">About</a>
                     </li>
-                    <?php 
-                    foreach ($categories as $category): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?controller=products&action=<?php echo 'cate'.$category['id'];?>"><?php echo $category['category_name'];?></a>
-                    </li>
-                    <?php endforeach; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="?controller=posts">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?controller=pages&action=contact">Contact</a>
                     </li>
+                    <?php 
+                    foreach ($categories as $category): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?controller=products&action=<?php echo 'cate'.$category['id'];?>"><?php echo $category['category_name'];?></a>
+                    </li>
+                    <?php endforeach; ?>
+                    
                 </ul>
             </div>
             <div class="navbar align-self-center d-flex">
@@ -65,7 +66,7 @@ $categories = Category::all();
                 </a>
                 <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=logout">
                 <i class="fa fa-sign-out-alt"></i>
-                 </a>'
+                 </a>
                 <?php else: ?>
                 <a href="?controller=pages&action=login">
                     <input type="submit" class="btn btn-success" value="Đăng nhập">

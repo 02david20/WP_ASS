@@ -62,14 +62,7 @@ class Category {
     } else {
         $sql = "INSERT INTO `$table` SET " . implode(',', $values);
     }
-    echo $sql;
-
-    if ($conn->query($sql) === TRUE) {
-      echo "Record Added Successfully";
-    } else {
-      echo "Error: " . $sql . "<br>" .$conn->error;
-    }
-
+    $conn->query($sql);
     $id = ($id > 0) ? $id : mysqli_insert_id($conn);
     return $id;
   }

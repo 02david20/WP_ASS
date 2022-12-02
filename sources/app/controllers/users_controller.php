@@ -1,63 +1,11 @@
 <?php
-require_once(ADMIN_PATH.'controllers/base_controller.php');
-require_once(ADMIN_PATH.'models/User.php');
+require_once(USER_PATH.'controllers/base_controller.php');
+require_once(USER_PATH.'models/User.php');
 class UsersController extends BaseController
 {
   function __construct()
   {
     $this->folder = 'users';
-  }
-
-  public function home()
-  {
-    $users = User::all();
-    $data = array('users' => $users);
-    $this->render('home', $data);
-  }
-
-  public function delete() {
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id = (int)$_POST["id"];
-        $res = User::deleteByID($id);
-        if(!$res) {
-          echo json_encode(array('statusCode'=>200));
-        } else {
-            echo json_encode(array('statusCode'=>400,
-                                    'err' => "Error deleting record: ".DB::getInstance()->error.$res,            
-            ));
-        }
-        
-    }  
-  }
-
-  public function banned() {
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id = (int)$_POST["id"];
-        $bannedate = date($_POST["bandate"]);
-
-        if ($_POST['id'] <> 0) $editTime = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
-        else $editTime = '0000-00-00 00:00:00';
-
-        $res = User::BannedByID($id,$bannedate, $editTime);
-        if(!$res) {
-          echo json_encode(array('statusCode'=>200));
-        } else {
-            echo json_encode(array('statusCode'=>400,
-                                    'err' => "Error deleting record: ".DB::getInstance()->error.$res,            
-            ));
-        }
-        
-    }  
-  }
-
-    public function edit() {
-    if(isset($_GET['id'])) {
-      $user = User::findByID($_GET['id']);
-      $user_info = array('user_info'=>$user);
-      $this->render('edit',$user_info);
-    } else {
-      header("location: ?controller=users");exit();
-    }
   }
 
   public function updateUser() {
@@ -113,7 +61,7 @@ class UsersController extends BaseController
               );
               User::Update($user_edit);
           }
-          header('Location: admin.php?controller=users&action=home');
+          header('Location: index.php');
           exit();
       }
     }  

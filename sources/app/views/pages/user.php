@@ -7,7 +7,7 @@
         <div class="col-12">
             <br>
             <!-- Form START -->
-            <form class="file-upload">
+            <form class="file-upload" method="post" action="?controller=users&action=updateUser" >
                 <div class="row mb-5 gx-5">
                     <!-- Contact detail -->
                     <div class="col-xxl-8 mb-5 mb-xxl-0">
@@ -15,11 +15,12 @@
                             <div class="row g-3">
                                 <h4 class="mb-4 mt-0">Thông tin liên lạc</h4>
                                 <!-- First Name -->
+                                <input type="text" name="user_id" value="<?= $user["id"]?>" hidden>
                                 <div class="col-md-6">
                                     <label class="form-label">Tên người dùng</label>
                                     <?php
-                                    echo '<input type="text" class="form-control" placeholder="" aria-label="Full name"
-                                    value="' . $_SESSION["user"]['fullname'] . '">'
+                                    echo '<input name = "fullname" type="text" class="form-control" placeholder="" aria-label="Full name"
+                                    value="' . $user['fullname'] . '">'
                                         ?>
 
                                 </div>
@@ -27,24 +28,24 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Tên tài khoản</label>
                                     <?php
-                                    echo '<input type="text" class="form-control" placeholder="" aria-label="Username" readonly
-                                    value="' . $_SESSION["user"]['username'] . '">'
+                                    echo '<input name = "username" type="text" class="form-control" placeholder="" aria-label="Username" readonly
+                                    value="' . $user['username'] . '">'
                                         ?>
                                 </div>
                                 <!-- Phone number -->
                                 <div class="col-md-4">
                                     <label class="form-label">Số điện thoại</label>
                                     <?php
-                                    echo '<input type="text" class="form-control" placeholder="" aria-label="Số điện thoại"
-                                    value="' . $_SESSION["user"]['phone_num'] . '">'
+                                    echo '<input name = "phone_num" type="text" class="form-control" placeholder="" aria-label="Số điện thoại"
+                                    value="' . $user['phone_num'] . '">'
                                         ?>
                                 </div>
                                 <!-- Email -->
                                 <div class="col-md-4">
                                     <label for="inputEmail4" class="form-label">Email</label>
                                     <?php
-                                    echo '<input type="email" class="form-control" placeholder="" aria-label="Email"
-                                    value="' . $_SESSION["user"]['email'] . '">'
+                                    echo '<input name = "email" type="email" class="form-control" placeholder="" aria-label="Email"
+                                    value="' . $user['email'] . '">'
                                         ?>
                                 </div>
 
@@ -52,16 +53,16 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Sinh nhật</label>
                                     <?php
-                                    echo '<input type="date" class="form-control" placeholder="" aria-label="Sinh nhật"
-                                    value="' . $_SESSION["user"]['dob'] . '">'
+                                    echo '<input name = "dob" type="date" class="form-control" placeholder="" aria-label="Sinh nhật"
+                                    value="' . $user['dob'] . '">'
                                         ?>
                                 </div>
                                 <!-- Address -->
                                 <div class="col-md-12">
                                     <label class="form-label">Địa chỉ</label>
                                     <?php
-                                    echo '<input type="email" class="form-control" placeholder="" aria-label="Email"
-                                    value="' . $_SESSION["user"]['address'] . '">'
+                                    echo '<input name = "address" type="text" class="form-control" placeholder="" aria-label="Email"
+                                    value="' . $user['address'] . '">'
                                         ?>
                                 </div>
                             </div> <!-- Row END -->
@@ -74,6 +75,7 @@
                                 <h4 class="mb-4 mt-0">Upload your profile photo</h4>
                                 <div class="text-center">
                                     <!-- Image upload -->
+                                    <img class="img-fluid" src="<?= PATH_URL_IMG.$user["avatar"]?>?t=<?=time()?>" alt="" style="max-height:500px;">
                                     <input name="avatar" type="file" class="form-control dropify">
                                     <br>
                                     <!-- Button -->

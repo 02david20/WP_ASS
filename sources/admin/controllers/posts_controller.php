@@ -81,7 +81,7 @@ class PostsController extends BaseController
       $data = array("post"=>$post,"status"=>$this->status,"types"=>$this->types);
       $this->render('edit', $data);
     }else {
-      header("location: ?controller=posts");
+      header("location: ?controller=posts");exit();
     }
   }
 
@@ -90,7 +90,7 @@ class PostsController extends BaseController
       $id = intval($_GET['post_id']);
       Post::deleteByID($id);
     }
-    header("location: ?controller=posts");
+    header("location: ?controller=posts");exit();
   }
 
   public function trash () {
@@ -98,7 +98,7 @@ class PostsController extends BaseController
       $id = intval($_GET["post_id"]);
       Post::updateOrderSatus($id,2);
     }
-    header("location: ?controller=posts");
+    header("location: ?controller=posts");exit();
   }
 
   public function publish() {
@@ -106,7 +106,7 @@ class PostsController extends BaseController
       $id = intval($_GET["post_id"]);
       Post::updateOrderSatus($id,1);
     }
-    header("location: ?controller=posts");
+    header("location: ?controller=posts");exit();
   }
 
   public function updatePost() {
