@@ -56,11 +56,7 @@ class Type {
         $sql = "INSERT INTO `$table` SET " . implode(',', $values);
     }
 
-    if (DB::getInstance()->query($sql) === TRUE) {
-      echo "Record Added Successfully";
-    } else {
-      echo "Error: " . $sql . "<br>" .DB::getInstance()->error;
-    }
+    DB::getInstance()->query($sql);
 
     $id = ($id > 0) ? $id : mysqli_insert_id(DB::getInstance());
     return $id;
