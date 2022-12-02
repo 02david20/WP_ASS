@@ -34,7 +34,8 @@ class Post
 
     $sql = 'SELECT blog_types.type_name, blog.* FROM blog_types, blog WHERE blog.id = ? AND blog_types.id = blog.type';
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$id]);
+    $stmt->bind_param("i",$id);
+    $stmt->execute();
     $res = $stmt->get_result();
 
     return $res;
@@ -47,20 +48,20 @@ class Post
     $conn1= DB::getInstance();
     $sql1 = 'SELECT id FROM blog WHERE id != ? AND blog.status = 1 ORDER BY id ASC';
     $stmt1 = $conn1->prepare($sql1);
-    $stmt1->execute([$id]);
+    $stmt1->bind_param("i",$id);
+    $stmt1->execute();
     $res1 = $stmt1->get_result();
-
 
 		while($fetch_id = $res1->fetch_assoc()){
 			$begin_id = $fetch_id['id'];
 			break;
 		}
 
-
     $conn2= DB::getInstance();
     $sql2 = 'SELECT id FROM blog WHERE id != ? AND blog.status = 1 ORDER BY id ASC';
     $stmt2 = $conn2->prepare($sql2);
-    $stmt2->execute([$id]);
+    $stmt2->bind_param("i",$id);
+    $stmt2->execute();
     $res2 = $stmt2->get_result();
 
 
@@ -84,7 +85,8 @@ class Post
     $conn1= DB::getInstance();
     $sql1 = 'SELECT id FROM blog WHERE id != ? AND blog.status = 1 ORDER BY id ASC';
     $stmt1 = $conn1->prepare($sql1);
-    $stmt1->execute([$id]);
+    $stmt1->bind_param("i", $id);
+    $stmt1->execute();
     $res1 = $stmt1->get_result();
 
 
@@ -96,7 +98,8 @@ class Post
     $conn2= DB::getInstance();
     $sql2 = 'SELECT id FROM blog WHERE id != ? AND blog.status = 1 ORDER BY id DESC';
     $stmt2 = $conn2->prepare($sql2);
-    $stmt2->execute([$id]);
+    $stmt2->bind_param("i", $id);
+    $stmt2->execute();
     $res2 = $stmt2->get_result();
 
 

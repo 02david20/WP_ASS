@@ -5,8 +5,9 @@ class DB
   public static function getInstance()
   {
     if (!isset(self::$instance)) {
-      // Docker
-      $servername = "db";
+      // Docker 
+      // $servername = "db";
+      $servername = "localhost";
       $username = "david";
       $password = "51WXHZC[r7t4Kw8I";
       $dbname = "fashion";

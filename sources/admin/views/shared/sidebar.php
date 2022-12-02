@@ -4,7 +4,7 @@ require_once ADMIN_PATH . "/models/PostType.php";
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-navy elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
+  <a href="/" class="brand-link">
     <span class="brand-text font-weight-light">Fashion</span>
   </a>
 
@@ -65,7 +65,7 @@ require_once ADMIN_PATH . "/models/PostType.php";
         <!-- Categories -->
         <li class="nav-item menu-open">
           <a href="?controller=categories&action=home" class="nav-link active">
-            <i class="nav-icon fas fa-user"></i>
+             <i class="zmdi zmdi-apps zmdi-hc-lg"></i>
             <p>
               Danh mục sản phẩm
             </p>
@@ -76,7 +76,7 @@ require_once ADMIN_PATH . "/models/PostType.php";
         <!-- Products -->
         <li class="nav-item">
           <a class="nav-link active">
-            <i class="nav-icon fa fa-desktop"></i>
+            <i class="nav-icon fas fa-desktop"></i>
             <p>
               Sản phẩm
             </p>

@@ -1,12 +1,15 @@
 <div id="fh5co-offcanvas">
 	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
 	<div class="fh5co-bio">
-		<figure>
-			<img src=<?= PATH_URL_IMG . "aboutUs.jpg" ?>alt="Our store" class="img-responsive">
-		</figure>
+		<a class="navbar-brand text-success logo h1 align-self-center" href="/">
+				<h2>
+				Fashion
+				</h2>
+		</a>
+		<br>
 		<h3 class="heading">About Us</h3>
-		<h2>Website name</h2>
-		<p>Amazing and friendly shopping website for BKers. </p>
+		<br>
+		<p>Được biết đến như là một trong những thương hiệu thời trang với phong cách trẻ trung, hiện đại và thanh lịch. Ra mắt Khách hàng từ năm 2022, Fashionn nhanh chóng được đón nhận và yêu thích bởi những thiết kế đẹp, chất, luôn bắt kịp dòng chảy thời trang hiện đại và cho ra đời những thiết kế độc đáo, tinh tế, góp làn gió mới vào thị trường thời trang.</p>
 		<ul class="fh5co-social">
 			<li><a href="#"><i class="icon-twitter"></i></a></li>
 			<li><a href="#"><i class="icon-facebook"></i></a></li>
@@ -26,14 +29,6 @@
 				}
 				?>
 			</ul>
-		</div>
-		<div class="fh5co-box">
-			<h3 class="heading">Search</h3>
-			<form action="#">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Type a keyword">
-				</div>
-			</form>
 		</div>
 	</div>
 </div>
