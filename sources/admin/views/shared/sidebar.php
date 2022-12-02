@@ -65,7 +65,7 @@ require_once ADMIN_PATH . "/models/PostType.php";
         <!-- Categories -->
         <li class="nav-item menu-open">
           <a href="?controller=categories&action=home" class="nav-link active">
-             <i class="zmdi zmdi-apps zmdi-hc-lg"></i>
+             <i class="zmdi zmdi-apps zmdi-hc-lg ms-1 me-2"></i>
             <p>
               Danh mục sản phẩm
             </p>
