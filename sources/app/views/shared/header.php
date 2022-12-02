@@ -1,3 +1,8 @@
+<?php
+require_once(USER_PATH.'models/Category.php');
+$categories = Category::all();
+?>
+
 <!-- Header -->
 <nav class="navbar navbar-expand-lg navbar-light shadow">
     <div class="container d-flex justify-content-between align-items-center">
@@ -25,9 +30,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="?controller=pages&action=about">About</a>
                     </li>
+                    <?php 
+                    foreach ($categories as $category): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=pages">Shop</a>
+                        <a class="nav-link" href="?controller=products&action=<?php echo 'cate'.$category['id'];?>"><?php echo $category['category_name'];?></a>
                     </li>
+                    <?php endforeach; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="?controller=posts">Blog</a>
                     </li>

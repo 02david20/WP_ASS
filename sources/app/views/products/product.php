@@ -1,80 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>men's T-shirt</title>
-    <!-- fontawesome cdn -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- bootstrap css -->
-    <link rel = "stylesheet" href = "../../resources/bootstrap-5.2.2-dist/css/bootstrap.min.css">
-    <!-- custom css -->
-    <link rel = "stylesheet" href = "../../resources/css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-</head>
-<body>
+
     
-    <!-- navbar -->
-    <nav class = "navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
-        <div class = "container">
-            <a class = "navbar-brand d-flex justify-content-between align-items-center order-lg-0" href = "index.html">
-                <img src = "../../resources/images/shopping-bag-icon.png" alt = "site icon">
-                <span class = "text-uppercase fw-lighter ms-2">BTL</span>
-            </a>
-
-            <div class = "order-lg-2 nav-btns">
-                <button type = "button" class = "btn position-relative">
-                    <i class = "fa fa-shopping-cart"></i>
-                    <span class = "position-absolute top-0 start-100 translate-middle badge bg-primary">5</span>
-                </button>
-                <button type = "button" class = "btn position-relative">
-                    <i class = "fa fa-heart"></i>
-                    <span class = "position-absolute top-0 start-100 translate-middle badge bg-primary">2</span>
-                </button>
-                <button type = "button" class = "btn position-relative">
-                    <i class = "fa fa-search"></i>
-                </button>
-            </div>
-
-            <button class = "navbar-toggler border-0" type = "button" data-bs-toggle = "collapse" data-bs-target = "#navMenu">
-                <span class = "navbar-toggler-icon"></span>
-            </button>
-
-            <div class = "collapse navbar-collapse order-lg-1" id = "navMenu">
-                <ul class = "navbar-nav mx-auto text-center">
-                    <li class = "nav-item px-2 py-2">
-                        <a class = "nav-link text-uppercase text-dark" href="#mencollection">nam</a>
-                    </li>
-                    <li class = "nav-item px-2 py-2">
-                        <a class = "nav-link text-uppercase text-dark" href = "#womencollection">nữ</a>
-                    </li>
-                    <li class = "nav-item px-2 py-2">
-                        <a class = "nav-link text-uppercase text-dark" href = "#kidcollection">trẻ em</a>
-                    </li>
-                    <li class = "nav-item px-2 py-2">
-                        <a class = "nav-link text-uppercase text-dark" href = "#blogs">blogs</a>
-                    </li>
-                    <li class = "nav-item px-2 py-2">
-                        <a class = "nav-link text-uppercase text-dark" href = "#about">about us</a>
-                    </li>
-                    <li class = "nav-item px-2 py-2 border-0">
-                        <a class = "nav-link text-uppercase text-dark" href = "#popular">popular</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- end of navbar -->
-
-
-<!-- details -->
+    <!-- details -->
     <section class = "p-3">
         <div class="row">
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;); padding-top:100px" aria-label="breadcrumb">
                               <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Men's T-shirt</li>
+                                <li class="breadcrumb-item active" aria-current="page"><?php echo $product['name']?></li>
                               </ol>
                         </nav>
             <div class="col-md-8 col-sm-12" >
@@ -86,27 +18,13 @@
                     <div class="col-md-6">
                         <div class="box-large">
                             <div class="box-top">
-                                <img id="img-large" class="img-fluid" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp" alt="Product">
+                                <img id="img-large" class="img-fluid" src="<?php echo PATH_URL_IMG_PRODUCT. $product['img1']?>" alt="Product">
                             </div>
-                            <div class="box-bottom">
-                                <div>
-                                    <a href="#" onclick="changeImage(1)"><img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
-                            class="img-fluid rounded-3" alt="Product"></a>
-                                </div>
-                                <div>
-                                    <a href="#" onclick="changeImage(2)"><img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp" alt="Product"></a>
-                                </div>
-                                <div>
-                                    <a href="#" onclick="changeImage(3)"><img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp" alt="Product"></a>
-                                </div>
-                                <div>
-                                    <a href="#" onclick="changeImage(4)"><img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp" alt="Product"></a>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-md-6 summary">
-                        <h3 class="product-title">men's T-shirt fashion</h3>
+                        <h3 class="product-title"><?php echo $product['name']?></h3>
                             <div class="rating">
                                 <div class="stars">
                                     <span class="fa fa-star checked"></span>
@@ -115,26 +33,26 @@
                                     <span class="fa fa-star"></span>
                                     <span class="fa fa-star"></span>
                                 </div>
-                                <span class="review-no">41 reviews</span>
+                                <span class="review-no"><?php echo $product['totalView']?> reviews</span>
                             </div>
-                            <p class="product-description">hi</p>
-                            <h4 class="price">current price: <span>$180</span></h4>
-                            <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-                            <h5 class="sizes">sizes:
+                            <p class="product-description">Nguyên liệu: <?php echo $product['material']?></p>
+                            <h4 class="price">Giá: <span><?php echo $product['price']?></span></h4>
+                            <!-- <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p> -->
+                            <!-- <h5 class="sizes">sizes:
                                 <span class="size" data-toggle="tooltip" title="small">s</span>
                                 <span class="size" data-toggle="tooltip" title="medium">m</span>
                                 <span class="size" data-toggle="tooltip" title="large">l</span>
                                 <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-                            </h5>
-                            <h5 class="colors">colors:
-                                <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-                                <span class="color green"></span>
-                                <span class="color blue"></span>
+                            </h5> -->
+                            <h5 class="colors">Màu: <?php echo $product['color']?>
+                                
                             </h5>
                             <div class="action">
-                                <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-                                <button class="add-to-cart btn btn-default" type="button">comment</button>
-                                <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                            <form action="index.php?controller=products&action=cart" method="post">
+                                <input type="number" name="quantity" value="1" min="1" max="10" placeholder="Quantity" required>
+                                <input type="hidden" name="product_id" value="<?=$product['id']?>">
+                                <input type="submit" class="btn-default" value="Add To Cart">
+                            </form>
                             </div>
                     </div>
                     
@@ -143,12 +61,7 @@
             
             <div class="col-md-4">
                 <h3 class="product-title">Mô tả</h3>
-                        <ul>
-                            <li>Kích thước cao 10cm, đường kính ly 8cm, quay cầm 7cm.</li>
-                            <li>Chất liệu sứ sang trọng.</li>
-                            <li>Bản in màu sắc hài hòa, rõ ràng, bám chắc, khó trôi phai.</li>
-                            <li>Do shop tự in nhiệt nên mẫu mã cực kì đa dạng chứ không rập khuôn như ngoài thị trường</li>
-                        </ul>
+                    <p><?php echo $product['description']?></p>
             </div>
         </div>
     </section>
@@ -346,112 +259,3 @@
         </ul>
     </div>
 </div>
-    
-
-
-    <!-- footer -->
-    <footer class = "bg-dark py-5 mt-5">
-        <div class = "container">
-            <div class = "row text-white g-4">
-                <div class = "col-md-6 col-lg-3">
-                    <a class = "text-uppercase text-decoration-none brand text-white" href = "index.html">BTL</a>
-                    <p class = "text-white text-muted mt-3"></p>
-                </div>
-
-                <div class = "col-md-6 col-lg-3">
-                    <h5 class = "fw-light">Links</h5>
-                    <ul class = "list-unstyled">
-                        <li class = "my-3">
-                            <a href = "#" class = "text-white text-decoration-none text-muted">
-                                <i class = "fas fa-chevron-right me-1"></i> Home
-                            </a>
-                        </li>
-                        <li class = "my-3">
-                            <a href = "#" class = "text-white text-decoration-none text-muted">
-                                <i class = "fas fa-chevron-right me-1"></i> Collection
-                            </a>
-                        </li>
-                        <li class = "my-3">
-                            <a href = "#" class = "text-white text-decoration-none text-muted">
-                                <i class = "fas fa-chevron-right me-1"></i> Blogs
-                            </a>
-                        </li>
-                        <li class = "my-3">
-                            <a href = "#" class = "text-white text-decoration-none text-muted">
-                                <i class = "fas fa-chevron-right me-1"></i> About Us
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class = "col-md-6 col-lg-3">
-                    <h5 class = "fw-light mb-3">Contact Us</h5>
-                    <div class = "d-flex justify-content-start align-items-start my-2 text-muted">
-                        <span class = "me-3">
-                            <i class = "fas fa-map-marked-alt"></i>
-                        </span>
-                        <span class = "fw-light">
-                            VN
-                        </span>
-                    </div>
-                    <div class = "d-flex justify-content-start align-items-start my-2 text-muted">
-                        <span class = "me-3">
-                            <i class = "fas fa-envelope"></i>
-                        </span>
-                        <span class = "fw-light">
-                            @gmail.com
-                        </span>
-                    </div>
-                    <div class = "d-flex justify-content-start align-items-start my-2 text-muted">
-                        <span class = "me-3">
-                            <i class = "fas fa-phone-alt"></i>
-                        </span>
-                        <span class = "fw-light">
-                            +84
-                        </span>
-                    </div>
-                </div>
-
-                <div class = "col-md-6 col-lg-3">
-                    <h5 class = "fw-light mb-3">Follow Us</h5>
-                    <div>
-                        <ul class = "list-unstyled d-flex">
-                            <li>
-                                <a href = "#" class = "text-white text-decoration-none text-muted fs-4 me-4">
-                                    <i class = "fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href = "#" class = "text-white text-decoration-none text-muted fs-4 me-4">
-                                    <i class = "fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href = "#" class = "text-white text-decoration-none text-muted fs-4 me-4">
-                                    <i class = "fab fa-instagram"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href = "#" class = "text-white text-decoration-none text-muted fs-4 me-4">
-                                    <i class = "fab fa-pinterest"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- end of footer -->
-
-
-
-
-    <!-- isotope js -->
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
-    <!-- bootstrap js -->
-    <script src = "../../resources/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
-    <!-- custom js -->
-    <script src = "../../resources/js/script.js"></script>
-</body>
-</html>
