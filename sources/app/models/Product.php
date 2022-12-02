@@ -1,0 +1,110 @@
+<?php
+class Product {
+    static function all() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    static function total_products() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows;
+    }
+    static function select_1() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE category_id = 1';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    static function select_1_1() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE category_id = 1  AND type_id = 1';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    static function select_1_2() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE category_id = 1  AND type_id = 2';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    static function select_1_3() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE category_id = 1 AND type_id = 3';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    static function total_1() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE category_id = 1';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows;
+    }
+    static function select_2() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE category_id = 2';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    static function total_2() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE category_id = 2';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows;
+    }
+    static function select_3() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE category_id = 3';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    static function total_3() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE category_id = 3';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows;
+    }
+    static function select_product_by_id($id) {
+        $conn= DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE id=?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
+    }
+    static function select_products_in_cart($products_in_cart) {
+        $conn= DB::getInstance();
+        $array_to_question_marks = implode(',', array_fill(0, count($products_in_cart), '?'));
+        $stmt = $conn->prepare('SELECT * FROM products WHERE id IN (' . $array_to_question_marks . ')');
+        $stmt->execute(array_keys($products_in_cart));
+        
+        return $stmt->get_result();
+    }
+}
+?>

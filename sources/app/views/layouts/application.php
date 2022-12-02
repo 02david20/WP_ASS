@@ -16,6 +16,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
   <link rel="stylesheet" href="public/css/fontawesome.min.css">
+  <link rel="stylesheet" href="public/css/custom.css">
 
   <!-- Start Script -->
   <script src="public/js/jquery-1.11.0.min.js"></script>
