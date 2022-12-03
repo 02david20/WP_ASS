@@ -14,35 +14,56 @@ class ProductsController extends BaseController
    
     // 
     if (isset($_POST['bestsellers'])) {
-      $products_men = Product::select_1_1();
+      $products_men = Product::select_cate_type(1,1);
     }
     else if (isset($_POST['onsale'])) {
-      $products_men = Product::select_1_3();
+      $products_men = Product::select_cate_type(1,3);
     }
     else if (isset($_POST['newarrival'])) {
-      $products_men = Product::select_1_2();
+      $products_men = Product::select_cate_type(1,2);
     }
     else {
-      $products_men = Product::select_1();
+      $products_men = Product::select_category(1);
     }    
-    $data = array('products' => $products_men);
+    $data = array('products' => $products_men, 'cate'=>['Nam',1]) ;
     $this->render('products', $data);
   }
   public function cate2()
   {
    
     // 
-    $products_women = Product::select_2();
-    $data = array('products' => $products_women);
+    if (isset($_POST['bestsellers'])) {
+      $products_women = Product::select_cate_type(2,1);
+    }
+    else if (isset($_POST['onsale'])) {
+      $products_women = Product::select_cate_type(2,3);
+    }
+    else if (isset($_POST['newarrival'])) {
+      $products_women = Product::select_cate_type(2,2);
+    }
+    else {
+      $products_women = Product::select_category(2);
+    }    
+    $data = array('products' => $products_women, 'cate'=>['Nữ', 2]);
     $this->render('products', $data);
   }
 
   public function cate3()
   {
-   
     // 
-    $products_kid = Product::select_3();
-    $data = array('products' => $products_kid);
+    if (isset($_POST['bestsellers'])) {
+      $products_kid = Product::select_cate_type(3,1);
+    }
+    else if (isset($_POST['onsale'])) {
+      $products_kid = Product::select_cate_type(3,3);
+    }
+    else if (isset($_POST['newarrival'])) {
+      $products_kid = Product::select_cate_type(3,2);
+    }
+    else {
+      $products_kid = Product::select_category(3);
+    }    
+    $data = array('products' => $products_kid, 'cate'=>['Trẻ em',3]);
     $this->render('products', $data);
   }
 
@@ -127,39 +148,79 @@ class ProductsController extends BaseController
   }
   public function order() {
     // Check the session variable for products in cart
-    $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
-    $products = array();
-    $subtotal = 0.00;
-    if ($products_in_cart) {      
-      $products = Product::select_products_in_cart($products_in_cart);
-      foreach ($products as $product) {
-        $subtotal += (float) $product['price'] * (int) $products_in_cart[$product['id']];
-      }
-    }
-    $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
-    $user_id = $_SESSION['id'];
-    $note = '';
-    $order_id = (int)Order::new_order_id() + 1;
-    $order_date = '2022-11-28 18:59:59';
+    if (isset($_SESSION['user'])) {
+      $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+      $products = array();
+      $subtotal = 0.00;
+      if ($products_in_cart && isset($_POST['address_order']) && isset($_POST['province_order'])) {      
+        $products = Product::select_products_in_cart($products_in_cart);
+        foreach ($products as $product) {
+          $subtotal += (float) $product['price'] * (int) $products_in_cart[$product['id']];
+        }
+        $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+      
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $createtime = date('Y-m-d H:i:s');
 
-    Order::insert_into_order($order_id, $user_id, $note, $order_date, $subtotal);
-
-    foreach ($products as $product) {
-        // $sql = "INSERT INTO orderdetails (order_id, product_id, price, amount, total) VALUES (?,?,?,?,?)";
-        // $stmt = $pdo->prepare($sql);
+        $input_insert_order = array(
+          // 'id' => $order_id,
+          'customer' => $_SESSION['user']['username'],
+          'province' => $_POST['province_order'],
+          'address' => $_POST['address_order'],
+          'phone' => $_SESSION['user']['phone_num'],
+          'cart_total' => $subtotal,
+          'createtime' => $createtime,
+          'message' => NULL,
+          'status' => 0,
+          'user_id' => $_SESSION['user']['id'],
+          'editTime' => NULL,
+        );
+      
         
-        $detail_id = Order::new_orderdetails_id() + 1;
-        $product_id = $product['id'];
-        $price = $product['price'];
-        $amount = $products_in_cart[$product['id']];
-        $total = $product['price'] * $products_in_cart[$product['id']];
-        // $stmt->execute([$order_id, $product_id, $price, $amount, $total]);
-        Order::insert_into_orderdetails($detail_id, $order_id, $product_id, $price,$amount,$total);
-    }
+        Order::insert_into_order($input_insert_order);
+        // Order::insert_into_order($order_id, $user_id, $note, $order_date, $subtotal);
 
-    $products = array();
-    $products_in_cart = array();
-    $_SESSION['cart'] = array();
+        foreach ($products as $product) {
+            // $sql = "INSERT INTO orderdetails (order_id, product_id, price, amount, total) VALUES (?,?,?,?,?)";
+            // $stmt = $pdo->prepare($sql);
+          $order_id = Order::find_order_id_by_createtime($createtime, $_SESSION['user']['username']);
+            $input_insert_detail = array(
+              // 'id' => Order::new_orderdetails_id() + 1,
+              'order_id' => $order_id,
+              'product_id' => $product['id'],
+              'quantity' => $products_in_cart[$product['id']],
+              'price' => $product['price'],
+              
+            );
+            // $stmt->execute([$order_id, $product_id, $price, $amount, $total]);
+            Order::insert_into_orderdetails($input_insert_detail);
+        }
+
+        $products = array();
+        $products_in_cart = array();
+        unset($_SESSION['cart']);
+      }
+
+      // remove order:
+      if (isset($_POST['remove_order'])) {
+        Order::remove_order_by_id($_POST['remove_order_id']);
+      }
+
+      $orders = Order::orders_by_id($_SESSION['user']['username']);
+      //$order_detail = Order::
+
+      $order_details = array();
+      foreach ($orders as $order) {
+        $order_detail = array("'" . $order['id'] . "'" => Order::order_detail_by_id($order['id']));
+        $order_details = array_merge($order_detail, $order_details);
+      }
+
+      $data = array('orders' => $orders, 'total_orders' => Order::total_orders(), 'order_details' => $order_details);
+      $this->render('order', $data);
+    }
+    else {
+      header('location: ?controller=pages&action=login');
+    }
   }
   
 }

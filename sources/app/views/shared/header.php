@@ -58,7 +58,7 @@ $categories = Category::all();
                     <i class="fa fa-fw fa-search text-dark mr-2"></i>
                 </a>
                 <?php if (isset($_SESSION['user'])): ?>
-                <a class="nav-icon position-relative text-decoration-none" href="#">
+                <a class="nav-icon position-relative text-decoration-none" href="?controller=products&action=order">
                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                 </a>
                 <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=user">
