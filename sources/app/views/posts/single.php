@@ -1,33 +1,48 @@
 <?php
-if (isset($_POST['submit'])) {
-	$message = " ";
-	$user_id = 0;
-	$name = $_POST['name'];
-	$name = filter_var($name, FILTER_SANITIZE_STRING);
-	$email = $_POST['email'];
-	$email = filter_var($email, FILTER_SANITIZE_STRING);
-	$comments = $_POST['comments'];
-	$comments = filter_var($comments, FILTER_SANITIZE_STRING);
 
-	$conn1 = DB::getInstance();
-	$sql1 = 'SELECT * FROM user WHERE email = ?';
-	$stmt1 = $conn1->prepare($sql1);
-	$stmt1->execute([$email]);
-	$res1 = $stmt1->get_result();
+if(isset($_SESSION['admin_id'])){
+   header("Location: admin.php?controller=posts&action=single&id=" . $_GET['id']);
+};
+?>
 
-	if (mysqli_num_rows($res1) > 0) {
+
+<?php
+if(isset($_POST['submit'])){
+$message;
+$user_id;
+$name = $_POST['name'];
+$email = $_POST['email'];
+$comments = $_POST['comments'];
+$datetime = date("Y-m-d") . " " . date("h:i:sa");
+$datetime = substr($datetime, 0, -2);
+
+while($one_user = $all_users->fetch_assoc()){
+	if($one_user['email'] == $email){
 		$message = "Đăng bài thành công";
-		while ($fetch_data = $res1->fetch_assoc()) {
-			$user_id = $fetch_data['id'];
-		}
-		$conn2 = DB::getInstance();
-		$sql2 = 'INSERT INTO comments(user_id, content, author, email, post_id) VALUES(?,?,?,?,?)';
-		$stmt2 = $conn1->prepare($sql2);
-		$stmt2->execute([$user_id, $comments, $name, $email, $_GET['id']]);
-	} else {
-		$message = "Người dùng không tồn tại";
+		$user_id = $one_user['id'];
+		break;
 	}
+	$message = "Người dùng không tồn tại";
 }
+
+
+
+
+echo "<script type='text/javascript'>alert('$message');</script>";
+
+if($message == "Đăng bài thành công"){
+	$conn = DB::getInstance();
+
+	$sql = "INSERT INTO postcomment (post_id, user_id, content, created_at) VALUES(?,?,?,?)";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute([$_GET['id'], $user_id, $comments, $datetime]);
+
+	header("Location: ?controller=posts&action=single&id=" . $_GET['id']);
+	exit();
+
+}
+}
+
 ?>
 
 <?php include_once USER_PATH."views/shared/blog_header.php"?>
@@ -47,7 +62,7 @@ if (isset($_POST['submit'])) {
 		<div class="row fh5co-post-entry single-entry">
 			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 				<figure class="animate-box" >
-					<img src="<?= PATH_URL_IMG_BLOG.$one_post['main_pic']; ?>" alt="Image" class="img-responsive">
+					<img src="<?= PATH_URL_IMG_BLOG . $one_post['main_pic']; ?>" alt="Image" class="img-responsive auto-height">
 				</figure>
 
 				<span class="fh5co-meta animate-box"><a href="single.html"><?= $one_post['type_name']; ?></a></span>
@@ -59,11 +74,11 @@ if (isset($_POST['submit'])) {
 					<div class="row rp-b">
 						<div class="col-lg-6 col-lg-push-6 col-md-12 col-md-push-0 animate-box">
 							<figure>
-								<img src="<?=  PATH_URL_IMG_BLOG.$one_post['sub_pic']; ?>" alt="Image" class="img-responsive">
-								<figcaption><?=  $one_post['sub_pic_quote']; ?></figcaption>
+								<img src="<?=  PATH_URL_IMG_BLOG . $one_post['sub_pic']; ?>" alt="Image" class="img-responsive">
+								<figcaption class="sub-pic-quote"><?=  $one_post['sub_pic_quote']; ?></figcaption>
 							</figure>
 						</div>
-						<div class="col-lg-6 col-lg-pull-6 col-md-12 col-md-pull-0 cp-r animate-box">
+						<div class="col-lg-6 col-lg-pull-6 col-md-12 col-md-pull-0 cp-r animate-box para1">
 							<p><?= $one_post['para1']; ?></p>
 						</div>
 					</div>
@@ -72,7 +87,7 @@ if (isset($_POST['submit'])) {
 
 						<div class="col-md-12 animate-box">
 							<!-- <h2>Pointing has no control about the blind texts</h2> -->
-							<p><?= $one_post['para2']; ?></p>
+							<p class="para2"><?= $one_post['para2']; ?></p>
 						</div>
 					</div>
 
@@ -87,44 +102,52 @@ if (isset($_POST['submit'])) {
 </div>
 
 
+<!-- Comment section -->
+
 <div class="container">
 	<div class="be-comment-block">
-		<h1 class="comments-title">Comments (3)</h1>
+		<?php $comment_in_blog = $comment_num->fetch_assoc() ?>
+		<h1 class="comments-title">Comments (<?= $comment_in_blog['blog_num'] ?>)</h1>
+		<?php
+			while($one_comment = $all_comments->fetch_assoc()){
+		?>
 		<div class="be-comment">
 			<div class="be-img-comment">
 				<a href="blog-detail-2.html">
-					<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+					<img src="<?= $one_comment['avatar'] ?>" alt="" class="be-ava-comment">
 				</a>
 			</div>
 			<div class="be-comment-content">
 
 				<span class="be-comment-name">
-					<a href="blog-detail-2.html">Ravi Sah</a>
+					<a href="blog-detail-2.html"><?= $one_comment['username'] ?></a>
 				</span>
 				<span class="be-comment-time">
 					<i class="fa fa-clock-o"></i>
-					May 27, 2015 at 3:14am
+					<?= $one_comment['created_at'] ?>
 				</span>
 
 				<p class="be-comment-text">
-					Pellentesque gravida tristique ultrices.
-					Sed blandit varius mauris, vel volutpat urna hendrerit id.
-					Curabitur rutrum dolor gravida turpis tristique efficitur.
+					<?= $one_comment['content'] ?>
 				</p>
 			</div>
 		</div>
+		<?php
+			}
+		?>
+
 		<form class="form-block" method="POST" id="formBlock">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
 					<div class="form-group fl_icon">
 						<div class="icon"><i class="fa fa-user"></i></div>
-						<input class="form-input" type="text" name="name" placeholder="Your name">
+						<input class="form-input" required="" type="text" name="name" placeholder="Your name">
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 fl_icon">
 					<div class="form-group fl_icon">
 						<div class="icon"><i class="fa fa-envelope-o"></i></div>
-						<input class="form-input" type="email" name="email" placeholder="Your email">
+						<input class="form-input" required="" type="email" name="email" placeholder="Your email">
 					</div>
 				</div>
 				<div class="col-xs-12">
@@ -133,7 +156,7 @@ if (isset($_POST['submit'])) {
 					</div>
 				</div>
 				<!-- onclick="alert('<?php $message ?>') ? '' : location.reload(); " -->
-				<input type="submit" value="Submit" class="btn btn-primary pull-right" name="submit">
+				<button id="btnSubmit" name="submit" type="submit" class="btn btn-primary pull-right">Submit</button>
 			</div>
 		</form>
 	</div>

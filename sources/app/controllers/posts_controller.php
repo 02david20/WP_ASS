@@ -9,7 +9,7 @@ class PostsController extends BaseController
     $this->folder = 'posts';
   }
 
-  public function home()
+  public function blogs()
   {
     $posts = Post::all();
     $blog_categories = Post::filter_blog_categories();
@@ -25,8 +25,11 @@ class PostsController extends BaseController
     $post = Post::filter_by_id($_GET['id']);
     $next_blog_id = Post::get_next_post($_GET['id']);
     $pre_blog_id = Post::get_previous_post($_GET['id']);
+    $comment_num = Post::count_blog_comment($_GET['id']);
+    $all_comments = Post::all_comments($_GET['id']);
+    $all_users = Post::all_users();
 
-    $data = ['posts'=>$posts, 'blog_categories'=>$blog_categories, 'post'=>$post, 'next_blog_id'=>$next_blog_id, 'pre_blog_id'=>$pre_blog_id];
+    $data = ['posts'=>$posts, 'blog_categories'=>$blog_categories, 'post'=>$post, 'next_blog_id'=>$next_blog_id, 'pre_blog_id'=>$pre_blog_id, 'comment_num'=>$comment_num, 'all_comments'=>$all_comments, 'all_users'=>$all_users];
     $this->render('single', $data, 'blog');
   }
 }

@@ -6,10 +6,10 @@ class DB
   {
     if (!isset(self::$instance)) {
       // Docker 
-      $servername = "db";
+      $servername = "localhost";
       // $servername = "localhost";
-      $username = "david";
-      $password = "51WXHZC[r7t4Kw8I";
+      $username = "root";
+      $password = "";
       $dbname = "fashion";
 
       self::$instance = new mysqli($servername, $username, $password, $dbname);

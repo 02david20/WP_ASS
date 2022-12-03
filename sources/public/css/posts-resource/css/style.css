@@ -926,6 +926,28 @@ h2 a {
   color: #f288cb;
 }
 
+.category-list-a {
+  font-size: 18px;
+}
 
+.sub-pic-quote {
+  font-size: 10px;
+}
+
+.para1 {
+  font-size: 16px;
+}
+
+.para2 {
+  font-size: 16px;
+}
+
+.auto-height {
+  height: auto !important;
+}
+
+.fixed_height {
+  height: 550px;
+}
 
 /*# sourceMappingURL=style.css.map */
