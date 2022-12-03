@@ -238,31 +238,6 @@ require_once ADMIN_PATH . "/models/PostType.php";
           </ul>
         </li>
 
-        <!-- UI -->
-        <li class="nav-item menu-open">
-          <a class="nav-link active">
-            <i class="nav-icon fas fa-info-circle"></i>
-            <p>
-              Thông tin
-            </p>
-          </a>
-          <ul class="nav nav-treeview" style="display: none;">
-            <li class="nav-item">
-              <a href="?controller=info" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Thông tin liên lạc</p>
-              </a>
-            </li>
-          </ul>
-          <ul class="nav nav-treeview" style="display: none;">
-            <li class="nav-item">
-              <a href="?controller=info&action=categories" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Danh mục sản phẩm</p>
-              </a>
-            </li>
-          </ul>
-        </li>
 
       </ul>
     </nav>
