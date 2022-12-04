@@ -1,5 +1,5 @@
 <?php
-require_once(USER_PATH.'models/Category.php');
+require_once(USER_PATH . 'models/Category.php');
 $categories = Category::all();
 ?>
 
@@ -11,17 +11,20 @@ $categories = Category::all();
             Fashion
         </a>
 
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+        <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+            id="templatemo_main_nav">
             <div class="flex-fill">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 1) : ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin.php?controller=admin">Admin</a>
-                        </li>
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 1): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php?controller=admin">Admin</a>
+                    </li>
                     <?php endif ?>
 
                     <li class="nav-item">
@@ -36,13 +39,15 @@ $categories = Category::all();
                     <li class="nav-item">
                         <a class="nav-link" href="?controller=pages&action=contact">Contact</a>
                     </li>
-                    <?php 
+                    <?php
                     foreach ($categories as $category): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=products&action=<?php echo 'cate'.$category['id'];?>"><?php echo $category['category_name'];?></a>
+                        <a class="nav-link" href="?controller=products&category=<?php echo $category['slug']; ?>">
+                            <?php echo $category['category_name']; ?>
+                        </a>
                     </li>
                     <?php endforeach; ?>
-                    
+
                 </ul>
             </div>
             <div class="navbar align-self-center d-flex">
@@ -54,25 +59,30 @@ $categories = Category::all();
                         </div>
                     </div>
                 </div>
-                <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal"
+                    data-bs-target="#templatemo_search">
                     <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                </a>
+                <a class="nav-icon position-relative text-decoration-none" href="?controller=products&action=cart">
+                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                 </a>
                 <?php if (isset($_SESSION['user'])): ?>
                 <a class="nav-icon position-relative text-decoration-none" href="?controller=products&action=order">
-                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                    <i class="fa fa-fw fa-money-bill-wave"></i>
                 </a>
+                
                 <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=user">
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                 </a>
                 <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=logout">
-                <i class="fa fa-sign-out-alt"></i>
-                 </a>
+                    <i class="fa fa-sign-out-alt"></i>
+                </a>
                 <?php else: ?>
                 <a href="?controller=pages&action=login">
                     <input type="submit" class="btn btn-success" value="Đăng nhập">
                 </a>'
                 <?php endif; ?>
-                
+
             </div>
         </div>
 

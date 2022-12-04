@@ -2,6 +2,7 @@
 require_once(USER_PATH . 'controllers/base_controller.php');
 require_once(USER_PATH.'models/Product.php');
 require_once(USER_PATH.'models/Order.php');
+require_once(USER_PATH.'models/Category.php');
 class ProductsController extends BaseController
 {
   function __construct()
@@ -9,61 +10,79 @@ class ProductsController extends BaseController
     $this->folder = 'products';
   }
 
-  public function cate1()
-  {
+  // public function cate1()
+  // {
    
-    // 
-    if (isset($_POST['bestsellers'])) {
-      $products_men = Product::select_cate_type(1,1);
-    }
-    else if (isset($_POST['onsale'])) {
-      $products_men = Product::select_cate_type(1,3);
-    }
-    else if (isset($_POST['newarrival'])) {
-      $products_men = Product::select_cate_type(1,2);
-    }
-    else {
-      $products_men = Product::select_category(1);
-    }    
-    $data = array('products' => $products_men, 'cate'=>['Nam',1]) ;
-    $this->render('products', $data);
-  }
-  public function cate2()
-  {
+  //   // 
+  //   if (isset($_POST['bestsellers'])) {
+  //     $products_men = Product::select_cate_type(1,1);
+  //   }
+  //   else if (isset($_POST['onsale'])) {
+  //     $products_men = Product::select_cate_type(1,3);
+  //   }
+  //   else if (isset($_POST['newarrival'])) {
+  //     $products_men = Product::select_cate_type(1,2);
+  //   }
+  //   else {
+  //     $products_men = Product::select_category(1);
+  //   }    
+  //   $data = array('products' => $products_men, 'cate'=>['Nam',1]) ;
+  //   $this->render('products', $data);
+  // }
+  // public function cate2()
+  // {
    
-    // 
-    if (isset($_POST['bestsellers'])) {
-      $products_women = Product::select_cate_type(2,1);
-    }
-    else if (isset($_POST['onsale'])) {
-      $products_women = Product::select_cate_type(2,3);
-    }
-    else if (isset($_POST['newarrival'])) {
-      $products_women = Product::select_cate_type(2,2);
-    }
-    else {
-      $products_women = Product::select_category(2);
-    }    
-    $data = array('products' => $products_women, 'cate'=>['Nữ', 2]);
-    $this->render('products', $data);
-  }
+  //   // 
+  //   if (isset($_POST['bestsellers'])) {
+  //     $products_women = Product::select_cate_type(2,1);
+  //   }
+  //   else if (isset($_POST['onsale'])) {
+  //     $products_women = Product::select_cate_type(2,3);
+  //   }
+  //   else if (isset($_POST['newarrival'])) {
+  //     $products_women = Product::select_cate_type(2,2);
+  //   }
+  //   else {
+  //     $products_women = Product::select_category(2);
+  //   }    
+  //   $data = array('products' => $products_women, 'cate'=>['Nữ', 2]);
+  //   $this->render('products', $data);
+  // }
 
-  public function cate3()
+  // public function cate3()
+  // {
+  //   // 
+    // if (isset($_POST['bestsellers'])) {
+    //   $products_kid = Product::select_cate_type(3,1);
+    // }
+    // else if (isset($_POST['onsale'])) {
+    //   $products_kid = Product::select_cate_type(3,3);
+    // }
+    // else if (isset($_POST['newarrival'])) {
+    //   $products_kid = Product::select_cate_type(3,2);
+    // }
+  //   else {
+  //     $products_kid = Product::select_category(3);
+  //   }    
+  //   $data = array('products' => $products_kid, 'cate'=>['Trẻ em',3]);
+  //   $this->render('products', $data);
+  // }
+  public function home()
   {
-    // 
     if (isset($_POST['bestsellers'])) {
-      $products_kid = Product::select_cate_type(3,1);
+      $products = Product::select_type(1);
     }
     else if (isset($_POST['onsale'])) {
-      $products_kid = Product::select_cate_type(3,3);
+      $products = Product::select_type(3);
     }
     else if (isset($_POST['newarrival'])) {
-      $products_kid = Product::select_cate_type(3,2);
+      $products = Product::select_type(2);
     }
     else {
-      $products_kid = Product::select_category(3);
-    }    
-    $data = array('products' => $products_kid, 'cate'=>['Trẻ em',3]);
+      $products = Product::all();
+    }
+    $categories = Category::all();
+    $data = array('products' => $products, 'categories'=>$categories);
     $this->render('products', $data);
   }
 
@@ -134,7 +153,11 @@ class ProductsController extends BaseController
       $products = Product::select_products_in_cart($products_in_cart);
       // Calculate the subtotal
       foreach ($products as $product) {
-        $subtotal += (float) $product['price'] * (int) $products_in_cart[$product['id']];
+        if ($product['type_id'] == 3) {
+          $subtotal += (float) ($product['price'] - $product['price'] * $product['percentoff'] / 100) * (int) $products_in_cart[$product['id']];
+        } else {
+          $subtotal += (float) $product['price'] * (int) $products_in_cart[$product['id']];
+        }
       }
     }
     // Get the amount of items in the shopping cart, this will be displayed in the header.
@@ -215,7 +238,7 @@ class ProductsController extends BaseController
         $order_details = array_merge($order_detail, $order_details);
       }
 
-      $data = array('orders' => $orders, 'total_orders' => Order::total_orders(), 'order_details' => $order_details);
+      $data = array('orders' => $orders, 'total_orders' => Order::total_orders_by_id($_SESSION['user']['username']), 'order_details' => $order_details);
       $this->render('order', $data);
     }
     else {

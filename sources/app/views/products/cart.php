@@ -77,13 +77,24 @@
                                                     value="<?= $products_in_cart[$product['id']] ?>" min="1" max="100"
                                                     placeholder="Quantity" required>
                                             </div>
-                                            <div class="col-md-2 col-lg-2 col-xl-1 ">
-                                                <?php echo number_format($product['price'], 0, ',', '.'); ?>
-                                            </div>
+                                            <div class="col-md-2 col-lg-2 col-xl-2 ">
+                                                <?php if ($product['type_id'] == 3): ?>
+                                                <del>
+                                                    <?php echo number_format($product['price'], 0, ',', '.'); ?>
+                                                </del>
+                                                <br>
+                                                <span style="color:#dc3545; font-size:120%">
+                                                    <?php echo number_format($product['price'] - $product['price'] * $product['percentoff'] / 100, 0, ',', '.') ?>
+                                                </span>
 
-                                            <div class="col-md-1 col-lg-1 col-xl-2 text-end">
-                                                <?= number_format($product['price'] * $products_in_cart[$product['id']], 0, ',', '.') ?>
+                                                <?php else:
+                                                    echo number_format($product['price'], 0, ',', '.'); ?>
+                                                <?php endif; ?>
                                             </div>
+                                            <!-- 
+                                            <div class="col-md-1 col-lg-1 col-xl-2 text-end">
+                                                 number_format($product['price'] * $products_in_cart[$product['id']], 0, ',', '.') ?>
+                                            </div> -->
 
                                         </div>
 

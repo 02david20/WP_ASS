@@ -31,7 +31,7 @@
                             <?php if (empty($orders)): ?>
                             <h6 class="mb-0 text-muted">No added orders</h6>
                             <?php else: ?>
-                            <?php $count = 1; foreach ($orders as $order): ?>
+                            <?php foreach ($orders as $order):  $count = 1;?>
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="col-md-2 col-lg-2 col-xl-3">
                                     <b>Mã đơn hàng:</b>

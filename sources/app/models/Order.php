@@ -61,9 +61,9 @@ class Order {
         $stmt->execute();
         return;
     }
-    static function total_orders() {
+    static function total_orders_by_id($username) {
         $conn = DB::getInstance();
-        $sql = 'SELECT * FROM orders';
+        $sql = "SELECT * FROM orders WHERE customer = '". $username. "'";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();

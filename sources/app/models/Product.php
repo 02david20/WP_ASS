@@ -16,6 +16,15 @@ class Product {
         $result = $stmt->get_result();
         return $result->num_rows;
     }
+    static function select_type($type_id) {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE type_id = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $type_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
     static function select_category($cate) {
         $conn = DB::getInstance();
         $sql = 'SELECT * FROM products WHERE category_id = ?';

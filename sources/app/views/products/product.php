@@ -23,22 +23,22 @@
                                 class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
                                 aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['img1'] ?>" class="d-block w-100" alt="<?php echo $product['name'] ?>">
+                                <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['img1'] ?>" class="d-block w-100"
+                                    alt="<?php echo $product['name'] ?>">
                             </div>
-                            <?php for ($idx = 2; $idx <5; $idx += 1): ?>
-                            <?php if ($product['img'.(string)$idx] != ""):?>
+                            <?php for ($idx = 2; $idx < 5; $idx += 1): ?>
+                            <?php if ($product['img' . (string) $idx] != ""): ?>
                             <div class="carousel-item">
-                                <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['img'.(string)$idx] ?>" class="d-block w-100" alt="<?php echo $product['name'] ?>">
+                                <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['img' . (string) $idx] ?>"
+                                    class="d-block w-100" alt="<?php echo $product['name'] ?>">
                             </div>
-                            
-                            <?php endif;?>
-                            <?php endfor;?>
-                            
+
+                            <?php endif; ?>
+                            <?php endfor; ?>
+
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                             data-bs-slide="prev">
@@ -79,7 +79,13 @@
                         <?php echo $product['material'] ?>
                     </p>
                     <h4 class="price">Giá: <span>
-                            <?php echo $product['price'] ?>
+                    <?php if ($product['type_id'] == 3): ?>
+                                <del><?php echo number_format($product['price'], 0, ',', '.'); ?> </del>
+                                <span style="color:#dc3545; font-size:120%"><?php echo number_format($product['price'] - $product['price'] * $product['percentoff'] / 100, 0, ',', '.') ?></span>
+                            
+                            <?php else:
+                        echo number_format($product['price'], 0, ',', '.'); ?>
+                            <?php endif; ?>
                         </span></h4>
                     <!-- <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p> -->
                     <!-- <h5 class="sizes">sizes:
@@ -114,4 +120,3 @@
     </div>
 </section>
 <!-- end of details -->
-
