@@ -14,7 +14,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Main css -->
-    <link rel="stylesheet" href="public/css/form/style.css">
+    <link rel="stylesheet" href="/public/css/form/style.css">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
     </div>
 
     <!-- JS -->
-    <script src="public/js/jquery.min.js"></script>
+    <script src="/public/js/jquery.min.js"></script>
 </body>
 
 </html>
