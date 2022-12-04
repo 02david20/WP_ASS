@@ -25,21 +25,21 @@ $categories = Category::all();
                     <?php endif ?>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=pages">Home</a>
+                        <a class="nav-link" href="/pages">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=pages&action=about">About</a>
+                        <a class="nav-link" href="/pages/about">Thông tin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=posts">Blog</a>
+                        <a class="nav-link" href="/posts">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=pages&action=contact">Contact</a>
+                        <a class="nav-link" href="/pages/contact">Liên hệ</a>
                     </li>
                     <?php 
                     foreach ($categories as $category): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=products&action=<?php echo 'cate'.$category['id'];?>"><?php echo $category['category_name'];?></a>
+                        <a class="nav-link" href="/products/<?php echo 'cate'.$category['id'];?>"><?php echo $category['category_name'];?></a>
                     </li>
                     <?php endforeach; ?>
                     
@@ -61,14 +61,14 @@ $categories = Category::all();
                 <a class="nav-icon position-relative text-decoration-none" href="#">
                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=user">
+                <a class="nav-icon position-relative text-decoration-none" href="/pages/user">
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=logout">
+                <a class="nav-icon position-relative text-decoration-none" href="/pages/logout">
                 <i class="fa fa-sign-out-alt"></i>
                  </a>
                 <?php else: ?>
-                <a href="?controller=pages&action=login">
+                <a href="/pages/login">
                     <input type="submit" class="btn btn-success" value="Đăng nhập">
                 </a>'
                 <?php endif; ?>

@@ -90,19 +90,19 @@
             <a href="#"><img src="img/pages/shop_07.jpg" style="height:500px;"
                     class="rounded-circle img-fluid border"></a>
             <h5 class="text-center mt-3 mb-3">Thời trang nam</h5>
-            <p class="text-center"><a class="btn btn-success" href=''>Go Shop</a></p>
+            <p class="text-center"><a class="btn btn-success" href='/products/nam'>Xem thêm</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
             <a href="#"><img src="img/pages/shop_01.jpg" style="height:500px;"
                     class="rounded-circle img-fluid border"></a>
             <h2 class="h5 text-center mt-3 mb-3">Thời trang nữ</h2>
-            <p class="text-center"><a class="btn btn-success" href=''>Go Shop</a></p>
+            <p class="text-center"><a class="btn btn-success" href='/products/nu'>Xem thêm</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
             <a href="#"><img src="img/pages/shop_00.jpg" style="height:500px;"
                     class="rounded-circle img-fluid border"></a>
             <h2 class="h5 text-center mt-3 mb-3">Thời trang trẻ em</h2>
-            <p class="text-center"><a class="btn btn-success" href=''>Go Shop</a></p>
+            <p class="text-center"><a class="btn btn-success" href='/products/tre-em'>Xem thêm</a></p>
         </div>
     </div>
 </section>
@@ -121,10 +121,12 @@
             </div>
         </div>
         <div class="row">
+            <?php
+        foreach ($products as $product): ?>
             <div class="col-12 col-md-4 mb-4">
                 <div class="card h-100">
                     <a href="shop-single.html">
-                        <img src="img/pages/feature_prod_01.jpg" class="card-img-top" alt="...">
+                        <img src="<?php echo $product['img1']; ?>" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
                         <ul class="list-unstyled d-flex justify-content-between">
@@ -146,56 +148,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="img/pages/feature_prod_02.jpg" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$480.00</li>
-                        </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
-                        <p class="card-text">
-                            Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo
-                            ullamcorper.
-                        </p>
-                        <p class="text-muted">Reviews (48)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="img/pages/feature_prod_03.jpg" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$360.00</li>
-                        </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
-                        <p class="card-text">
-                            Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque
-                            ipsum lobortis nec.
-                        </p>
-                        <p class="text-muted">Reviews (74)</p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
+
         </div>
     </div>
 </section>
