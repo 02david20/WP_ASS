@@ -21,7 +21,7 @@
 				<?php
 				while ($blog_category = $blog_categories->fetch_assoc()) {
 				?>
-					<li class="category-list-a"><a href="?controller=posts&action=blogs&category=<?= $blog_category['slug']; ?>"><?= $blog_category['type_name']; ?></a></li>
+					<li class="category-list-a"><a href="?controller=posts&action=home&category=<?= $blog_category['slug']; ?>"><?= $blog_category['type_name']; ?></a></li>
 				<?php
 				}
 				?>
@@ -50,7 +50,7 @@
 				<li><a href="#"><i class="icon-instagram"></i></a></li>
 			</ul>
 			<div class="col-lg-12 col-md-12 text-center">
-				<h1 id="fh5co-logo"><a href="?controller=posts&action=blogs">Zay <sup>Fashion Blog</sup></a></h1>
+				<h1 id="fh5co-logo"><a href="?controller=posts">Zay <sup>Fashion Blog</sup></a></h1>
 			</div>
 
 		</div>

@@ -1,47 +1,40 @@
-<?php
 
-if(isset($_SESSION['admin_id'])){
-   header("Location: admin.php?controller=posts&action=single&id=" . $_GET['id']);
-};
-?>
 
 
 <?php
 if(isset($_POST['submit'])){
 $message;
 $user_id;
-$name = $_POST['name'];
-$email = $_POST['email'];
 $comments = $_POST['comments'];
 $datetime = date("Y-m-d") . " " . date("h:i:sa");
 $datetime = substr($datetime, 0, -2);
-
-while($one_user = $all_users->fetch_assoc()){
-	if($one_user['email'] == $email){
-		$message = "Đăng bài thành công";
-		$user_id = $one_user['id'];
-		break;
-	}
-	$message = "Người dùng không tồn tại";
-}
-
+// while($one_user = $all_users->fetch_assoc()){
+// 	if($one_user['email'] == $email){
+// 		$message = "Đăng bài thành công";
+// 		$user_id = $one_user['id'];
+// 		break;
+// 	}
+// 	$message = "Người dùng không tồn tại";
+// }
 
 
 
-echo "<script type='text/javascript'>alert('$message');</script>";
 
-if($message == "Đăng bài thành công"){
+// echo "<script type='text/javascript'>alert('$message');</script>";
+
+// if($message == "Đăng bài thành công"){
 	$conn = DB::getInstance();
 
-	$sql = "INSERT INTO postcomment (post_id, user_id, content, created_at) VALUES(?,?,?,?)";
+	$sql = "INSERT INTO comments (post_id, user_id, content, createDate, author, email) VALUES(?,?,?,?,?,?)";
 	$stmt = $conn->prepare($sql);
-	$stmt->execute([$_GET['id'], $user_id, $comments, $datetime]);
+	$stmt->bind_param("iissss", $_GET['id'], $_SESSION['user']['id'], $comments, $datetime, $_SESSION['user']['fullname'], $_SESSION['user']['email']);
+	$stmt->execute();
 
 	header("Location: ?controller=posts&action=single&id=" . $_GET['id']);
 	exit();
 
 }
-}
+// }
 
 ?>
 
@@ -113,18 +106,18 @@ if($message == "Đăng bài thành công"){
 		?>
 		<div class="be-comment">
 			<div class="be-img-comment">
-				<a href="blog-detail-2.html">
-					<img src="<?= $one_comment['avatar'] ?>" alt="" class="be-ava-comment">
+				<a href="#">
+					<img src="<?= PATH_URL_IMG . $one_comment['avatar'] ?>" alt="" class="be-ava-comment">
 				</a>
 			</div>
 			<div class="be-comment-content">
 
 				<span class="be-comment-name">
-					<a href="blog-detail-2.html"><?= $one_comment['username'] ?></a>
+					<a href="#"><?= $one_comment['username'] ?></a>
 				</span>
 				<span class="be-comment-time">
 					<i class="fa fa-clock-o"></i>
-					<?= $one_comment['created_at'] ?>
+					<?= $one_comment['createDate'] ?>
 				</span>
 
 				<p class="be-comment-text">
@@ -136,20 +129,9 @@ if($message == "Đăng bài thành công"){
 			}
 		?>
 
+<?php if (isset($_SESSION['user'])){ ?>
 		<form class="form-block" method="POST" id="formBlock">
 			<div class="row">
-				<div class="col-xs-12 col-sm-6">
-					<div class="form-group fl_icon">
-						<div class="icon"><i class="fa fa-user"></i></div>
-						<input class="form-input" required="" type="text" name="name" placeholder="Your name">
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 fl_icon">
-					<div class="form-group fl_icon">
-						<div class="icon"><i class="fa fa-envelope-o"></i></div>
-						<input class="form-input" required="" type="email" name="email" placeholder="Your email">
-					</div>
-				</div>
 				<div class="col-xs-12">
 					<div class="form-group">
 						<textarea class="form-input" required="" name="comments" placeholder="Your text"></textarea>
@@ -159,6 +141,7 @@ if($message == "Đăng bài thành công"){
 				<button id="btnSubmit" name="submit" type="submit" class="btn btn-primary pull-right">Submit</button>
 			</div>
 		</form>
+<?php }?>
 	</div>
 </div>
 

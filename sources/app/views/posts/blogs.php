@@ -51,7 +51,7 @@
 
 
 <!-- Pagination -->
-<div class="soft-pagination">
+<!-- <div class="soft-pagination">
 	<ul class="soft-pagination-items">
 		<li> <i class="fa fa-chevron-circle-left" style="font-size:20px;color:white"></i></li>
 		<li class="active">1</li>
@@ -61,5 +61,5 @@
 		<li>5</li>
 		<li> <i class="fa fa-chevron-circle-right" style="font-size:20px;color:white;"></i></li>
 	</ul>
-</div>
+</div> -->
 <!---->

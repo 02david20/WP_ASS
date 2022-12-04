@@ -9,7 +9,7 @@ class PostsController extends BaseController
 {
   function __construct()
   {
-    $this->folder = 'Posts';
+    $this->folder = 'posts';
     $this->status = array(
       0=>"Chưa công khai",
       1=>"Công khai",
