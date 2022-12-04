@@ -23,15 +23,15 @@
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
     <!-- Animate -->
-    <link rel="stylesheet" href="public/css/posts-resource/css/animate.css">
+    <link rel="stylesheet" href="/public/css/posts-resource/css/animate.css">
     <!-- Icomoon -->
-    <link rel="stylesheet" href="public/css/posts-resource/css/icomoon.css">
-    <link rel="stylesheet" href="public/css/posts-resource/css/style.css">
-    <link rel="stylesheet" href="public/css/posts-resource/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/css/posts-resource/css/icomoon.css">
+    <link rel="stylesheet" href="/public/css/posts-resource/css/style.css">
+    <link rel="stylesheet" href="/public/css/posts-resource/css/bootstrap.css">
 
 
     <!-- Modernizr JS -->
-    <script src="public/js/posts-resource/js/modernizr-2.6.2.min.js"></script>
+    <script src="/public/js/posts-resource/js/modernizr-2.6.2.min.js"></script>
 
 
 </head>
@@ -47,15 +47,15 @@
     ?>
 
     <!-- jQuery -->
-    <script src="public/js/posts-resource/js/jquery.min.js"></script>
+    <script src="/public/js/posts-resource/js/jquery.min.js"></script>
     <!-- jQuery Easing -->
-    <script src="public/js/posts-resource/js/jquery.easing.1.3.js"></script>
+    <script src="/public/js/posts-resource/js/jquery.easing.1.3.js"></script>
     <!-- Bootstrap -->
-    <script src="public/js/posts-resource/js/bootstrap.min.js"></script>
+    <script src="/public/js/posts-resource/js/bootstrap.min.js"></script>
     <!-- Waypoints -->
-    <script src="public/js/posts-resource/js/jquery.waypoints.min.js"></script>
+    <script src="/public/js/posts-resource/js/jquery.waypoints.min.js"></script>
     <!-- Main JS -->
-    <script src="public/js/posts-resource/js/main.js"></script>
+    <script src="/public/js/posts-resource/js/main.js"></script>
 
 </body>
 
