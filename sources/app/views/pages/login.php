@@ -3,8 +3,8 @@
     <div class="container">
         <div class="signin-content">
             <div class="signin-image">
-                <figure><img src="img/form/signin-image.jpg" alt="sing up image"></figure>
-                <a href="/index.php?controller=pages&action=register" class="signup-image-link">Chưa có tài khoản ?</a>
+                <figure><img src="/img/form/signin-image.jpg" alt="sing up image"></figure>
+                <a href="/pages/register" class="signup-image-link">Chưa có tài khoản ?</a>
             </div>
 
             <div class="signin-form">
