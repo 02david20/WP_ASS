@@ -14,7 +14,7 @@
             </nav>
             <div class="row g-0">
                 <div class="d-flex flex-wrap justify-content-center mt-5 filter-button-group">
-                    <form action="?controller=products" method="post">
+                    <form action="/products" method="post">
                         <input type="submit" class="btn m-2 text-dark <?php if (!(isset($_POST['bestsellers'])) && !(isset($_POST['onsale'])) && !(isset($_POST['newarrival'])))
                                                                             echo 'active-filter-btn'; ?>" value="All" name="all">
                         <input type="submit" class="btn m-2 text-dark <?php if (isset($_POST['bestsellers']))
@@ -92,7 +92,7 @@
 
                         <div class="row g-0">
                             <div class="d-flex flex-wrap justify-content-center mt-5 filter-button-group">
-                                <form action="?controller=products&category=<?php echo $category['slug']; ?>" method="post">
+                                <form action="/products/cate/<?php echo $category['slug']; ?>" method="post">
                                     <input type="submit" class="btn m-2 text-dark <?php if (!(isset($_POST['bestsellers'])) && !(isset($_POST['onsale'])) && !(isset($_POST['newarrival'])))
                                                                                         echo 'active-filter-btn'; ?>" value="All" name="all">
                                     <input type="submit" class="btn m-2 text-dark <?php if (isset($_POST['bestsellers']))
