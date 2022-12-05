@@ -116,6 +116,7 @@ class PagesController extends BaseController
   public function logout()
   {
     unset($_SESSION["user"]);
+    $_SESSION['cart'] = array();
     header("location: /");
     exit();
   }
