@@ -121,8 +121,8 @@ class ProductsController extends BaseController
       header('location: /products/cart');
       exit();
     }
-    if (isset($_GET['remove']) && is_numeric($_GET['remove']) && isset($_SESSION['cart']) && isset($_SESSION['cart'][$_GET['remove']])) {
-      unset($_SESSION['cart'][$_GET['remove']]);
+    if (isset($_POST['remove']) && is_numeric($_POST['remove_id']) && isset($_SESSION['cart']) && isset($_SESSION['cart'][$_POST['remove_id']])) {
+      unset($_SESSION['cart'][$_POST['remove_id']]);
     }
 
     if (isset($_POST['update']) && isset($_SESSION['cart'])) {
