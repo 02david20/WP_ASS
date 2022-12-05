@@ -41,7 +41,7 @@ class Post
   {
     $conn= DB::getInstance();
 
-    $sql = 'SELECT blog.type, blog_types.type_name, blog_types.slug FROM blog INNER JOIN blog_types ON blog.type = blog_types.id WHERE blog.status = 1 GROUP BY blog.type';
+    $sql = 'SELECT  blog_types.type_name, blog_types.slug FROM  blog_types';
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->get_result();
