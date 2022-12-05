@@ -73,7 +73,8 @@ class ProductsController extends BaseController
       $products = Product::select_type(1);
     }
     else if (isset($_POST['onsale'])) {
-      $products = Product::select_type(3);
+//       $products = Product::select_type(3);
+        $products = Product::select_saleoff();
     }
     else if (isset($_POST['newarrival'])) {
       $products = Product::select_type(2);
