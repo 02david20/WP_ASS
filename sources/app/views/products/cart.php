@@ -78,7 +78,7 @@
                                                     placeholder="Quantity" required>
                                             </div>
                                             <div class="col-md-2 col-lg-2 col-xl-2 ">
-                                                <?php if ($product['type_id'] == 3): ?>
+                                                <?php if ($product['saleoff']): ?>
                                                 <del>
                                                     <?php echo number_format($product['price'], 0, ',', '.'); ?>
                                                 </del>

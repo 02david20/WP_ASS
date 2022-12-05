@@ -93,7 +93,7 @@
                                                                 <b><?php echo Product::select_product_by_id($order_detail['product_id'])['name']; ?></b>
                                                                 <br>
                                                                 Giá tiền:<?php $product = Product::select_product_by_id($order_detail['product_id']);
-                                                                            if ($product['type_id'] == 3) {
+                                                                            if ($product['saleoff']) {
                                                                                 echo number_format($order_detail['price'] - $order_detail['price'] * $product['percentoff'] / 100, 0, ',', '.');
                                                                             } else {
                                                                                 echo number_format($order_detail['price'], 0, ',', '.');

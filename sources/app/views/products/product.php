@@ -77,7 +77,7 @@
                     </p>
                  
                     <h4 class="price">Giá: <span>
-                    <?php if ($product['type_id'] == 3): ?>
+                    <?php if ($product['saleoff']): ?>
                                 <del><?php echo number_format($product['price'], 0, ',', '.'); ?> </del>
                                 <span style="color:#dc3545; font-size:120%"><?php echo number_format($product['price'] - $product['price'] * $product['percentoff'] / 100, 0, ',', '.') ?></span>
                             
