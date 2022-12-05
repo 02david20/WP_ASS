@@ -1,3 +1,8 @@
+<?php
+require_once(USER_PATH . 'models/Category.php');
+$categories = Category::all();
+?>
+
 <!-- Start Banner Hero -->
 <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
     <ol class="carousel-indicators">
