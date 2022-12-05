@@ -91,7 +91,7 @@
 
                     </h5>
                     <div class="action">
-                        <form action="index.php?controller=products&action=cart" method="post">
+                        <form action="/index.php?controller=products&action=cart" method="post">
                             <input type="number" name="quantity" value="1" min="1" max="10" placeholder="Quantity"
                                 required>
                             <input type="hidden" name="product_id" value="<?= $product['id'] ?>">

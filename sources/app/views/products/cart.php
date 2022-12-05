@@ -158,13 +158,13 @@
                 <div class="mb-3 mt-2">
                     <label for="inputprovince">Tỉnh/thành nhận hàng</label>
                     <input type="text" class="form-control mt-1" id="province_order" name="province_order"
-                        placeholder="Tỉnh/thành">
+                        placeholder="Tỉnh/thành" required>
 
                 </div>
                 <div class="mb-3">
                     <label for="inputaddress">Địa chỉ nhận hàng</label>
                     <textarea class="form-control mt-1" id="address_order" name="address_order" placeholder="Địa chỉ"
-                        rows="3"></textarea>
+                        rows="3" required></textarea>
                 </div>
                 <?php if (isset($_SESSION['user'])): ?>
                 <input type="submit" class="btn btn-dark btn-block btn-lg" value="Order" name="order">
