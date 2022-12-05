@@ -1,4 +1,18 @@
+<?php
+while($single_comment = $all_comments2->fetch_assoc()){
+	if(isset($_POST[$single_comment['id']])){
+		$conn = DB::getInstance();
 
+		$sql = "DELETE FROM comments WHERE id = ?";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("i", $single_comment['id']);
+		$stmt->execute();
+
+		header("Location: /posts/single/" . $_GET['id']);
+		exit();
+	}
+}
+?>
 
 
 <?php
@@ -110,7 +124,25 @@ $datetime = substr($datetime, 0, -2);
 					<?= $one_comment['content'] ?>
 				</p>
 			</div>
+
+			<?php
+			if(isset($_SESSION['user'])){
+				if($_SESSION['user']['id'] == $one_comment['user_id'] || $_SESSION['user']['role'] == 1){
+			?>
+            <div class="change-position">
+		<form class="form-blockk" method="POST" id="formRemove">
+		<span class="be-comment-rm">
+			<button id="btnRemove" name="<?= $one_comment['id'] ?>" type="submit" class="btn btn-warning">X</button>
+		</span>
+		</form>
 		</div>
+		
+			<?php 
+			}
+		}
+			?>
+		</div>
+
 		<?php
 			}
 		?>

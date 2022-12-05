@@ -36,6 +36,18 @@ class Post
 
     return $res;
   }
+
+  static function all_comments2($id){
+    $conn= DB::getInstance();
+
+    $sql = 'SELECT user.username, user.avatar,  comments.* FROM user, comments WHERE user.id = comments.user_id AND comments.post_id = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    return $res;
+  }
   
   static function filter_blog_categories()
   {

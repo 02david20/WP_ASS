@@ -8,8 +8,8 @@ class DB
       // Docker 
       //  $servername = "db"; 
       $servername = "localhost";
-      $username = "david";
-      $password = "51WXHZC[r7t4Kw8I";
+      $username = "root";
+      $password = "";
 
       $dbname = "fashion";
 
