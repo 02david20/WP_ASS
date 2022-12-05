@@ -1,8 +1,8 @@
 <?php
 require_once(USER_PATH . 'controllers/base_controller.php');
-require_once(USER_PATH.'models/Product.php');
-require_once(USER_PATH.'models/Order.php');
-require_once(USER_PATH.'models/Category.php');
+require_once(USER_PATH . 'models/Product.php');
+require_once(USER_PATH . 'models/Order.php');
+require_once(USER_PATH . 'models/Category.php');
 class ProductsController extends BaseController
 {
   function __construct()
@@ -12,7 +12,7 @@ class ProductsController extends BaseController
 
   // public function cate1()
   // {
-   
+
   //   // 
   //   if (isset($_POST['bestsellers'])) {
   //     $products_men = Product::select_cate_type(1,1);
@@ -31,7 +31,7 @@ class ProductsController extends BaseController
   // }
   // public function cate2()
   // {
-   
+
   //   // 
   //   if (isset($_POST['bestsellers'])) {
   //     $products_women = Product::select_cate_type(2,1);
@@ -52,15 +52,15 @@ class ProductsController extends BaseController
   // public function cate3()
   // {
   //   // 
-    // if (isset($_POST['bestsellers'])) {
-    //   $products_kid = Product::select_cate_type(3,1);
-    // }
-    // else if (isset($_POST['onsale'])) {
-    //   $products_kid = Product::select_cate_type(3,3);
-    // }
-    // else if (isset($_POST['newarrival'])) {
-    //   $products_kid = Product::select_cate_type(3,2);
-    // }
+  // if (isset($_POST['bestsellers'])) {
+  //   $products_kid = Product::select_cate_type(3,1);
+  // }
+  // else if (isset($_POST['onsale'])) {
+  //   $products_kid = Product::select_cate_type(3,3);
+  // }
+  // else if (isset($_POST['newarrival'])) {
+  //   $products_kid = Product::select_cate_type(3,2);
+  // }
   //   else {
   //     $products_kid = Product::select_category(3);
   //   }    
@@ -71,31 +71,27 @@ class ProductsController extends BaseController
   {
     if (isset($_POST['bestsellers'])) {
       $products = Product::select_type(1);
-    }
-    else if (isset($_POST['onsale'])) {
+    } else if (isset($_POST['onsale'])) {
       $products = Product::select_type(3);
-    }
-    else if (isset($_POST['newarrival'])) {
+    } else if (isset($_POST['newarrival'])) {
       $products = Product::select_type(2);
-    }
-    else {
+    } else {
       $products = Product::all();
     }
     $categories = Category::all();
-    $data = array('products' => $products, 'categories'=>$categories);
+    $data = array('products' => $products, 'categories' => $categories);
     $this->render('products', $data);
   }
 
   public function product()
   {
-   
+
     // 
     if (isset($_GET['id'])) {
       $product_with_id = Product::select_product_by_id($_GET['id']);
       $data = array('product' => $product_with_id);
       $this->render('product', $data);
-    }
-    else {
+    } else {
       //exit('Product does not exist!');
     }
   }
@@ -104,9 +100,9 @@ class ProductsController extends BaseController
     if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
       $product_id = (int) $_POST['product_id'];
       $quantity = (int) $_POST['quantity'];
-      
+
       $product = Product::select_product_by_id($_POST['product_id']);
-      
+
       if ($product && $quantity > 0) {
         if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
           if (array_key_exists($product_id, $_SESSION['cart'])) {
@@ -150,7 +146,7 @@ class ProductsController extends BaseController
     $products = array();
     $subtotal = 0.00;
     if ($products_in_cart) {
-      
+
       $products = Product::select_products_in_cart($products_in_cart);
       // Calculate the subtotal
       foreach ($products as $product) {
@@ -164,19 +160,22 @@ class ProductsController extends BaseController
     // Get the amount of items in the shopping cart, this will be displayed in the header.
     $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 
-    $data = array('products' => $products, 
-                  'products_in_cart' => $products_in_cart, 
-                  'num_items_in_cart' => $num_items_in_cart,
-                  'subtotal' => $subtotal);
+    $data = array(
+      'products' => $products,
+      'products_in_cart' => $products_in_cart,
+      'num_items_in_cart' => $num_items_in_cart,
+      'subtotal' => $subtotal
+    );
     $this->render('cart', $data);
   }
-  public function order() {
+  public function order()
+  {
     // Check the session variable for products in cart
     if (isset($_SESSION['user'])) {
       $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
       $products = array();
       $subtotal = 0.00;
-      if ($products_in_cart && isset($_POST['address_order']) && isset($_POST['province_order'])) {      
+      if ($products_in_cart && isset($_POST['address_order']) && isset($_POST['province_order'])) {
         $products = Product::select_products_in_cart($products_in_cart);
         foreach ($products as $product) {
           if ($product['type_id'] == 3) {
@@ -186,7 +185,7 @@ class ProductsController extends BaseController
           }
         }
         $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
-      
+
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $createtime = date('Y-m-d H:i:s');
 
@@ -203,25 +202,25 @@ class ProductsController extends BaseController
           'user_id' => $_SESSION['user']['id'],
           'editTime' => NULL,
         );
-      
-        
+
+
         Order::insert_into_order($input_insert_order);
         // Order::insert_into_order($order_id, $user_id, $note, $order_date, $subtotal);
 
         foreach ($products as $product) {
-            // $sql = "INSERT INTO orderdetails (order_id, product_id, price, amount, total) VALUES (?,?,?,?,?)";
-            // $stmt = $pdo->prepare($sql);
+          // $sql = "INSERT INTO orderdetails (order_id, product_id, price, amount, total) VALUES (?,?,?,?,?)";
+          // $stmt = $pdo->prepare($sql);
           $order_id = Order::find_order_id_by_createtime($createtime, $_SESSION['user']['username']);
-            $input_insert_detail = array(
-              // 'id' => Order::new_orderdetails_id() + 1,
-              'order_id' => $order_id,
-              'product_id' => $product['id'],
-              'quantity' => $products_in_cart[$product['id']],
-              'price' => $product['price'],
-              
-            );
-            // $stmt->execute([$order_id, $product_id, $price, $amount, $total]);
-            Order::insert_into_orderdetails($input_insert_detail);
+          $input_insert_detail = array(
+            // 'id' => Order::new_orderdetails_id() + 1,
+            'order_id' => $order_id,
+            'product_id' => $product['id'],
+            'quantity' => $products_in_cart[$product['id']],
+            'price' => $product['price'],
+
+          );
+          // $stmt->execute([$order_id, $product_id, $price, $amount, $total]);
+          Order::insert_into_orderdetails($input_insert_detail);
         }
 
         $products = array();
@@ -245,11 +244,10 @@ class ProductsController extends BaseController
 
       $data = array('orders' => $orders, 'total_orders' => Order::total_orders_by_id($_SESSION['user']['username']), 'order_details' => $order_details);
       $this->render('order', $data);
-    }
-    else {
+    } else {
       header('location: ?controller=pages&action=login');
       exit();
     }
   }
-  
+
 }

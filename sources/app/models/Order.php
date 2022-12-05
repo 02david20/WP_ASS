@@ -10,14 +10,26 @@ class Order {
     }
     static function insert_into_order($input_insert_order) {
         $conn = DB::getInstance();
-        $columns = implode(", ",array_keys($input_insert_order));
+        // $columns = implode(", ",array_keys($input_insert_order));
 
-        $escaped_values = array_map(array($conn, 'real_escape_string'), array_values($input_insert_order));
+        // $escaped_values = array_map(array($conn, 'real_escape_string'), array_values($input_insert_order));
 
-        $values  = implode("', '", $escaped_values);
+        // $values  = implode("', '", $escaped_values);
 
-        $sql = "INSERT INTO fashion.orders ($columns) VALUES ('$values')";
-        $stmt = $conn->prepare($sql);
+        // $sql = "INSERT INTO fashion.orders ($columns) VALUES ('$values')";
+        $sql = "INSERT INTO orders (customer, province, address, phone, cart_total, createtime, message, status, user_id, editTime) VALUES ('"
+         .$input_insert_order['customer'] ."','"
+         .$input_insert_order['province'] ."','"
+         .$input_insert_order['address'] ."','"
+         .$input_insert_order['phone'] ."',"
+         .$input_insert_order['cart_total'] .",'"
+         .$input_insert_order['createtime'] ."','"
+         .$input_insert_order['message'] ."',"
+         .$input_insert_order['status'] ."," 
+         .$input_insert_order['user_id'] .",'"
+         .$input_insert_order['editTime'] ."'". ")";
+        
+         $stmt = $conn->prepare($sql);
         $stmt->execute();
     }
 
