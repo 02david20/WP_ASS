@@ -27,9 +27,10 @@ class PostsController extends BaseController
     $pre_blog_id = Post::get_previous_post($_GET['id']);
     $comment_num = Post::count_blog_comment($_GET['id']);
     $all_comments = Post::all_comments($_GET['id']);
+    $all_comments2 = Post::all_comments2($_GET['id']);
     $all_users = Post::all_users();
 
-    $data = ['posts'=>$posts, 'blog_categories'=>$blog_categories, 'post'=>$post, 'next_blog_id'=>$next_blog_id, 'pre_blog_id'=>$pre_blog_id, 'comment_num'=>$comment_num, 'all_comments'=>$all_comments, 'all_users'=>$all_users];
+    $data = ['posts'=>$posts, 'blog_categories'=>$blog_categories, 'post'=>$post, 'next_blog_id'=>$next_blog_id, 'pre_blog_id'=>$pre_blog_id, 'comment_num'=>$comment_num, 'all_comments'=>$all_comments, 'all_comments2'=>$all_comments2 ,'all_users'=>$all_users];
     $this->render('single', $data, 'blog');
   }
 }

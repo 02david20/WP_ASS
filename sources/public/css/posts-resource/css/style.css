@@ -778,11 +778,22 @@ figure figcaption {
   border: 1px solid #ffffff;
 }
 
+.be-comment {
+  margin-bottom: 50px;
+  position: relative;
+}
+
 .comments-title {
   font-size: 16px;
   color: #262626;
   margin-bottom: 15px;
   font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.change-position {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .be-img-comment {
@@ -804,6 +815,20 @@ figure figcaption {
 
 .be-comment-content {
   margin-left: 80px;
+  margin-right: 0;
+  width: 82%;
+}
+
+@media screen and (max-width: 992px) {
+  .be-comment-content {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .be-comment-content {
+    width: 50%;
+  }
 }
 
 .be-comment-content span {
