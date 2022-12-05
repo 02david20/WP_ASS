@@ -53,11 +53,8 @@
                                                         <?php echo $product['color'] ?>
                                                     </span>
                                                 </p>
-                                                <form action="/products/cart" method="post">
-                                                <input type="hidden" name="remove_id" value="<?= $product['id'] ?>">
-                                                <input type="submit" class="btn btn-dark btn-block btn-lg" value="Xóa" name="remove">
-                                            </form>
-                                                
+                                                <a href="index.php?controller=products&action=cart&remove=<?= $product['id'] ?>"
+                                                    class="remove"><button class="btn" type="button">Xóa</button></a>
                                             </div>
                                             <!-- quantity
                         <div class="col-md-3 col-lg-3 col-xl-3 d-flex">
@@ -105,9 +102,6 @@
 
                                         <?php endforeach; ?>
                                         <?php endif; ?>
-
-
-
 
                                         <div class="pt-5">
                                             <h6 class="mb-0"><a href="/products" class="text-body"><i
@@ -157,7 +151,7 @@
                     </div>
                 </div>
             </form>
-            <form action="/products/order" method="post">
+            <form action="index.php?controller=products&action=order" method="post">
                 <div class="mb-3 mt-2">
                     <label for="inputprovince">Tỉnh/thành nhận hàng</label>
                     <input type="text" class="form-control mt-1" id="province_order" name="province_order"

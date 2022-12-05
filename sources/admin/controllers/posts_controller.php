@@ -133,11 +133,12 @@ class PostsController extends BaseController
       $image_name1 = slug($name) . '-' . $post_id . 'main_pic';
       $config1 = array(
           'name' => $image_name1,
-          'upload_path'  => PATH_URL_IMG_BLOG,
+          'upload_path'  => PATH_URL_IMG_BLOG_UP,
           'allowed_exts' => 'jpg|jpeg|png|gif',
       );
 
       $image1 = upload('main_pic', $config1); //$field = name of input
+
       //cập nhật ảnh mới lên database 
       if ($image1) {
           $post = array(
@@ -151,7 +152,7 @@ class PostsController extends BaseController
       $image_name2 = slug($name) . '-' . $post_id . 'sub_pic';
       $config2 = array(
           'name' => $image_name2,
-          'upload_path'  => PATH_URL_IMG_BLOG,
+          'upload_path'  => PATH_URL_IMG_BLOG_UP,
           'allowed_exts' => 'jpg|jpeg|png|gif',
       );
       $image2 = upload('sub_pic', $config2); //$field = name of input
