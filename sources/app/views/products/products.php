@@ -54,7 +54,7 @@
 
                 <div class="col-md-6 col-lg-4 col-xl-3 p-2 best">
                     <div class="collection-img position-relative">
-                        <a href="?controller=products&action=product&id=<?php echo $product['id']; ?>">
+                        <a href="/products/product/<?php echo $product['id']."-".$product['slug']; ?>">
                             <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['img1'] ?>" class="w-100">
                             <?php if ($product['type_id'] == 1): ?>
                             <span

@@ -6,7 +6,7 @@ class Post
   {
     $conn= DB::getInstance();
 
-    $sql = 'SELECT blog_types.type_name, blog_types.slug, blog.main_pic, blog.type, blog.title, blog.date, blog.para1, blog.sub_pic, blog.para2, blog.sub_pic_quote, blog.id, blog.status FROM blog_types, blog WHERE blog_types.id = blog.type AND blog.status = 1';
+    $sql = 'SELECT blog_types.type_name, blog_types.slug, blog.main_pic, blog.type, blog.slug as pslug, blog.title, blog.date, blog.para1, blog.sub_pic, blog.para2, blog.sub_pic_quote, blog.id, blog.status FROM blog_types, blog WHERE blog_types.id = blog.type AND blog.status = 1';
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->get_result();
