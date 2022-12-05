@@ -5,12 +5,12 @@
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;); padding-top:60px"
                 aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="?controller=pages&action=home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Shopping cart</li>
                 </ol>
             </nav>
             <!--  form -->
-            <form action="index.php?controller=products&action=cart" method="post">
+            <form action="/products/cart" method="post">
 
                 <div class="col-12">
                     <div class="card card-registration card-registration-2" style="border-radius: 15px;">
@@ -53,8 +53,11 @@
                                                         <?php echo $product['color'] ?>
                                                     </span>
                                                 </p>
-                                                <a href="index.php?controller=products&action=cart&remove=<?= $product['id'] ?>"
-                                                    class="remove"><button class="btn" type="button">Xóa</button></a>
+                                                <form action="/products/cart" method="post">
+                                                <input type="hidden" name="remove_id" value="<?= $product['id'] ?>">
+                                                <input type="submit" class="btn btn-dark btn-block btn-lg" value="Xóa" name="remove">
+                                            </form>
+                                                
                                             </div>
                                             <!-- quantity
                         <div class="col-md-3 col-lg-3 col-xl-3 d-flex">
@@ -107,7 +110,7 @@
 
 
                                         <div class="pt-5">
-                                            <h6 class="mb-0"><a href="index.php" class="text-body"><i
+                                            <h6 class="mb-0"><a href="/products" class="text-body"><i
                                                         class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a>
                                             </h6>
                                         </div>
@@ -154,7 +157,7 @@
                     </div>
                 </div>
             </form>
-            <form action="index.php?controller=products&action=order" method="post">
+            <form action="/products/order" method="post">
                 <div class="mb-3 mt-2">
                     <label for="inputprovince">Tỉnh/thành nhận hàng</label>
                     <input type="text" class="form-control mt-1" id="province_order" name="province_order"
@@ -169,7 +172,7 @@
                 <?php if (isset($_SESSION['user'])): ?>
                 <input type="submit" class="btn btn-dark btn-block btn-lg" value="Order" name="order">
                 <?php else: ?>
-                <a href="?controller=pages&action=login" class="btn mt-3 text-uppercase">Đăng nhập để đặt hàng</a>
+                <a href="/pages/login" class="btn mt-3 text-uppercase">Đăng nhập để đặt hàng</a>
                 <?php endif; ?>
             </form>
             <hr class="my-4">
