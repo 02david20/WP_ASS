@@ -54,6 +54,7 @@ class UsersController extends BaseController
 
 
           $avatar = upload('avatar', $config);
+          // exit();
           //cập nhật ảnh mới
           if ($avatar) {
               $user_edit = array(

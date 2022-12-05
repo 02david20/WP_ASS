@@ -1,5 +1,7 @@
 <?php
 require_once ADMIN_PATH . "/models/PostType.php";
+require_once ADMIN_PATH . "/models/User.php";
+$user = User::findByID($_SESSION['user']['id']);
 ?>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-navy elevation-4">
@@ -13,12 +15,12 @@ require_once ADMIN_PATH . "/models/PostType.php";
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="<?php echo PATH_URL_IMG . $_SESSION['user']['avatar'] ?>" class="img-circle elevation-2"
+        <img src="<?php echo PATH_URL_IMG.$user["avatar"] ?>" class="img-circle elevation-2"
           alt="User Image">
       </div>
       <div class="info">
         <a href="#" class="d-block">Hello,
-          <?php echo $_SESSION['user']['username'] ?>
+          <?php echo $user["username"] ?>
         </a>
       </div>
     </div>

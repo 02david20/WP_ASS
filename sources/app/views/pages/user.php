@@ -7,7 +7,7 @@
         <div class="col-12">
             <br>
             <!-- Form START -->
-            <form class="file-upload" method="post" action="/user/updateUser" >
+            <form class="file-upload" method="post" action="/index.php?controller=users&action=updateUser" enctype="multipart/form-data" role="form" >
                 <div class="row mb-5 gx-5">
                     <!-- Contact detail -->
                     <div class="col-xxl-8 mb-5 mb-xxl-0">
@@ -78,10 +78,6 @@
                                     <img class="img-fluid" src="<?= PATH_URL_IMG.$user["avatar"]?>?t=<?=time()?>" alt="" style="max-height:500px;">
                                     <input name="avatar" type="file" class="form-control dropify">
                                     <br>
-                                    <!-- Button -->
-                                    <input type="file" id="customFile" name="file" hidden="">
-                                    <label class="btn btn-success-soft btn-block" for="customFile">Upload</label>
-                                    <button type="button" class="btn btn-danger-soft">Remove</button>
                                     <!-- Content -->
                                     <p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Minimum size 300px x
                                         300px</p>

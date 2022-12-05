@@ -23,7 +23,7 @@ $categories = Category::all();
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                     <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 1): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin.php?controller=admin">Admin</a>
+                        <a class="nav-link" href="/admin.php?controller=admin">Admin</a>
                     </li>
                     <?php endif ?>
 
