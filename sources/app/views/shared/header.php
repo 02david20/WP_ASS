@@ -80,7 +80,7 @@ $categories = Category::all();
                 <?php else: ?>
                 <a href="/pages/login">
                     <input type="submit" class="btn btn-success" value="Đăng nhập">
-                </a>'
+                </a>
                 <?php endif; ?>
 
             </div>
