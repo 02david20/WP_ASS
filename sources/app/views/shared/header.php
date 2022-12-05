@@ -28,21 +28,21 @@ $categories = Category::all();
                     <?php endif ?>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=pages">Home</a>
+                        <a class="nav-link" href="/pages">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=pages&action=about">About</a>
+                        <a class="nav-link" href="/pages/about">Thông tin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=posts">Blog</a>
+                        <a class="nav-link" href="/posts">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=pages&action=contact">Contact</a>
+                        <a class="nav-link" href="/pages/contact">Liên hệ</a>
                     </li>
                     <?php
                     foreach ($categories as $category): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=products&category=<?php echo $category['slug']; ?>">
+                        <a class="nav-link" href="/products/cate/<?php echo $category['slug']; ?>">
                             <?php echo $category['category_name']; ?>
                         </a>
                     </li>
@@ -78,7 +78,7 @@ $categories = Category::all();
                     <i class="fa fa-sign-out-alt"></i>
                 </a>
                 <?php else: ?>
-                <a href="?controller=pages&action=login">
+                <a href="/pages/login">
                     <input type="submit" class="btn btn-success" value="Đăng nhập">
                 </a>'
                 <?php endif; ?>

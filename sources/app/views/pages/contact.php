@@ -24,17 +24,18 @@
                     <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
                 </div>
             </div>
-            <form action="index.php?controller=products&action=order" method="post">
+            <form action="/products/order" method="post">
                 <div class="mb-3">
                     <label for="inputsubject">Tiêu đề</label>
                     <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Tiêu đề">
                 </div>
+
+                <div class="mb-3">
+                    <label for="inputmessage">Nội dung</label>
+                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Nội dung"
+                        rows="8"></textarea>
+                </div>
             </form>
-            <div class="mb-3">
-                <label for="inputmessage">Nội dung</label>
-                <textarea class="form-control mt-1" id="message" name="message" placeholder="Nội dung"
-                    rows="8"></textarea>
-            </div>
             <div class="row">
                 <div class="col text-end mt-2">
                     <button type="submit" class="btn btn-success btn-lg px-3">Gửi</button>
