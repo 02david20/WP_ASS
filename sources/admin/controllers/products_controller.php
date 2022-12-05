@@ -102,7 +102,7 @@ class ProductsController extends BaseController
       $image_name1 = $slug . '-' . $product_id . 'img1';
       $config1 = array(
           'name' => $image_name1,
-          'upload_path'  => PATH_URL_IMG_PRODUCT,
+          'upload_path'  => PATH_URL_IMG_PRODUCT_UP,
           'allowed_exts' => 'jpg|jpeg|png|gif',
       );
       $image1 = upload('img1', $config1);
@@ -118,7 +118,7 @@ class ProductsController extends BaseController
       $image_name2 = $slug . '-' . $product_id . 'img2';
       $config2 = array(
           'name' => $image_name2,
-          'upload_path'  => PATH_URL_IMG_PRODUCT,
+          'upload_path'  => PATH_URL_IMG_PRODUCT_UP,
           'allowed_exts' => 'jpg|jpeg|png|gif',
       );
       $image2 = upload('img2', $config2);
@@ -134,7 +134,7 @@ class ProductsController extends BaseController
       $image_name3 = $slug . '-' . $product_id . 'img3';
       $config3 = array(
           'name' => $image_name3,
-          'upload_path'  => PATH_URL_IMG_PRODUCT,
+          'upload_path'  => PATH_URL_IMG_PRODUCT_UP,
           'allowed_exts' => 'jpg|jpeg|png|gif',
       );
       $image3 = upload('img3', $config3);
@@ -150,7 +150,7 @@ class ProductsController extends BaseController
       $image_name4 = $slug . '-' . $product_id . 'img4';
       $config4 = array(
           'name' => $image_name4,
-          'upload_path'  => PATH_URL_IMG_PRODUCT,
+          'upload_path'  => PATH_URL_IMG_PRODUCT_UP,
           'allowed_exts' => 'jpg|jpeg|png|gif',
       );
       $image4 = upload('img4', $config4);

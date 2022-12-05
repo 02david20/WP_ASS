@@ -47,7 +47,8 @@ class UsersController extends BaseController
 
           $config = array(
               'name' => $avatar_name,
-              'upload_path'  => PATH_URL_IMG,
+              'upload_path'  => PATH_URL_IMG_UP,
+              'get_path'  => PATH_URL_IMG,
               'allowed_exts' => 'jpg|jpeg|png|gif',
           );
 

@@ -149,4 +149,19 @@ class Post
   return $pre_id;
   }
 
+  static function findByID($id)
+  {
+    $conn = DB::getInstance();
+
+    $sql = 'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name 
+            FROM blog INNER JOIN blog_types on blog.type=blog_types.id 
+            WHERE blog.id=?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    return $res->fetch_assoc();
+  }
+
 }

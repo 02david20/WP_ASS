@@ -8,21 +8,7 @@ $user_id;
 $comments = $_POST['comments'];
 $datetime = date("Y-m-d") . " " . date("h:i:sa");
 $datetime = substr($datetime, 0, -2);
-// while($one_user = $all_users->fetch_assoc()){
-// 	if($one_user['email'] == $email){
-// 		$message = "Đăng bài thành công";
-// 		$user_id = $one_user['id'];
-// 		break;
-// 	}
-// 	$message = "Người dùng không tồn tại";
-// }
 
-
-
-
-// echo "<script type='text/javascript'>alert('$message');</script>";
-
-// if($message == "Đăng bài thành công"){
 	$conn = DB::getInstance();
 
 	$sql = "INSERT INTO comments (post_id, user_id, content, createDate, author, email) VALUES(?,?,?,?,?,?)";
@@ -30,7 +16,7 @@ $datetime = substr($datetime, 0, -2);
 	$stmt->bind_param("iissss", $_GET['id'], $_SESSION['user']['id'], $comments, $datetime, $_SESSION['user']['fullname'], $_SESSION['user']['email']);
 	$stmt->execute();
 
-	header("Location: ?controller=posts&action=single&id=" . $_GET['id']);
+	header("Location: /posts/single/" . $_GET['id']);
 	exit();
 
 }
@@ -41,8 +27,8 @@ $datetime = substr($datetime, 0, -2);
 <?php include_once USER_PATH."views/shared/blog_header.php"?>
 
 
-<a href="?controller=posts&action=single&id=<?= $pre_blog_id; ?>" class="fh5co-post-prev"><span><i class="icon-chevron-left"></i> Prev</span></a>
-<a href="?controller=posts&action=single&id=<?= $next_blog_id; ?>" class="fh5co-post-next"><span>Next <i class="icon-chevron-right"></i></span></a>
+<a href="/posts/single/<?= $pre_blog_id."-".Post::findByID($pre_blog_id)["slug"];  ?>" class="fh5co-post-prev"><span><i class="icon-chevron-left"></i> Prev</span></a>
+<a href="/posts/single/<?= $next_blog_id."-".Post::findByID($pre_blog_id)["slug"];  ?>" class="fh5co-post-next"><span>Next <i class="icon-chevron-right"></i></span></a>
 
 
 

@@ -66,7 +66,7 @@ class UsersController extends BaseController
       if ($_POST['user_id'] <> 0) $editTime = gmdate('Y-m-d H:i:s', time() + 7 * 3600);
       else $editTime = '0000-00-00 00:00:00';
       // Check role 
-      if (isset($_POST['user']['role']) && $_SESSION['user']['role'] == 1) $role = $_POST['role'];
+      if (isset($_POST['role']) && $_SESSION['user']['role'] == 1) $role = $_POST['role'];
       else $role = $_SESSION['user']['role'];
   
       $user_edit = array(
@@ -99,7 +99,7 @@ class UsersController extends BaseController
 
           $config = array(
               'name' => $avatar_name,
-              'upload_path'  => PATH_URL_IMG,
+              'upload_path'  => PATH_URL_IMG_UP,
               'allowed_exts' => 'jpg|jpeg|png|gif',
           );
 

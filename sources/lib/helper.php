@@ -32,10 +32,13 @@ function upload($field, $config = array())
     $options = array(
         'name' => '',
         'upload_path' => './',
+        'get_path' => './',
         'allowed_exts' => '*',
         'overwrite' => TRUE,
         'max_size' => 0
     );
+
+
     $options = array_merge($options, $config); //Hợp nhất một hoặc nhiều mảng
     if (!isset($_FILES[$field]))
         return FALSE;
@@ -62,6 +65,7 @@ function upload($field, $config = array())
     }
 
     move_uploaded_file($file["tmp_name"], $file_path);
+
     return $name;
 }
 

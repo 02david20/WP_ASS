@@ -247,7 +247,7 @@ class ProductsController extends BaseController
       $this->render('order', $data);
     }
     else {
-      header('location: ?controller=pages&action=login');
+      header('location: /pages/login');
       exit();
     }
   }

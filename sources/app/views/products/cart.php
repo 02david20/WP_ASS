@@ -103,9 +103,6 @@
                                         <?php endforeach; ?>
                                         <?php endif; ?>
 
-
-
-
                                         <div class="pt-5">
                                             <h6 class="mb-0"><a href="index.php" class="text-body"><i
                                                         class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a>
@@ -154,7 +151,7 @@
                     </div>
                 </div>
             </form>
-            <form action="index.php?controller=products&action=order" method="post">
+            <form action="/products/order" method="post">
                 <div class="mb-3 mt-2">
                     <label for="inputprovince">Tỉnh/thành nhận hàng</label>
                     <input type="text" class="form-control mt-1" id="province_order" name="province_order"
