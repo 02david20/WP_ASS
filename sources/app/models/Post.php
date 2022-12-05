@@ -6,14 +6,34 @@ class Post
   {
     $conn= DB::getInstance();
 
-    $sql =
-    'SELECT blog.id,main_pic,type,title,date,para1, sub_pic,para2,sub_pic_quote,status,blog.slug,type_name,blog.slug as bslug,blog_types.slug as tslug 
-              FROM blog INNER JOIN blog_types on blog.type=blog_types.id 
-              WHERE blog.status=1';
+    $sql = 'SELECT blog_types.type_name, blog_types.slug, blog.main_pic, blog.type, blog.title, blog.date, blog.para1, blog.sub_pic, blog.para2, blog.sub_pic_quote, blog.id, blog.status FROM blog_types, blog WHERE blog_types.id = blog.type AND blog.status = 1';
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->get_result();
        
+    return $res;
+  }
+
+  static function all_users(){
+    $conn= DB::getInstance();
+
+    $sql = 'SELECT * FROM user';
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    return $res;
+  }
+
+  static function all_comments($id){
+    $conn= DB::getInstance();
+
+    $sql = 'SELECT user.username, user.avatar,  comments.* FROM user, comments WHERE user.id = comments.user_id AND comments.post_id = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
     return $res;
   }
   
@@ -21,8 +41,20 @@ class Post
   {
     $conn= DB::getInstance();
 
-    $sql = 'SELECT * FROM  blog_types';
+    $sql = 'SELECT blog.type, blog_types.type_name, blog_types.slug FROM blog INNER JOIN blog_types ON blog.type = blog_types.id WHERE blog.status = 1 GROUP BY blog.type';
     $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    return $res;
+  }
+
+  static function count_blog_comment($id){
+    $conn= DB::getInstance();
+
+    $sql = 'SELECT COUNT(*) AS blog_num FROM comments WHERE post_id = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
     $stmt->execute();
     $res = $stmt->get_result();
 
@@ -34,7 +66,7 @@ class Post
 
     $sql = 'SELECT blog_types.type_name, blog.* FROM blog_types, blog WHERE blog.id = ? AND blog_types.id = blog.type';
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i",$id);
+    $stmt->bind_param("i", $id);
     $stmt->execute();
     $res = $stmt->get_result();
 
@@ -48,19 +80,21 @@ class Post
     $conn1= DB::getInstance();
     $sql1 = 'SELECT id FROM blog WHERE id != ? AND blog.status = 1 ORDER BY id ASC';
     $stmt1 = $conn1->prepare($sql1);
-    $stmt1->bind_param("i",$id);
+    $stmt1->bind_param("i", $id);
     $stmt1->execute();
     $res1 = $stmt1->get_result();
+
 
 		while($fetch_id = $res1->fetch_assoc()){
 			$begin_id = $fetch_id['id'];
 			break;
 		}
 
+
     $conn2= DB::getInstance();
     $sql2 = 'SELECT id FROM blog WHERE id != ? AND blog.status = 1 ORDER BY id ASC';
     $stmt2 = $conn2->prepare($sql2);
-    $stmt2->bind_param("i",$id);
+    $stmt2->bind_param("i", $id);
     $stmt2->execute();
     $res2 = $stmt2->get_result();
 
