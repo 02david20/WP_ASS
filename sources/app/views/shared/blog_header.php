@@ -24,7 +24,7 @@
 				<?php
 				while ($blog_category = $blog_categories->fetch_assoc()) {
 				?>
-					<li><a href="?controller=posts&category=<?= $blog_category['slug']; ?>"><?= $blog_category['type_name']; ?></a></li>
+					<li><a href="/posts/cate/<?= $blog_category['slug']; ?>"><?= $blog_category['type_name']; ?></a></li>
 				<?php
 				}
 				?>
