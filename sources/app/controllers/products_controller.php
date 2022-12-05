@@ -155,7 +155,7 @@ class ProductsController extends BaseController
       $products = Product::select_products_in_cart($products_in_cart);
       // Calculate the subtotal
       foreach ($products as $product) {
-        if ($product['type_id'] == 3) {
+        if ($product['saleoff']) {
           $subtotal += (float) ($product['price'] - $product['price'] * $product['percentoff'] / 100) * (int) $products_in_cart[$product['id']];
         } else {
           $subtotal += (float) $product['price'] * (int) $products_in_cart[$product['id']];
@@ -180,7 +180,7 @@ class ProductsController extends BaseController
       if ($products_in_cart && isset($_POST['address_order']) && isset($_POST['province_order'])) {      
         $products = Product::select_products_in_cart($products_in_cart);
         foreach ($products as $product) {
-          if ($product['type_id'] == 3) {
+          if ($product['saleoff']) {
             $subtotal += (float) ($product['price'] - $product['price'] * $product['percentoff'] / 100) * (int) $products_in_cart[$product['id']];
           } else {
             $subtotal += (float) $product['price'] * (int) $products_in_cart[$product['id']];
