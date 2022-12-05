@@ -40,24 +40,18 @@
                             <?php endfor; ?>
 
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        <button style="border:none;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        <button style="border:none;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-                    <!-- <div class="box-large">
-                        <div class="box-top">
-                            <img id="img-large" class="img-fluid"
-                                src="<?php //echo PATH_URL_IMG_PRODUCT . $product['img1'] ?>" alt="Product">
-                        </div>
 
-                    </div> -->
                 </div>
                 <div class="col-md-6 summary">
                     <h3 class="product-title">
@@ -78,6 +72,10 @@
                     <p class="product-description">Nguyên liệu:
                         <?php echo $product['material'] ?>
                     </p>
+                    <p class="product-description"><strong>Mô tả</strong>
+                        <?php echo $product['description'] ?>
+                    </p>
+                 
                     <h4 class="price">Giá: <span>
                     <?php if ($product['type_id'] == 3): ?>
                                 <del><?php echo number_format($product['price'], 0, ',', '.'); ?> </del>
@@ -87,13 +85,7 @@
                         echo number_format($product['price'], 0, ',', '.'); ?>
                             <?php endif; ?>
                         </span></h4>
-                    <!-- <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p> -->
-                    <!-- <h5 class="sizes">sizes:
-                                <span class="size" data-toggle="tooltip" title="small">s</span>
-                                <span class="size" data-toggle="tooltip" title="medium">m</span>
-                                <span class="size" data-toggle="tooltip" title="large">l</span>
-                                <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-                            </h5> -->
+
                     <h5 class="colors">Màu:
                         <?php echo $product['color'] ?>
 
@@ -114,7 +106,7 @@
         <div class="col-md-4">
             <h3 class="product-title">Mô tả</h3>
             <p>
-                <?php echo $product['description'] ?>
+                <?php echo $product['detail'] ?>
             </p>
         </div>
     </div>
