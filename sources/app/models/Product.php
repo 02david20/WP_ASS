@@ -88,5 +88,13 @@ class Product {
         
         return $stmt->get_result();
     }
+
+    static function select_hot_product() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE type_id = 1';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
 }
 ?>

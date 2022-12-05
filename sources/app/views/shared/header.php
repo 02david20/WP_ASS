@@ -42,7 +42,7 @@ $categories = Category::all();
                     <?php
                     foreach ($categories as $category): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=products&category=<?php echo $category['slug']; ?>">
+                        <a class="nav-link" href="/products/cate/<?php echo $category['slug']; ?>">
                             <?php echo $category['category_name']; ?>
                         </a>
                     </li>

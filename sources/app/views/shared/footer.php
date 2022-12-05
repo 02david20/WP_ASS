@@ -27,7 +27,7 @@
                     <?php 
                     foreach ($categories as $category): ?>
                     <li>
-                        <a class="text-decoration-none" href="/products/<?php echo 'cate'.$category['id'];?>"><?php echo $category['category_name'];?></a>
+                        <a class="text-decoration-none" href="/products/<?php echo 'cate/'.$category['slug'];?>"><?php echo $category['category_name'];?></a>
                     </li>
                     <?php endforeach; ?>
                     </ul>
@@ -36,9 +36,9 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Thông tin chung</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Trang chủ</a></li>
-                        <li><a class="text-decoration-none" href="#">Thông tin</a></li>
-                        <li><a class="text-decoration-none" href="#">Liên hệ</a></li>
+                        <li><a class="text-decoration-none" href="/">Trang chủ</a></li>
+                        <li><a class="text-decoration-none" href="/pages/about">Thông tin</a></li>
+                        <li><a class="text-decoration-none" href="/pages/contact">Liên hệ</a></li>
                     </ul>
                 </div>
 

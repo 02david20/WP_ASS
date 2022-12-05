@@ -1,6 +1,6 @@
 <?php
-require_once(USER_PATH . 'models/Category.php');
-$categories = Category::all();
+require_once(USER_PATH . 'models/Product.php');
+$products = Product::select_hot_product();
 ?>
 
 <!-- Start Banner Hero -->
@@ -95,19 +95,19 @@ $categories = Category::all();
             <a href="#"><img src="img/pages/shop_07.jpg" style="height:500px;"
                     class="rounded-circle img-fluid border"></a>
             <h5 class="text-center mt-3 mb-3">Thời trang nam</h5>
-            <p class="text-center"><a class="btn btn-success" href='/products/nam'>Xem thêm</a></p>
+            <p class="text-center"><a class="btn btn-success" href='/products/cate/nam'>Xem thêm</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
             <a href="#"><img src="img/pages/shop_01.jpg" style="height:500px;"
                     class="rounded-circle img-fluid border"></a>
             <h2 class="h5 text-center mt-3 mb-3">Thời trang nữ</h2>
-            <p class="text-center"><a class="btn btn-success" href='/products/nu'>Xem thêm</a></p>
+            <p class="text-center"><a class="btn btn-success" href='/products/cate/nu'>Xem thêm</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
             <a href="#"><img src="img/pages/shop_00.jpg" style="height:500px;"
                     class="rounded-circle img-fluid border"></a>
             <h2 class="h5 text-center mt-3 mb-3">Thời trang trẻ em</h2>
-            <p class="text-center"><a class="btn btn-success" href='/products/tre-em'>Xem thêm</a></p>
+            <p class="text-center"><a class="btn btn-success" href='/products/cate/tre-em'>Xem thêm</a></p>
         </div>
     </div>
 </section>
@@ -127,34 +127,24 @@ $categories = Category::all();
         </div>
         <div class="row">
             <?php
-        foreach ($products as $product): ?>
+            foreach ($products as $product): ?>
             <div class="col-12 col-md-4 mb-4">
                 <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="<?php echo $product['img1']; ?>" class="card-img-top" alt="...">
+                    <a href="/products/product/<?php echo $product['id']; ?>">
+                        <img src="<?= PATH_URL_IMG_PRODUCT.$product["img1"]?>" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
                         <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$240.00</li>
+                            <li class="text-muted text-right"><?php echo $product['price']; ?></li>
                         </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                        <a href="/products/product/<?php echo $product['id']; ?>" class="h2 text-decoration-none text-dark"><?php echo $product['name']; ?></a>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia
-                            deserunt.
+                        <?php echo $product['description']; ?></li>
                         </p>
-                        <p class="text-muted">Reviews (24)</p>
                     </div>
                 </div>
             </div>
             <?php endforeach; ?>
-
         </div>
     </div>
 </section>
