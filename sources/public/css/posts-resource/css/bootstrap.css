@@ -1437,6 +1437,13 @@ img {
   height: 250px;
 }
 
+@media screen and (max-width: 900px) {
+  .img-responsive {
+    height: 200px;
+  }
+}
+
+
 .img-rounded {
   border-radius: 6px;
 }
