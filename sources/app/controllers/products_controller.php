@@ -104,7 +104,7 @@ class ProductsController extends BaseController
     if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
       $product_id = (int) $_POST['product_id'];
       $quantity = (int) $_POST['quantity'];
-      
+
       $product = Product::select_product_by_id($_POST['product_id']);
       
       if ($product && $quantity > 0) {
@@ -150,7 +150,7 @@ class ProductsController extends BaseController
     $products = array();
     $subtotal = 0.00;
     if ($products_in_cart) {
-      
+
       $products = Product::select_products_in_cart($products_in_cart);
       // Calculate the subtotal
       foreach ($products as $product) {

@@ -10,7 +10,7 @@
                 </ol>
             </nav>
             <!--  form -->
-            <form action="index.php?controller=products&action=cart" method="post">
+            <form action="/products/cart" method="post">
 
                 <div class="col-12">
                     <div class="card card-registration card-registration-2" style="border-radius: 15px;">
@@ -53,7 +53,7 @@
                                                         <?php echo $product['color'] ?>
                                                     </span>
                                                 </p>
-                                                <a href="index.php?controller=products&action=cart&remove=<?= $product['id'] ?>"
+                                                <a href="/products/cart/<?= $product['id'] ?>"
                                                     class="remove"><button class="btn" type="button">Xóa</button></a>
                                             </div>
                                             <!-- quantity

@@ -84,8 +84,9 @@ class Product {
         $conn= DB::getInstance();
         $array_to_question_marks = implode(',', array_fill(0, count($products_in_cart), '?'));
         $stmt = $conn->prepare('SELECT * FROM products WHERE id IN (' . $array_to_question_marks . ')');
-        $stmt->execute(array_keys($products_in_cart));
-        
+        $arrayKeys = array_keys($products_in_cart);
+        $stmt->bind_param(str_repeat("s", count($arrayKeys)), ...$arrayKeys);
+        $stmt->execute();
         return $stmt->get_result();
     }
 
