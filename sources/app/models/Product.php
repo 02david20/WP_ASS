@@ -25,6 +25,15 @@ class Product {
         $result = $stmt->get_result();
         return $result;
     }
+    static function select_saleoff() {
+        $conn = DB::getInstance();
+        $sql = 'SELECT * FROM products WHERE saleoff = 1';
+        $stmt = $conn->prepare($sql);
+//         $stmt->bind_param("i", $type_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
     static function select_category($cate) {
         $conn = DB::getInstance();
         $sql = 'SELECT * FROM products WHERE category_id = ?';
