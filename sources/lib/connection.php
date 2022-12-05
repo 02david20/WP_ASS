@@ -8,8 +8,8 @@ class DB
       // Docker 
        $servername = "db"; 
       // $servername = "localhost";
-      $username = "root";
-      $password = "";
+      $username = "david";
+      $password = "51WXHZC[r7t4Kw8I";
       $dbname = "fashion";
 
       self::$instance = new mysqli($servername, $username, $password, $dbname);

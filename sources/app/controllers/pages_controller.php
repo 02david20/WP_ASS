@@ -17,7 +17,7 @@ class PagesController extends BaseController
   public function register()
   {
     if (isset($_SESSION["user"])) {
-      header('Location: index.php?controller=pages');
+      header('Location: /pages');
       exit();
     }
 
@@ -33,7 +33,7 @@ class PagesController extends BaseController
           $status = User::AddUser($user_data);
 
           if ($status === TRUE) {
-            header('Location: ?controller=pages&action=login');
+            header('Location: /pages/login');
             exit();
           } else {
             echo "<script>alert('Tên tài khoản đã tồn tại')</script>";
@@ -54,7 +54,7 @@ class PagesController extends BaseController
   public function login()
   {
     if (isset($_SESSION["user"])) {
-      header('Location: index.php?controller=pages');
+      header('Location: /pages');
       exit();
     }
 
@@ -66,10 +66,10 @@ class PagesController extends BaseController
         if ($res) {
           if (!isBanned($res["banned"])) {
             $_SESSION["user"] = $res;
-            header('Location: ?controller=pages');
+            header('Location: /pages');
             exit();
           } else {
-            header("location: ?controller=pages&action=page_403");
+            header("location: /pages/page_403");
             exit();
           }
         } else {
@@ -91,7 +91,7 @@ class PagesController extends BaseController
       $data = array("user"=>$user);
       $this->render('user', $data);
     } else {
-      header('Location: index.php?controller=pages&action=login');
+      header('Location: /pages/login');
       exit();
     }
   }
@@ -116,7 +116,7 @@ class PagesController extends BaseController
   public function logout()
   {
     unset($_SESSION["user"]);
-    header("location: index.php");
+    header("location: /");
     exit();
   }
 }

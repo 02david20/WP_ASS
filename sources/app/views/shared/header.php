@@ -64,17 +64,17 @@ $categories = Category::all();
                     <i class="fa fa-fw fa-search text-dark mr-2"></i>
                 </a>
                 <?php if (isset($_SESSION['user'])): ?>
-                    <a class="nav-icon position-relative text-decoration-none" href="?controller=products&action=cart">
+                    <a class="nav-icon position-relative text-decoration-none" href="/products/cart">
                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="?controller=products&action=order">
+                <a class="nav-icon position-relative text-decoration-none" href="/products/order">
                     <i class="fa fa-fw fa-money-bill-wave"></i>
                 </a>
                 
-                <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=user">
+                <a class="nav-icon position-relative text-decoration-none" href="/pages/user">
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="?controller=pages&action=logout">
+                <a class="nav-icon position-relative text-decoration-none" href="/pages/logout">
                     <i class="fa fa-sign-out-alt"></i>
                 </a>
                 <?php else: ?>
