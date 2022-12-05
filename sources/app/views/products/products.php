@@ -37,7 +37,7 @@
                                         <span class="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">HOT</span>
                                     <?php elseif ($product['type_id'] == 2) : ?>
                                         <span class="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">NEW</span>
-                                    <?php elseif ($product['type_id'] == 3) : ?>
+                                    <?php elseif ($product['saleoff']) : ?>
                                         <span class="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">sale</span>
                                     <?php endif; ?>
                                 </a>
@@ -117,7 +117,7 @@
                                                         <span class="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">HOT</span>
                                                     <?php elseif ($product['type_id'] == 2) : ?>
                                                         <span class="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">NEW</span>
-                                                    <?php elseif ($product['type_id'] == 3) : ?>
+                                                    <?php elseif ($product['saleoff']) : ?>
                                                         <span class="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">sale</span>
                                                     <?php endif; ?>
                                                 </a>
