@@ -1,4 +1,8 @@
-    <!-- Start Footer -->
+<?php
+require_once(USER_PATH . 'models/Category.php');
+$categories = Category::all();
+?>
+  <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
