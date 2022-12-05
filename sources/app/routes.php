@@ -3,10 +3,9 @@
 $controllers = array(
   'pages' => ['home', 'page_404', 'page_403', 'login', 'register', 'about', 'contact', 'logout', 'user'],
   'posts' => ['home', 'single'],
-  'products' => ['cate1', 'cate2', 'cate3', 'cart', 'product', 'order'],
+  'products' => ['home', 'cart', 'product', 'order'],
   'users' => ['updateUser']
 );
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Nếu các tham số nhận được từ URL không hợp lệ (không thuộc list controller và action có thể gọi

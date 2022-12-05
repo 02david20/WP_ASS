@@ -3,7 +3,7 @@
     <div class="container">
         <div class="signup-content">
             <div class="signup-form">
-                <h2 class="form-title">Sign up</h2>
+                <h2 class="form-title">Đăng ký</h2>
                 <form method="POST" class="register-form" id="register-form">
                     <div class="form-group">
                         <label for="fullname"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -27,8 +27,8 @@
                 </form>
             </div>
             <div class="signup-image">
-                <figure><img src="img/form/signup-image.jpg" alt="sing up image"></figure>
-                <a href="?controller=pages&action=login" class="signup-image-link">Đã có tài khoản</a>
+                <figure><img src="/public/img/form/signup-image.jpg" alt="sing up image"></figure>
+                <a href="/pages/login" class="signup-image-link">Đã có tài khoản</a>
             </div>
         </div>
     </div>

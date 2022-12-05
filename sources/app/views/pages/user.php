@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
     integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-<link rel="stylesheet" href="public/css/profile.css" />
+<link rel="stylesheet" href="/public/css/profile.css" />
 
 <div class="container">
     <div class="row">
         <div class="col-12">
             <br>
             <!-- Form START -->
-            <form class="file-upload" method="post" action="?controller=users&action=updateUser" >
+            <form class="file-upload" method="post" action="/user/updateUser" >
                 <div class="row mb-5 gx-5">
                     <!-- Contact detail -->
                     <div class="col-xxl-8 mb-5 mb-xxl-0">

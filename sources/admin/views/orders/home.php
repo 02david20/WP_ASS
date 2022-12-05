@@ -42,17 +42,7 @@
               </u>         
             </h2>
 
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown button
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a href="admin.php?controller=order&action=order-cancell">Đơn bị hủy</a></li>
-                  <li><a href="admin.php?controller=order&action=order-complete">Đơn hoàn thành</a></li>
-                  <li><a href="admin.php?controller=order&action=order-noprocess">Chưa xử lý</a></li>
-                  <li><a href="admin.php?controller=order&action=order-inprocess">Đang xử lý</a></li>
-                </ul>
-              </div>
+
             </div>
             <div class="body">
               <div class="table-responsive">
@@ -83,7 +73,7 @@
                     <?php foreach ($orders as $order) : ?>
                       <tr>
                         <td><?php echo $order['id'] ?></td>
-                        <td><a href="admin.php?controller=order&amp;action=view&amp;order_id=<?php echo $order['id']; ?>"><?php echo $order['customer']; ?></a></td>
+                        <td><a href="admin.php?controller=orders&amp;action=view&amp;order_id=<?php echo $order['id']; ?>"><?php echo $order['customer']; ?></a></td>
                         <?php if ($order['user_id'] <> 0) : $user_order = User::findByID($order['user_id']) ?>
                           <td><?php if (isset($user_order)) {
                                 echo $user_order["username"] . "|" . $user_order["id"];

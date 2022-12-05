@@ -5,7 +5,7 @@
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;); padding-top:60px"
                 aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="?controller=pages&action=home">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Shopping cart</li>
                 </ol>
             </nav>
@@ -53,8 +53,8 @@
                                                         <?php echo $product['color'] ?>
                                                     </span>
                                                 </p>
-                                                <a href="index.php?page=cart&remove=<?= $product['id'] ?>"
-                                                    class="remove">Xóa</a>
+                                                <a href="index.php?controller=products&action=cart&remove=<?= $product['id'] ?>"
+                                                    class="remove"><button class="btn" type="button">Xóa</button></a>
                                             </div>
                                             <!-- quantity
                         <div class="col-md-3 col-lg-3 col-xl-3 d-flex">
@@ -74,16 +74,27 @@
                         -->
                                             <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
                                                 <input type="number" name="quantity-<?= $product['id'] ?>"
-                                                    value="<?= $products_in_cart[$product['id']] ?>" min="1" max="10"
+                                                    value="<?= $products_in_cart[$product['id']] ?>" min="1" max="100"
                                                     placeholder="Quantity" required>
                                             </div>
-                                            <div class="col-md-2 col-lg-2 col-xl-1 ">
-                                                <?php echo $product['price']; ?>
-                                            </div>
+                                            <div class="col-md-2 col-lg-2 col-xl-2 ">
+                                                <?php if ($product['type_id'] == 3): ?>
+                                                <del>
+                                                    <?php echo number_format($product['price'], 0, ',', '.'); ?>
+                                                </del>
+                                                <br>
+                                                <span style="color:#dc3545; font-size:120%">
+                                                    <?php echo number_format($product['price'] - $product['price'] * $product['percentoff'] / 100, 0, ',', '.') ?>
+                                                </span>
 
-                                            <div class="col-md-1 col-lg-1 col-xl-2 text-end">
-                                                <?= $product['price'] * $products_in_cart[$product['id']] ?>
+                                                <?php else:
+                                                    echo number_format($product['price'], 0, ',', '.'); ?>
+                                                <?php endif; ?>
                                             </div>
+                                            <!-- 
+                                            <div class="col-md-1 col-lg-1 col-xl-2 text-end">
+                                                 number_format($product['price'] * $products_in_cart[$product['id']], 0, ',', '.') ?>
+                                            </div> -->
 
                                         </div>
 
@@ -95,16 +106,6 @@
 
 
 
-                                        <div class="mb-3">
-                                            <label for="inputprovince">Tỉnh/thành nhận hàng</label>
-                                            <input type="text" class="form-control mt-1" id="province_order" name="province_order"
-                                                placeholder="Tỉnh/thành">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="inputaddress">Địa chỉ nhận hàng</label>
-                                            <textarea class="form-control mt-1" id="address_order" name="address_order"
-                                                placeholder="Địa chỉ" rows="3"></textarea>
-                                        </div>
                                         <div class="pt-5">
                                             <h6 class="mb-0"><a href="index.php" class="text-body"><i
                                                         class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a>
@@ -124,7 +125,7 @@
                                                 <?php echo $num_items_in_cart ?> items
                                             </h5>
                                             <h5>
-                                                <?php echo $subtotal; ?>
+                                                <?php echo number_format($subtotal, 0, ',', '.'); ?>
                                             </h5>
                                         </div>
 
@@ -137,16 +138,15 @@
                                         <div class="d-flex justify-content-between mb-5">
                                             <h5 class="text-uppercase">Total price</h5>
                                             <h5>
-                                                <?php echo $subtotal; ?>
+                                                <?php echo number_format($subtotal, 0, ',', '.'); ?>
                                             </h5>
                                         </div>
 
                                         <input type="submit" class="btn btn-dark btn-block btn-lg" value="Update"
                                             name="update">
-                                        <form action="index.php?controller=products&action=order" method="post">
-                                            <input type="submit" class="btn btn-dark btn-block btn-lg" value="Order"
-                                                name="order">
-                                        </form>
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -154,6 +154,25 @@
                     </div>
                 </div>
             </form>
+            <form action="index.php?controller=products&action=order" method="post">
+                <div class="mb-3 mt-2">
+                    <label for="inputprovince">Tỉnh/thành nhận hàng</label>
+                    <input type="text" class="form-control mt-1" id="province_order" name="province_order"
+                        placeholder="Tỉnh/thành">
+
+                </div>
+                <div class="mb-3">
+                    <label for="inputaddress">Địa chỉ nhận hàng</label>
+                    <textarea class="form-control mt-1" id="address_order" name="address_order" placeholder="Địa chỉ"
+                        rows="3"></textarea>
+                </div>
+                <?php if (isset($_SESSION['user'])): ?>
+                <input type="submit" class="btn btn-dark btn-block btn-lg" value="Order" name="order">
+                <?php else: ?>
+                <a href="?controller=pages&action=login" class="btn mt-3 text-uppercase">Đăng nhập để đặt hàng</a>
+                <?php endif; ?>
+            </form>
+            <hr class="my-4">
             <!-- end form -->
 
         </div>
