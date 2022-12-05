@@ -97,6 +97,9 @@
                       <a class="btn btn-danger mt-1 delete" data-id="<?php echo $row["id"]; ?>" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-toggle="modal">
                         Xóa
                       </a>
+
+                      <a title="Xem" class="btn btn-success btn-icon btn-icon-mini btn-round" target="_blank" href="products/product/<?= $row['id'] . '-' . $row['slug'] ?>"> <i class="zmdi zmdi-eye"></i> </a>
+
                     </td>
                   <?php
                     echo "</tr>";

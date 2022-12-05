@@ -36,7 +36,7 @@
                                         <?php foreach ($products as $product): ?>
                                         <div class="row d-flex justify-content-between align-items-center">
                                             <div class="col-md-2 col-lg-2 col-xl-2">
-                                                <a href="index.php?page=product&id=<?= $product['id'] ?>">
+                                                <a href="/products/product/<?= $product['id'] . "-" . $product['slug'] ?>">
                                                     <img src="<?= PATH_URL_IMG_PRODUCT . $product['img1']; ?>"
                                                         class="img-fluid rounded-3"
                                                         alt="<?php echo $product['name']; ?>">
@@ -44,7 +44,7 @@
 
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-2">
-                                                <a href="index.php?page=product&id=<?= $product['id'] ?>">
+                                                <a href="/products/product/<?= $product['id'] . "-" .$product['slug'] ?>">
                                                     <h6 class="text-black mb-0">
                                                         <?php echo $product['name']; ?>
                                                     </h6>
