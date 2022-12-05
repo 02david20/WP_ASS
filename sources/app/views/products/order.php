@@ -86,14 +86,19 @@
                                                 <div class="accordion-body">
                                                 <div class="row d-flex justify-content-between align-items-center">
                                                 <div class="col-md-3 col-lg-3 col-xl-2">
-                                                <a href="index.php?page=product&id=<?= $order_detail['product_id'] ?>">
+                                                <a href="index.php?controller=products&action=product&id=<?= $order_detail['product_id'] ?>">
                                                 <img src = "<?php echo PATH_URL_IMG_PRODUCT . Product::select_product_by_id($order_detail['product_id'])['img1']; ?>" class="img-fluid rounded-3" alt="">
                                     </a>
                                             </div>
                                                 <div class="col-md-2 col-lg-2 col-xl-3">
-                                            <b><?php echo Product::select_product_by_id($order_detail['product_id'])['name']; ?></b>
+                                            <a href="index.php?controller=products&action=product&id=<?= $order_detail['product_id'] ?>"><b><?php echo Product::select_product_by_id($order_detail['product_id'])['name']; ?></b></a>
                                             <br>
-                                            Giá tiền: <?php echo number_format($order_detail['price'], 0, ',', '.'); ?>
+                                            Giá tiền:<?php $product = Product::select_product_by_id($order_detail['product_id']);
+                                            if ($product['type_id'] == 3) {
+                                            echo number_format($order_detail['price'] - $order_detail['price'] * $product['percentoff'] / 100, 0, ',', '.');
+                                        } else {
+                                            echo number_format($order_detail['price'], 0, ',', '.');
+                                        } ?>
                                         </div>
                                         
                                         <div class="col-md-3 col-lg-3 col-xl-2">
