@@ -23,7 +23,7 @@ class PagesController extends BaseController
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if (isset($_POST['fullname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['re_password'])) {
-        if ($_POST['pass'] === $_POST['re_pass']) {
+        if ($_POST['password'] === $_POST['re_password']) {
           $user_data = array(
             'username' => escape($_POST['username']),
             'fullname' => escape($_POST['fullname']),
