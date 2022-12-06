@@ -39,6 +39,9 @@ $categories = Category::all();
                     <li class="nav-item">
                         <a class="nav-link" href="/pages/contact">Liên hệ</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products">All</a>
+                    </li>
                     <?php
                     foreach ($categories as $category): ?>
                     <li class="nav-item">

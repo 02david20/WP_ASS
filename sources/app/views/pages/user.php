@@ -36,7 +36,7 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Số điện thoại</label>
                                     <?php
-                                    echo '<input name = "phone_num" type="text" class="form-control" placeholder="" aria-label="Số điện thoại"
+                                    echo '<input name = "phone_num" type="number" class="form-control" placeholder="" aria-label="Số điện thoại"
                                     value="' . $user['phone_num'] . '">'
                                         ?>
                                 </div>

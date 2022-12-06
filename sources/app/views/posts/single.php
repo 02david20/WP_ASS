@@ -58,8 +58,8 @@ $datetime = substr($datetime, 0, -2);
 					<img src="<?= PATH_URL_IMG_BLOG . $one_post['main_pic']; ?>" alt="Image" class="img-responsive auto-height">
 				</figure>
 
-				<span class="fh5co-meta animate-box"><a href="single.html"><?= $one_post['type_name']; ?></a></span>
-				<h2 class="fh5co-article-title animate-box"><a href="single.html"><?= $one_post['title']; ?></a></h2>
+				<span class="fh5co-meta animate-box"><?= $one_post['type_name']; ?></span>
+				<h2 class="fh5co-article-title animate-box"><?= $one_post['title']; ?></h2>
 				<span class="fh5co-meta fh5co-date animate-box"><?= $one_post['date']; ?></span>
 
 				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">

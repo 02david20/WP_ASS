@@ -37,7 +37,7 @@ CREATE TABLE `blog` (
   `main_pic` varchar(1000) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `title` varchar(1000) NOT NULL,
-  `date` date DEFAULT NULL,
+  `date` date DEFAULT current_timestamp(),
   `para1` text NOT NULL,
   `sub_pic` varchar(1000) DEFAULT NULL,
   `para2` text NOT NULL,

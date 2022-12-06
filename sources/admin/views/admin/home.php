@@ -322,7 +322,6 @@
                     <tr>
                       <th>ID</th>
                       <th>Tên khách hàng</th>
-                      <th>UserName | ID (User)</th>
                       <th>Ngày đặt đơn</th>
                       <th>Tổng giá trị đơn hàng</th>
                       <th>Tình trạng</th>
@@ -333,7 +332,6 @@
                     <tr>
                       <th>ID</th>
                       <th>Tên khách hàng</th>
-                      <th>UserName | ID (User)</th>
                       <th>Ngày đặt đơn</th>
                       <th>Tổng giá trị đơn hàng</th>
                       <th>Tình trạng</th>
@@ -345,13 +343,6 @@
                       <tr>
                         <td><?php echo $order['id'] ?></td>
                         <td><a href="admin.php?controller=orders&amp;action=view&amp;order_id=<?php echo $order['id']; ?>"><?php echo $order['customer']; ?></a></td>
-                        <?php if ($order['user_id'] <> 0) : $user_order = User::findByID($order['user_id']) ?>
-                          <td><?php if (isset($user_order)) {
-                                echo $user_order["username"] . "|" . $user_order["id"];
-                              } ?> </td>
-                        <?php else : ?>
-                          <td></td>
-                        <?php endif; ?>
                         <td><?php echo $order['createtime'] ?></td>
                         <td><?php echo number_format($order['cart_total'], 0, ',', '.') ?></td>
                         <td><?php echo $status[$order['status']]; ?></td>

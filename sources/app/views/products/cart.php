@@ -75,7 +75,7 @@
                                             <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
                                                 <input type="number" name="quantity-<?= $product['id'] ?>"
                                                     value="<?= $products_in_cart[$product['id']] ?>" min="1" max="100"
-                                                    placeholder="Quantity" required>
+                                                    placeholder="Quantity" style="min-width: 1px;" required>
                                             </div>
                                             <div class="col-md-2 col-lg-2 col-xl-2 ">
                                                 <?php if ($product['saleoff']): ?>
