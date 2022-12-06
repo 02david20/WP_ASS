@@ -53,7 +53,7 @@
                                                         <?php echo $product['color'] ?>
                                                     </span>
                                                 </p>
-                                                <a href="index.php?controller=products&action=cart&remove=<?= $product['id'] ?>"
+                                                <a href="/index.php?controller=products&action=cart&remove=<?= $product['id'] ?>"
                                                     class="remove"><button class="btn" type="button">Xóa</button></a>
                                             </div>
                                             <!-- quantity

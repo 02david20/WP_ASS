@@ -16,7 +16,7 @@ class Order {
 
         $values  = implode("', '", $escaped_values);
 
-        $sql = "INSERT INTO fashion.orders ($columns) VALUES ('$values')";
+        $sql = "INSERT INTO orders ($columns) VALUES ('$values')";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
     }
@@ -28,9 +28,9 @@ class Order {
         $escaped_values = array_map(array($conn, 'real_escape_string'), array_values($input_insert_detail));
 
         $values  = implode("', '", $escaped_values);
-        $sql = "INSERT INTO fashion.order_detail ($columns) VALUES ('$values')";
+        $sql = "INSERT INTO order_detail ($columns) VALUES ('$values')";
 
-        // $sql = "INSERT INTO fashion.orderdetails (order_id, product_id, price, amount) VALUES (?,?,?,?)";
+        // $sql = "INSERT INTO orderdetails (order_id, product_id, price, amount) VALUES (?,?,?,?)";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         // $stmt->execute([$id,$order_id, $product_id, $price, $amount, $total]);

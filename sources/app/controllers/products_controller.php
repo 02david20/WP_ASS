@@ -122,8 +122,10 @@ class ProductsController extends BaseController
       header('location: /products/cart');
       exit();
     }
-    if (isset($_POST['remove']) && is_numeric($_POST['remove_id']) && isset($_SESSION['cart']) && isset($_SESSION['cart'][$_POST['remove_id']])) {
-      unset($_SESSION['cart'][$_POST['remove_id']]);
+    if (isset($_GET['remove']) && is_numeric($_GET['remove']) && isset($_SESSION['cart']) && isset($_SESSION['cart'][$_GET['remove']])) {
+      unset($_SESSION['cart'][$_GET['remove']]);
+      header('location: /products/cart');
+      exit();
     }
 
     if (isset($_POST['update']) && isset($_SESSION['cart'])) {
@@ -190,7 +192,7 @@ class ProductsController extends BaseController
       
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $createtime = date('Y-m-d H:i:s');
-
+        
         $input_insert_order = array(
           // 'id' => $order_id,
           'customer' => $_SESSION['user']['username'],
@@ -201,10 +203,8 @@ class ProductsController extends BaseController
           'createtime' => $createtime,
           'message' => NULL,
           'status' => 0,
-          'user_id' => $_SESSION['user']['id'],
-          'editTime' => NULL,
+          'user_id' => $_SESSION['user']['id']
         );
-      
         
         Order::insert_into_order($input_insert_order);
         // Order::insert_into_order($order_id, $user_id, $note, $order_date, $subtotal);
@@ -236,6 +236,7 @@ class ProductsController extends BaseController
       }
 
       $orders = Order::orders_by_id($_SESSION['user']['username']);
+
       //$order_detail = Order::
 
       $order_details = array();
