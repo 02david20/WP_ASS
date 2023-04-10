@@ -72,7 +72,7 @@
                             <div class="row clearfix">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input name="username" type="text" maxlength="50" value="<?php echo $user_info ? $user_info['username'] : ''; ?>" class="form-control" id="name" placeholder="VD: tanhongit" required="" />
+                                        <input name="username" type="text" maxlength="50" value="<?php echo $user_info ? $user_info['username'] : ''; ?>" class="form-control" id="name" placeholder="VD: david" required="" />
                                     </div>
                                 </div>
                             </div>
