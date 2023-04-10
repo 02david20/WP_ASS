@@ -163,11 +163,9 @@ Clone the project
 <!-- Contact -->
 ## :handshake: Contact
 
-Huỳnh Đại Vinh - [@facebook_handle](https://www.facebook.com/profile.php?id=100030314627238)
+Huỳnh Đại Vinh - [02david20](https://github.com/02david20)
 
 Project Link: [https://github.com/02david20/WP_ASS](https://github.com/02david20/WP_ASS)
-
-
 
  - [Readme Template](https://github.com/othneildrew/Best-README-Template)
 
